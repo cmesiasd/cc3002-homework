@@ -1,11 +1,11 @@
 package cc3002.tarea1;
 
-import cc3002.tarea1.electric.ElectricAttack;
-import cc3002.tarea1.fighting.FightingAttack;
-import cc3002.tarea1.fire.FireAttack;
-import cc3002.tarea1.grass.GrassAttack;
-import cc3002.tarea1.psychic.PsychicAttack;
-import cc3002.tarea1.water.WaterAttack;
+import cc3002.tarea1.fighting.FightingPokemon;
+import cc3002.tarea1.fire.FirePokemon;
+import cc3002.tarea1.grass.GrassPokemon;
+import cc3002.tarea1.lighting.LightingPokemon;
+import cc3002.tarea1.psychic.PsychicPokemon;
+import cc3002.tarea1.water.WaterPokemon;
 
 import java.util.List;
 
@@ -13,19 +13,20 @@ public abstract class AbstractPokemon implements IPokemon {
     private String name;
     private int id;
     private int hp;
-    private int countEnergy;
-    private List<IAttack> attackList;
-    private IAttack selectedAttack;
+    private Cost countEnergy;
+    private List<Attack> attackList;
+    private Attack selectedAttack;
 
     /**
      * Creates a new Pokémon.
      *
-     * @param name  Pokémon's name.
-     * @param hp  Pokémon's hit points.
-     * @param id Pokemon's id.
-     * @param attackList  Pokémon's attacks.
+     * @param name       Pokémon's name.
+     * @param hp         Pokémon's hit points.
+     * @param id         Pokemon's id.
+     * @param countEnergy       Pokemon's attack cost
+     * @param attackList Pokémon's attacks.
      */
-    protected AbstractPokemon(String name, int hp, int id, int countEnergy, List<IAttack> attackList) {
+    protected AbstractPokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
         this.name = name;
         this.id = id;
         this.hp = hp;
@@ -33,7 +34,7 @@ public abstract class AbstractPokemon implements IPokemon {
         this.attackList = attackList;
     }
 
-    //region Propierties
+    //region Properties
     @Override
     public String getName() {
         return name;
@@ -50,86 +51,95 @@ public abstract class AbstractPokemon implements IPokemon {
     }
 
     @Override
-    public int getCountEnergy() {
+    public Cost getCountEnergy() {
         return countEnergy;
     }
 
     @Override
-    public List<IAttack> getAttacks() {
+    public List<Attack> getAttacks() {
         return attackList;
     }
 
     @Override
-    public IAttack getSelectedAttack() {
+    public Attack getSelectedAttack() {
         return selectedAttack;
     }
     //endregion
 
+
     //region Attack
-    @Override
-    public void attack(IPokemon other) {
-        selectedAttack.attack(other);
+    public void attack(IPokemon other, int index) {
+        this.selectAttack(index);
+        other.receiveAttack(this);
     }
 
     @Override
     public void selectAttack(int index) {
         selectedAttack = attackList.get(index);
     }
+
     //endregion
 
-    //region Damage
+    //region Damages
     /**
      * Receives an attack.
-     * @param attack  Received attack.
+     *
+     * @param other Received attack.
      */
-    protected void receiveAttack(IAttack attack) {
-        this.hp -= attack.getBaseDamage();
+    public void receiveAttack(IPokemon other) {
+        this.hp -= other.getSelectedAttack().getBaseDamage();
     }
 
     /**
      * Receives an attack to which this Pokémon is weak.
-     * @param attack  Received attack.
+     *
+     * @param other Received attack.
      */
-    protected void receiveWeaknessAttack(IAttack attack) {
-        this.hp -= attack.getBaseDamage() * 2;
+    public void receiveWeaknessAttack(IPokemon other) {
+        this.hp -= other.getSelectedAttack().getBaseDamage() * 2;
     }
 
     /**
      * Receives an attack to which this Pokémon is resistant.
-     * @param attack  Received attack.
+     *
+     * @param other Received attack.
      */
-    protected void receiveResistantAttack(IAttack attack) {
-        this.hp -= attack.getBaseDamage() - 30;
+    public void receiveResistantAttack(IPokemon other) {
+        this.hp -= other.getSelectedAttack().getBaseDamage() - 30;
+    }
+
+
+
+
+    @Override
+    public void attackedByWaterPokemon(WaterPokemon waterPokemon) {
+        receiveAttack(waterPokemon);
     }
 
     @Override
-    public void receiveWaterAttack(WaterAttack attack) {
-        receiveAttack(attack);
+    public void attackedByGrassPokemon(GrassPokemon grassPokemon) {
+        receiveAttack(grassPokemon);
     }
 
     @Override
-    public void receiveGrassAttack(GrassAttack attack) {
-        receiveAttack(attack);
+    public void attackedByFirePokemon(FirePokemon firePokemon) {
+        receiveAttack(firePokemon);
     }
 
     @Override
-    public void receiveFireAttack(FireAttack attack) {
-        receiveAttack(attack);
+    public void attackedByFightingPokemon(FightingPokemon fightingPokemon) {
+        receiveAttack(fightingPokemon);
     }
 
     @Override
-    public void receiveFightingAttack(FightingAttack attack) {
-        receiveAttack(attack);
+    public void attackedByPsychicPokemon(PsychicPokemon psychicPokemon) {
+        receiveAttack(psychicPokemon);
     }
 
     @Override
-    public void receivePsychicAttack(PsychicAttack attack) {
-        receiveAttack(attack);
-    }
-
-    @Override
-    public void receiveElectricAttack(ElectricAttack attack) {
-        receiveAttack(attack);
+    public void attackedByLightingPokemon(LightingPokemon lightingPokemon) {
+        receiveAttack(lightingPokemon);
     }
     //endregion
+
 }

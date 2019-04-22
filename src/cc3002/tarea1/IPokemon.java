@@ -1,12 +1,13 @@
 package cc3002.tarea1;
 
 import java.util.List;
-import cc3002.tarea1.electric.ElectricAttack;
-import cc3002.tarea1.fighting.FightingAttack;
-import cc3002.tarea1.fire.FireAttack;
-import cc3002.tarea1.grass.GrassAttack;
-import cc3002.tarea1.psychic.PsychicAttack;
-import cc3002.tarea1.water.WaterAttack;
+import cc3002.tarea1.fighting.FightingPokemon;
+import cc3002.tarea1.fire.FirePokemon;
+import cc3002.tarea1.grass.GrassPokemon;
+import cc3002.tarea1.lighting.LightingPokemon;
+import cc3002.tarea1.psychic.PsychicPokemon;
+import cc3002.tarea1.water.WaterPokemon;
+
 
 public interface IPokemon {
     //region Propierties
@@ -28,18 +29,20 @@ public interface IPokemon {
     /**
      * @return Pokemon's energy counter.
      */
-    int getCountEnergy();
+    Cost getCountEnergy();
 
     /**
      * @return List with all the Pokémon attacks.
      */
-    List<IAttack> getAttacks();
+    List<Attack> getAttacks();
 
     /**
      * @return The current selected attack.
      */
-    IAttack getSelectedAttack();
+    Attack getSelectedAttack();
     //endregion
+
+
 
     //region Attack
     /**
@@ -47,7 +50,7 @@ public interface IPokemon {
      *
      * @param other Target of the attack.
      */
-    void attack(IPokemon other);
+    void attack(IPokemon other, int index);
 
     /**
      * Selects an attack.
@@ -56,51 +59,74 @@ public interface IPokemon {
      */
     void selectAttack(int index);
 
-    /**
-     * Receives damage from a water attack.
-     *
-     * @param attack Received attack.
-     */
     //endregion
 
+
+
     //region Damage
-    void receiveWaterAttack(WaterAttack attack);
 
     /**
-     * Receives damage from a grass attack.
+     * Receives an attack.
      *
-     * @param attack Received attack.
+     * @param other Received attack.
      */
-    void receiveGrassAttack(GrassAttack attack);
+    void receiveAttack(IPokemon other);
 
     /**
-     * Receives damage from a fire attack.
+     * Receives an attack to which this Pokémon is weak.
      *
-     * @param attack Received attack.
+     * @param other Received attack.
      */
-    void receiveFireAttack(FireAttack attack);
+    void receiveWeaknessAttack(IPokemon other);
 
     /**
-     * Receives damage from a fighting attack.
+     * Receives an attack to which this Pokémon is resistant.
      *
-     * @param attack Received attack.
+     * @param other Received attack.
      */
-    void receiveFightingAttack(FightingAttack attack);
+    void receiveResistantAttack(IPokemon other);
 
     /**
-     * Receives damage from a psychic attack.
+     * Receives an attack from a water pokemon.
      *
-     * @param attack Received attack.
+     * @param waterPokemon Received attack.
      */
-    void receivePsychicAttack(PsychicAttack attack);
+    void attackedByWaterPokemon(WaterPokemon waterPokemon);
 
     /**
-     * Receives damage from a electric attack.
+     * Receives an attack from a grass pokemon.
      *
-     * @param attack Received attack.
+     * @param grassPokemon Received attack.
      */
-    void receiveElectricAttack(ElectricAttack attack);
+    void attackedByGrassPokemon(GrassPokemon grassPokemon);
 
+    /**
+     * Receives an attack from a fire pokemon.
+     *
+     * @param firePokemon attackedByd attack.
+     */
+    void attackedByFirePokemon(FirePokemon firePokemon);
+
+    /**
+     * Receives an attack from a fighting pokemon.
+     *
+     * @param fightingPokemon Received attack.
+     */
+    void attackedByFightingPokemon(FightingPokemon fightingPokemon);
+
+    /**
+     * Receives an attack from a psychic pokemon.
+     *
+     * @param psychicPokemon Received attack.
+     */
+    void attackedByPsychicPokemon(PsychicPokemon psychicPokemon);
+
+    /**
+     * Receives an attack from a lighting pokemon.
+     *
+     * @param lightingPokemon Received attack.
+     */
+    void attackedByLightingPokemon(LightingPokemon lightingPokemon);
     //endregion
 }
 
