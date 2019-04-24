@@ -18,6 +18,7 @@ public abstract class AbstractPokemon implements IPokemon {
     private String name;
     private int id;
     private int hp;
+    private int maxHP;
     private Cost countEnergy;
     private List<Attack> attackList;
     private Attack selectedAttack;
@@ -69,6 +70,10 @@ public abstract class AbstractPokemon implements IPokemon {
     public Attack getSelectedAttack() {
         return selectedAttack;
     }
+
+    public boolean isAlive(){
+        return this.hp > 0;
+    }
     //endregion
 
 
@@ -92,6 +97,14 @@ public abstract class AbstractPokemon implements IPokemon {
      */
     public void receiveAttack(IPokemon other) {
         this.hp -= other.getSelectedAttack().getBaseDamage();
+        if(!isAlive()) {
+            this.hp = 0;
+            this.changePokemon();
+        }
+    }
+
+    public void changePokemon() {
+
     }
 
     /**
@@ -111,9 +124,6 @@ public abstract class AbstractPokemon implements IPokemon {
     public void receiveResistantAttack(IPokemon other) {
         this.hp -= other.getSelectedAttack().getBaseDamage() - 30;
     }
-
-
-
 
     @Override
     public void attackedByWaterPokemon(WaterPokemon waterPokemon) {
@@ -146,8 +156,8 @@ public abstract class AbstractPokemon implements IPokemon {
     }
     //endregion
 
-    //region Energy
 
+    //region Energy
     public void receiveWaterEnergy(WaterEnergy waterEnergy){
         this.countEnergy.getCost().put(waterEnergy.getType(), this.countEnergy.getCost().get(waterEnergy.getType())+1);
     }
