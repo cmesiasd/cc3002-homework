@@ -1,12 +1,17 @@
 package cc3002.tarea1;
 
+import cc3002.tarea1.fighting.FightingEnergy;
 import cc3002.tarea1.fighting.FightingPokemon;
+import cc3002.tarea1.fire.FireEnergy;
 import cc3002.tarea1.fire.FirePokemon;
+import cc3002.tarea1.grass.GrassEnergy;
 import cc3002.tarea1.grass.GrassPokemon;
+import cc3002.tarea1.lighting.LightingEnergy;
 import cc3002.tarea1.lighting.LightingPokemon;
+import cc3002.tarea1.psychic.PsychicEnergy;
 import cc3002.tarea1.psychic.PsychicPokemon;
+import cc3002.tarea1.water.WaterEnergy;
 import cc3002.tarea1.water.WaterPokemon;
-
 import java.util.List;
 
 public abstract class AbstractPokemon implements IPokemon {
@@ -20,11 +25,11 @@ public abstract class AbstractPokemon implements IPokemon {
     /**
      * Creates a new Pokémon.
      *
-     * @param name       Pokémon's name.
-     * @param hp         Pokémon's hit points.
-     * @param id         Pokemon's id.
-     * @param countEnergy       Pokemon's attack cost
-     * @param attackList Pokémon's attacks.
+     * @param name        Pokémon's name.
+     * @param hp          Pokémon's hit points.
+     * @param id          Pokemon's id.
+     * @param countEnergy Pokemon's attack cost
+     * @param attackList  Pokémon's attacks.
      */
     protected AbstractPokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
         this.name = name;
@@ -68,10 +73,8 @@ public abstract class AbstractPokemon implements IPokemon {
 
 
     //region Attack
-    public void attack(IPokemon other, int index) {
-        this.selectAttack(index);
-        other.receiveAttack(this);
-    }
+    @Override
+    public abstract void attack(IPokemon other, int index);
 
     @Override
     public void selectAttack(int index) {
@@ -79,6 +82,7 @@ public abstract class AbstractPokemon implements IPokemon {
     }
 
     //endregion
+
 
     //region Damages
     /**
@@ -140,6 +144,34 @@ public abstract class AbstractPokemon implements IPokemon {
     public void attackedByLightingPokemon(LightingPokemon lightingPokemon) {
         receiveAttack(lightingPokemon);
     }
+    //endregion
+
+    //region Energy
+
+    public void receiveWaterEnergy(WaterEnergy waterEnergy){
+        this.countEnergy.getCost().put(waterEnergy.getType(), this.countEnergy.getCost().get(waterEnergy.getType())+1);
+    }
+
+    public void receiveFireEnergy(FireEnergy fireEnergy){
+        this.countEnergy.getCost().put(fireEnergy.getType(), this.countEnergy.getCost().get(fireEnergy.getType())+1);
+    }
+
+    public void receiveGrassEnergy(GrassEnergy grassEnergy){
+        this.countEnergy.getCost().put(grassEnergy.getType(), this.countEnergy.getCost().get(grassEnergy.getType())+1);
+    }
+
+    public void receiveFightingEnergy(FightingEnergy fightingEnergy){
+        this.countEnergy.getCost().put(fightingEnergy.getType(), this.countEnergy.getCost().get(fightingEnergy.getType())+1);
+    }
+
+    public void receiveLightingEnergy(LightingEnergy lightingEnergy){
+        this.countEnergy.getCost().put(lightingEnergy.getType(), this.countEnergy.getCost().get(lightingEnergy.getType())+1);
+    }
+
+    public void receivePsychicEnergy(PsychicEnergy psychicEnergy){
+        this.countEnergy.getCost().put(psychicEnergy.getType(), this.countEnergy.getCost().get(psychicEnergy.getType())+1);
+    }
+
     //endregion
 
 }

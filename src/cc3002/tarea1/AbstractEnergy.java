@@ -3,18 +3,18 @@ package cc3002.tarea1;
 import java.util.Objects;
 
 public abstract class AbstractEnergy implements IEnergy {
+    private String type;
 
-    public AbstractEnergy() {
-
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public AbstractEnergy(String type) {
+        this.type = type;
     }
 
     @Override
     public abstract void useEnergyCard(IPokemon pokemon);
+
+    public String getType(){
+        return type;
+    }
 }
 
 

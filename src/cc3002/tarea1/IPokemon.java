@@ -1,11 +1,18 @@
 package cc3002.tarea1;
 
 import java.util.List;
+
+import cc3002.tarea1.fighting.FightingEnergy;
 import cc3002.tarea1.fighting.FightingPokemon;
+import cc3002.tarea1.fire.FireEnergy;
 import cc3002.tarea1.fire.FirePokemon;
+import cc3002.tarea1.grass.GrassEnergy;
 import cc3002.tarea1.grass.GrassPokemon;
+import cc3002.tarea1.lighting.LightingEnergy;
 import cc3002.tarea1.lighting.LightingPokemon;
+import cc3002.tarea1.psychic.PsychicEnergy;
 import cc3002.tarea1.psychic.PsychicPokemon;
+import cc3002.tarea1.water.WaterEnergy;
 import cc3002.tarea1.water.WaterPokemon;
 
 
@@ -42,8 +49,6 @@ public interface IPokemon {
     Attack getSelectedAttack();
     //endregion
 
-
-
     //region Attack
     /**
      * Attacks another Pokémon.
@@ -60,8 +65,6 @@ public interface IPokemon {
     void selectAttack(int index);
 
     //endregion
-
-
 
     //region Damage
 
@@ -127,6 +130,20 @@ public interface IPokemon {
      * @param lightingPokemon Received attack.
      */
     void attackedByLightingPokemon(LightingPokemon lightingPokemon);
+    //endregion
+
+    //region Energy
+    void receiveFireEnergy(FireEnergy fireEnergy);
+
+    void receiveWaterEnergy(WaterEnergy waterEnergy);
+
+    void receiveGrassEnergy(GrassEnergy grassEnergy);
+
+    void receiveLightingEnergy(LightingEnergy lightingEnergy);
+
+    void receiveFightingEnergy(FightingEnergy fightingEnergy);
+
+    void receivePsychicEnergy(PsychicEnergy psychicEnergy);
     //endregion
 }
 

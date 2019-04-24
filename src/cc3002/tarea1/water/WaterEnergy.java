@@ -4,13 +4,14 @@ import cc3002.tarea1.AbstractEnergy;
 import cc3002.tarea1.IPokemon;
 
 public class WaterEnergy extends AbstractEnergy {
-    public WaterEnergy() {
-        super();
+
+    public WaterEnergy(String water) {
+        super(water);
     }
 
     @Override
     public void useEnergyCard(IPokemon pokemon) {
-        WaterEnergy waterEner = new WaterEnergy();
-        pokemon.getCountEnergy().getCost().put(waterEner,1);
+        pokemon.receiveWaterEnergy(this);
     }
+
 }

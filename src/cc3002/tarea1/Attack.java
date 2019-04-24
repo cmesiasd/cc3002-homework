@@ -20,7 +20,6 @@ public class Attack {
         this.cost = cost;
     }
 
-
     //region Properties
     public int getBaseDamage() {
         return baseDamage;
