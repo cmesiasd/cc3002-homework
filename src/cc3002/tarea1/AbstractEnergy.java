@@ -2,7 +2,7 @@ package cc3002.tarea1;
 
 import java.util.Objects;
 
-public abstract class AbstractEnergy implements IEnergy {
+public abstract class AbstractEnergy implements IEnergy, ICard {
     private String type;
 
     public AbstractEnergy(String type) {

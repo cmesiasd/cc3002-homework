@@ -14,7 +14,7 @@ import cc3002.tarea1.water.WaterEnergy;
 import cc3002.tarea1.water.WaterPokemon;
 import java.util.List;
 
-public abstract class AbstractPokemon implements IPokemon {
+public abstract class AbstractPokemon implements IPokemon, ICard {
     private String name;
     private int id;
     private int hp;

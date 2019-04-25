@@ -145,7 +145,6 @@ public interface IPokemon {
 
     void receivePsychicEnergy(PsychicEnergy psychicEnergy);
 
-
     //endregion
 }
 

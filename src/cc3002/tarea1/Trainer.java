@@ -7,6 +7,7 @@ public class Trainer {
     private ArrayList<IPokemon> pokemons;
     private ArrayList<IEnergy> energies;
     private IPokemon selectedPokemon;
+    private IEnergy selectedEnergy;
 
     public Trainer(String name, ArrayList<IPokemon> pokemons, ArrayList<IEnergy> energies) {
         this.name = name;
@@ -15,6 +16,12 @@ public class Trainer {
     }
 
     //region Properties
+
+
+    public IEnergy getSelectedEnergy() {
+        return selectedEnergy;
+    }
+
     public IPokemon getSelectedPokemon(){
         return selectedPokemon;
     }
@@ -33,10 +40,15 @@ public class Trainer {
     //endregion
 
     public void selectPokemon(int index){
-        selectedPokemon = pokemons.get(index);
+        selectedPokemon = getPokemons().get(index);
     }
 
     public void attackTrainer(Trainer trainer, int at){
         getSelectedPokemon().attack(trainer.getSelectedPokemon(),at);
+    }
+
+    public void playEnergyCard(int index){
+        selectedEnergy = getEnergies().get(index);
+        selectedEnergy.useEnergyCard(getSelectedPokemon());
     }
 }
