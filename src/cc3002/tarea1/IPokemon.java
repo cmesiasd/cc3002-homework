@@ -1,7 +1,6 @@
 package cc3002.tarea1;
 
 import java.util.List;
-
 import cc3002.tarea1.fighting.FightingEnergy;
 import cc3002.tarea1.fighting.FightingPokemon;
 import cc3002.tarea1.fire.FireEnergy;
@@ -15,6 +14,13 @@ import cc3002.tarea1.psychic.PsychicPokemon;
 import cc3002.tarea1.water.WaterEnergy;
 import cc3002.tarea1.water.WaterPokemon;
 
+
+/**
+ * Pokemon Interfaces
+ *
+ * @author cmesiasd
+ * @version 1.0
+ */
 
 public interface IPokemon {
     //region Propierties
@@ -54,13 +60,14 @@ public interface IPokemon {
      * Attacks another Pokémon.
      *
      * @param other Target of the attack.
+     * @param index Index of attack.
      */
     void attack(IPokemon other, int index);
 
     /**
      * Selects an attack.
      *
-     * @param index Index of the attack to be selected.
+     * @param index Index of the attack.
      */
     void selectAttack(int index);
 
@@ -106,7 +113,7 @@ public interface IPokemon {
     /**
      * Receives an attack from a fire pokemon.
      *
-     * @param firePokemon attackedByd attack.
+     * @param firePokemon Received attack.
      */
     void attackedByFirePokemon(FirePokemon firePokemon);
 
@@ -132,19 +139,44 @@ public interface IPokemon {
     void attackedByLightingPokemon(LightingPokemon lightingPokemon);
     //endregion
 
+
     //region Energy
+
+    /** Pokemon receives an energy of the fire type
+     *
+     * @param fireEnergy Fire Energy
+     */
     void receiveFireEnergy(FireEnergy fireEnergy);
 
+    /** Pokemon receives an energy of the water type
+     *
+     * @param waterEnergy Water Energy
+     */
     void receiveWaterEnergy(WaterEnergy waterEnergy);
 
+    /** Pokemon receives an energy of the grass type
+     *
+     * @param grassEnergy Grass Energy
+     */
     void receiveGrassEnergy(GrassEnergy grassEnergy);
 
+    /** Pokemon receives an energy of the lighting type
+     *
+     * @param lightingEnergy Lighting Energy
+     */
     void receiveLightingEnergy(LightingEnergy lightingEnergy);
 
+    /** Pokemon receives an energy of the fighting type
+     *
+     * @param fightingEnergy Fighting Energy
+     */
     void receiveFightingEnergy(FightingEnergy fightingEnergy);
 
+    /** Pokemon receives an energy of the psychic type
+     *
+     * @param psychicEnergy Psychic Energy
+     */
     void receivePsychicEnergy(PsychicEnergy psychicEnergy);
-
     //endregion
 }
 

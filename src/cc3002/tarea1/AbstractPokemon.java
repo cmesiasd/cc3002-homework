@@ -12,7 +12,9 @@ import cc3002.tarea1.psychic.PsychicEnergy;
 import cc3002.tarea1.psychic.PsychicPokemon;
 import cc3002.tarea1.water.WaterEnergy;
 import cc3002.tarea1.water.WaterPokemon;
+import cc3002.tarea1.Trainer;
 import java.util.List;
+import java.util.Map;
 
 public abstract class AbstractPokemon implements IPokemon, ICard {
     private String name;
@@ -29,8 +31,8 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
      * @param name        Pokémon's name.
      * @param hp          Pokémon's hit points.
      * @param id          Pokemon's id.
-     * @param countEnergy Pokemon's attack cost
-     * @param attackList  Pokémon's attacks.
+     * @param countEnergy Pokemon's counter energies
+     * @param attackList  Pokémon's attacks list.
      */
     protected AbstractPokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
         this.name = name;
@@ -86,43 +88,51 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         selectedAttack = attackList.get(index);
     }
 
+    public boolean canAttack() {
+        for (Map.Entry<String, Integer> entry1 : this.getSelectedAttack().getCost().getCost().entrySet()) {
+            String k = entry1.getKey();
+            //Compara los key si son iguales.
+            if(this.getCountEnergy().getCost().containsKey(k)){
+                //si son iguales obtiene los valores.
+                Integer value1 = entry1.getValue(); //Costo ataque
+                Integer value2 = this.getCountEnergy().getCost().get(k); //Energias
+                if (value1 > value2){
+                    return false;
+                }
+
+            }
+        }
+        return true;
+    }
+
     //endregion
 
 
     //region Damages
-    /**
-     * Receives an attack.
-     *
-     * @param other Received attack.
-     */
+
     public void receiveAttack(IPokemon other) {
-        this.hp -= other.getSelectedAttack().getBaseDamage();
+        if (canAttack()) {
+            this.hp -= other.getSelectedAttack().getBaseDamage();
+        }
         if(!isAlive()) {
             this.hp = 0;
-            this.changePokemon();
         }
     }
 
-    public void changePokemon() {
-
-    }
-
-    /**
-     * Receives an attack to which this Pokémon is weak.
-     *
-     * @param other Received attack.
-     */
     public void receiveWeaknessAttack(IPokemon other) {
         this.hp -= other.getSelectedAttack().getBaseDamage() * 2;
+        if(!isAlive()) {
+            this.hp = 0;
+        }
     }
 
-    /**
-     * Receives an attack to which this Pokémon is resistant.
-     *
-     * @param other Received attack.
-     */
     public void receiveResistantAttack(IPokemon other) {
-        this.hp -= other.getSelectedAttack().getBaseDamage() - 30;
+        if (other.getSelectedAttack().getBaseDamage() - 30 > 0){
+            this.hp -= other.getSelectedAttack().getBaseDamage() - 30;
+        }
+        if(!isAlive()) {
+            this.hp = 0;
+        }
     }
 
     @Override

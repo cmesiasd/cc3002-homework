@@ -13,6 +13,14 @@ import java.util.List;
 
 public class WaterPokemon extends AbstractPokemon {
 
+    /** Constructor for WaterPokemon
+     *
+     * @param name Pokemon's name
+     * @param hp Pokemon's hit points
+     * @param id Pokemon's id
+     * @param countEnergy Pokemon's counter energies
+     * @param attackList Pokemon's attacks list
+     */
     public WaterPokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
         super(name, hp, id, countEnergy, attackList);
     }
