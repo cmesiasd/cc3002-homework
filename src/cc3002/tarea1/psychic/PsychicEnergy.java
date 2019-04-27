@@ -5,8 +5,8 @@ import cc3002.tarea1.IPokemon;
 
 public class PsychicEnergy extends AbstractEnergy {
 
-    public PsychicEnergy(String psychic) {
-        super(psychic);
+    public PsychicEnergy(String type) {
+        super(type);
     }
 
     @Override

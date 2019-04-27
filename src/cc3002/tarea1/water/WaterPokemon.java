@@ -53,40 +53,4 @@ public class WaterPokemon extends AbstractPokemon {
         receiveResistantAttack(fightingPokemon);
     }
 
-    public static void main(String[] args) {
-        Cost c1 = new Cost(0,0,0,0,0,0);
-        Cost c2 = new Cost(0,0,0,0,0,0);
-
-        c1.getKeys(c1);
-
-        Attack at1 = new Attack("Surf",50,"Daña a los pkm en banca oponentes con 1 contador",c1);
-        Attack at2= new Attack("Cascada",50,"Ataque físico",c2);
-
-        List<Attack> LA_Empoleon = new ArrayList<>();
-        LA_Empoleon.add(at1);
-        LA_Empoleon.add(at2);
-        WaterPokemon Empoleon = new WaterPokemon("Empoleon",100,01,c1,LA_Empoleon);
-
-
-
-        Cost c3 = new Cost(0,0,0,0,0,0);
-        Cost c4 = new Cost(0,0,0,0,0,0);
-        Attack at3 = new Attack("PlantaMala",50,"Aaaah",c3);
-        Attack at4= new Attack("Marihuana",50,"casi",c4);
-
-        List<Attack> LA_Squir = new ArrayList<>();
-        LA_Squir.add(at3);
-        LA_Squir.add(at4);
-        GrassPokemon Balbausur = new GrassPokemon("Balbausur",100,01,c3,LA_Squir);
-
-
-
-        Balbausur.attack(Empoleon,1);
-        System.out.println(Balbausur.getName() + " ataca a Empoleon con " + Balbausur.getSelectedAttack().getName());
-        System.out.println("Empoleon tiene " + Empoleon.getHP() + " HP");
-
-        Empoleon.attack(Balbausur,1);
-        System.out.println(Empoleon.getName() + " ataca a Balbausur con " + Empoleon.getSelectedAttack().getName());
-        System.out.println("Balbausur tiene " + Balbausur.getHP() + " HP");
-    }
 }

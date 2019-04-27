@@ -52,10 +52,6 @@ public abstract class AbstractEnergy implements IEnergy, ICard {
         return Objects.equals(getType(), that.getType());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getType());
-    }
 }
 
 

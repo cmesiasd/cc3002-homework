@@ -5,8 +5,8 @@ import cc3002.tarea1.IPokemon;
 
 public class WaterEnergy extends AbstractEnergy {
 
-    public WaterEnergy(String water) {
-        super(water);
+    public WaterEnergy(String type) {
+        super(type);
     }
 
     @Override

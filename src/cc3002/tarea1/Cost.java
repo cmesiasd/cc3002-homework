@@ -34,7 +34,7 @@ public class Cost {
     public Cost(int wa, int psy, int fi, int fig, int lig, int gra) {
         HashMap<String, Integer> cost = new HashMap<>();
 
-        WaterEnergy waterEnergy = new WaterEnergy("");
+        WaterEnergy waterEnergy = new WaterEnergy("water");
         PsychicEnergy psychicEnergy = new PsychicEnergy("psychic");
         FireEnergy fireEnergy = new FireEnergy("fire");
         GrassEnergy grassEnergy = new GrassEnergy("grass");
@@ -57,10 +57,6 @@ public class Cost {
      */
     public HashMap<String, Integer> getCost() {
         return cost;
-    }
-
-    public void getKeys(Cost cost){
-        System.out.println(cost.getCost());
     }
 
     @Override

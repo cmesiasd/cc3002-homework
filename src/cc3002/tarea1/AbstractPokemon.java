@@ -118,7 +118,7 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
     //region Damages
 
     public void receiveAttack(IPokemon other) {
-        if (canAttack()) {
+        if (other.canAttack()) {
             this.hp -= other.getSelectedAttack().getBaseDamage();
         }
         if(!isAlive()) {
@@ -127,14 +127,16 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
     }
 
     public void receiveWeaknessAttack(IPokemon other) {
-        this.hp -= other.getSelectedAttack().getBaseDamage() * 2;
+        if(other.canAttack()) {
+            this.hp -= other.getSelectedAttack().getBaseDamage() * 2;
+        }
         if(!isAlive()) {
             this.hp = 0;
         }
     }
 
     public void receiveResistantAttack(IPokemon other) {
-        if (other.getSelectedAttack().getBaseDamage() - 30 > 0){
+        if (other.getSelectedAttack().getBaseDamage() - 30 > 0 && other.canAttack()){
             this.hp -= other.getSelectedAttack().getBaseDamage() - 30;
         }
         if(!isAlive()) {
@@ -216,9 +218,6 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
                 attackList.equals(that.attackList) &&
                 getSelectedAttack().equals(that.getSelectedAttack());
     }
-
     //endregion
-
-
 
 }
