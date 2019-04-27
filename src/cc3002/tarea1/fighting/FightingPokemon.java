@@ -9,8 +9,23 @@ import cc3002.tarea1.psychic.PsychicPokemon;
 
 import java.util.List;
 
+/**
+ * Create Fighting Pokemon
+ *
+ * @author cmesiasd
+ * @version 1.0
+ */
 public class FightingPokemon extends AbstractPokemon {
 
+    /**
+     * Constructor for Fighting Pokemon
+     *
+     * @param name Pokemon's name
+     * @param hp Pokemon's hit points
+     * @param id Pokemon's id
+     * @param countEnergy Pokemon's counter energies
+     * @param attackList Pokemon's attacks list
+     */
     public FightingPokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
         super(name, hp, id, countEnergy, attackList);
     }

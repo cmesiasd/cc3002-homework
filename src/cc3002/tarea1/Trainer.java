@@ -1,7 +1,14 @@
 package cc3002.tarea1;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
+/**
+ * Create a trainer entity
+ *
+ * @author cmesiasd
+ * @version 1.0
+ */
 public class Trainer {
     private String name;
     private ArrayList<IPokemon> handPokemons;
@@ -25,26 +32,44 @@ public class Trainer {
 
     //region Properties
 
+    /**
+     * @return Trainer's bench
+     */
     public ArrayList<IPokemon> getBench() {
         return bench;
     }
 
+    /**
+     * @return Trainer's Selected energy
+     */
     public IEnergy getSelectedEnergy() {
         return selectedEnergy;
     }
 
+    /**
+     * @return Pokemon's Selected Pokemon
+     */
     public IPokemon getSelectedPokemon(){
         return selectedPokemon;
     }
 
+    /**
+     * @return Trainer's Name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return Trainer's hand of pokemons
+     */
     public ArrayList<IPokemon> getHandPokemons() {
         return handPokemons;
     }
 
+    /**
+     * @return Trainer's energies
+     */
     public ArrayList<IEnergy> getEnergies() {
         return energies;
     }
@@ -101,6 +126,19 @@ public class Trainer {
         if(this.getSelectedPokemon().getHP() <= 0){
             selectPokemon(1);
         }
-
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Trainer trainer = (Trainer) o;
+        return Objects.equals(getName(), trainer.getName()) &&
+                Objects.equals(getHandPokemons(), trainer.getHandPokemons()) &&
+                Objects.equals(getEnergies(), trainer.getEnergies()) &&
+                Objects.equals(getBench(), trainer.getBench()) &&
+                Objects.equals(getSelectedPokemon(), trainer.getSelectedPokemon()) &&
+                Objects.equals(getSelectedEnergy(), trainer.getSelectedEnergy());
+    }
+
 }

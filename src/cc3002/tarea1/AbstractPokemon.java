@@ -15,12 +15,19 @@ import cc3002.tarea1.water.WaterPokemon;
 import cc3002.tarea1.Trainer;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+/**
+ * Abstract Pokemon
+ * Implements IPokemon and ICard
+ *
+ * @author cmesiasd
+ * @version 1.0
+ */
 public abstract class AbstractPokemon implements IPokemon, ICard {
     private String name;
     private int id;
     private int hp;
-    private int maxHP;
     private Cost countEnergy;
     private List<Attack> attackList;
     private Attack selectedAttack;
@@ -192,6 +199,26 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         this.countEnergy.getCost().put(psychicEnergy.getType(), this.countEnergy.getCost().get(psychicEnergy.getType())+1);
     }
 
+    @Override
+    public String getCardName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractPokemon that = (AbstractPokemon) o;
+        return id == that.id &&
+                hp == that.hp &&
+                getName().equals(that.getName()) &&
+                getCountEnergy().equals(that.getCountEnergy()) &&
+                attackList.equals(that.attackList) &&
+                getSelectedAttack().equals(that.getSelectedAttack());
+    }
+
     //endregion
+
+
 
 }

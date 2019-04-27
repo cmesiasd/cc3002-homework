@@ -8,8 +8,23 @@ import cc3002.tarea1.water.WaterPokemon;
 
 import java.util.List;
 
+/**
+ * Create Fire Pokemon
+ *
+ * @author cmesiasd
+ * @version 1.0
+ */
 public class FirePokemon extends AbstractPokemon {
 
+    /**
+     * Constructor for Lighting Pokemon
+     *
+     * @param name Pokemon's name
+     * @param hp Pokemon's hit points
+     * @param id Pokemon's id
+     * @param countEnergy Pokemon's counter energies
+     * @param attackList Pokemon's attacks list
+     */
     public FirePokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
         super(name, hp, id, countEnergy, attackList);
     }

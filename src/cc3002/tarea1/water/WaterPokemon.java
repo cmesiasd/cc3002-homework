@@ -11,9 +11,16 @@ import cc3002.tarea1.lighting.LightingPokemon;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Create Water Pokemon
+ *
+ * @author cmesiasd
+ * @version 1.0
+ */
 public class WaterPokemon extends AbstractPokemon {
 
-    /** Constructor for WaterPokemon
+    /**
+     * Constructor for WaterPokemon
      *
      * @param name Pokemon's name
      * @param hp Pokemon's hit points
@@ -47,8 +54,8 @@ public class WaterPokemon extends AbstractPokemon {
     }
 
     public static void main(String[] args) {
-        Cost c1 = new Cost();
-        Cost c2 = new Cost();
+        Cost c1 = new Cost(0,0,0,0,0,0);
+        Cost c2 = new Cost(0,0,0,0,0,0);
 
         c1.getKeys(c1);
 
@@ -62,8 +69,8 @@ public class WaterPokemon extends AbstractPokemon {
 
 
 
-        Cost c3 = new Cost();
-        Cost c4 = new Cost();
+        Cost c3 = new Cost(0,0,0,0,0,0);
+        Cost c4 = new Cost(0,0,0,0,0,0);
         Attack at3 = new Attack("PlantaMala",50,"Aaaah",c3);
         Attack at4= new Attack("Marihuana",50,"casi",c4);
 

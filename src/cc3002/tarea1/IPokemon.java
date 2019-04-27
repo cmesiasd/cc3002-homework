@@ -53,6 +53,12 @@ public interface IPokemon {
      * @return The current selected attack.
      */
     Attack getSelectedAttack();
+
+    /**
+     * @return Pokemon is alive
+     */
+    boolean isAlive();
+
     //endregion
 
     //region Attack
@@ -70,6 +76,11 @@ public interface IPokemon {
      * @param index Index of the attack.
      */
     void selectAttack(int index);
+
+    /**
+     * @return Can Pokemon attack?
+     */
+    boolean canAttack();
 
     //endregion
 

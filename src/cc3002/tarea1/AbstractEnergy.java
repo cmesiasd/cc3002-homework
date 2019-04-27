@@ -2,6 +2,13 @@ package cc3002.tarea1;
 
 import java.util.Objects;
 
+/**
+ * Abstract class for Energy
+ * Implements IEnergy, ICard
+ *
+ * @author cmesiasd
+ * @version 1.0
+ */
 public abstract class AbstractEnergy implements IEnergy, ICard {
     private String type;
 
@@ -14,6 +21,9 @@ public abstract class AbstractEnergy implements IEnergy, ICard {
         this.type = type;
     }
 
+    /**
+     * @return Energy's Type
+     */
     public String getType(){
         return type;
     }
@@ -26,6 +36,26 @@ public abstract class AbstractEnergy implements IEnergy, ICard {
     public abstract void useEnergyCard(IPokemon pokemon);
 
 
+    /**
+     * @return CardName(Energy Type)
+     */
+    @Override
+    public String getCardName() {
+        return type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractEnergy)) return false;
+        AbstractEnergy that = (AbstractEnergy) o;
+        return Objects.equals(getType(), that.getType());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getType());
+    }
 }
 
 
