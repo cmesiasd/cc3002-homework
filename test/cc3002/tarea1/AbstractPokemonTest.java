@@ -30,10 +30,10 @@ public class AbstractPokemonTest {
     LightingEnergy lightingEnergy;
     LightingPokemon lightingPokemon;
     PsychicEnergy psychicEnergy;
-    PsychicPokemon psychicPokemon, psychicPokemon2;
+    PsychicPokemon psychicPokemon;
     WaterEnergy waterEnergy;
-    WaterPokemon waterPokemon;
-    Cost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
+    WaterPokemon waterPokemon, waterPokemon2;
+    Cost At1, At2, At3, At4, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4;
     List<Attack> LA_Mewtwo, LA_Lapras;
 
@@ -70,6 +70,7 @@ public class AbstractPokemonTest {
         LA_Lapras.add(attack3);
         LA_Lapras.add(attack4);
         waterPokemon = new WaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
+        waterPokemon2 = new WaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
         //endregion
     }
 
@@ -104,82 +105,15 @@ public class AbstractPokemonTest {
     }
 
     @Test
-    public void getSelectedAttack() {
-    }
-
-    @Test
-    public void isAlive() {
-    }
-
-    @Test
-    public void selectAttack() {
-    }
-
-    @Test
-    public void canAttack() {
-    }
-
-    @Test
-    public void receiveAttack() {
-    }
-
-    @Test
-    public void receiveWeaknessAttack() {
-    }
-
-    @Test
-    public void receiveResistantAttack() {
-    }
-
-    @Test
-    public void attackedByWaterPokemon() {
-    }
-
-    @Test
-    public void attackedByGrassPokemon() {
-    }
-
-    @Test
-    public void attackedByFirePokemon() {
-    }
-
-    @Test
-    public void attackedByFightingPokemon() {
-    }
-
-    @Test
-    public void attackedByPsychicPokemon() {
-    }
-
-    @Test
-    public void attackedByLightingPokemon() {
-    }
-
-    @Test
-    public void receiveWaterEnergy() {
-    }
-
-    @Test
-    public void receiveFireEnergy() {
-    }
-
-    @Test
-    public void receiveGrassEnergy() {
-    }
-
-    @Test
-    public void receiveFightingEnergy() {
-    }
-
-    @Test
-    public void receiveLightingEnergy() {
-    }
-
-    @Test
-    public void receivePsychicEnergy() {
-    }
-
-    @Test
     public void getCardName() {
+        assertEquals("Mewtwo",psychicPokemon.getCardName());
+        assertEquals("Lapras",waterPokemon.getCardName());
+        assertNotEquals("miutu",psychicPokemon.getCardName());
+    }
+
+    @Test
+    public void equals1() {
+        assertFalse(psychicPokemon.equals(waterPokemon));
+        assertTrue(waterPokemon2.equals(waterPokemon));
     }
 }

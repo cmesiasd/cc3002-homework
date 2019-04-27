@@ -106,7 +106,6 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
                 if (value1 > value2){
                     return false;
                 }
-
             }
         }
         return true;
@@ -215,8 +214,7 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
                 hp == that.hp &&
                 getName().equals(that.getName()) &&
                 getCountEnergy().equals(that.getCountEnergy()) &&
-                attackList.equals(that.attackList) &&
-                getSelectedAttack().equals(that.getSelectedAttack());
+                attackList.equals(that.attackList);
     }
     //endregion
 
