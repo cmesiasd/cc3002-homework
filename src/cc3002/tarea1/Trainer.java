@@ -127,18 +127,4 @@ public class Trainer {
             selectPokemon(1);
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Trainer trainer = (Trainer) o;
-        return Objects.equals(getName(), trainer.getName()) &&
-                Objects.equals(getHandPokemons(), trainer.getHandPokemons()) &&
-                Objects.equals(getEnergies(), trainer.getEnergies()) &&
-                Objects.equals(getBench(), trainer.getBench()) &&
-                Objects.equals(getSelectedPokemon(), trainer.getSelectedPokemon()) &&
-                Objects.equals(getSelectedEnergy(), trainer.getSelectedEnergy());
-    }
-
 }
