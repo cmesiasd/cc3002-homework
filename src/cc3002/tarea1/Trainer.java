@@ -28,6 +28,7 @@ public class Trainer {
         this.name = name;
         this.handPokemons = handPokemons;
         this.energies = energies;
+        this.bench = new ArrayList<IPokemon>();
     }
 
     //region Properties
@@ -112,7 +113,7 @@ public class Trainer {
      * @param index Position of card in hand.
      */
     public void playPokemonCard(int index){
-        if(getBench().size() <= 5){
+        if(getBench().size() <= 5 || getBench().isEmpty()){
             getBench().add(getHandPokemons().get(index));
             getHandPokemons().remove(index);
         }
