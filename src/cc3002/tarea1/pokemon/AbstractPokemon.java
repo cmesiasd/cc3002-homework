@@ -48,7 +48,9 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         this.id = id;
         this.hp = hp;
         this.countEnergy = countEnergy;
-        this.attackList = attackList;
+            for (Attack a:attackList) {
+                if(this.attackList.size()<4) this.attackList.add(a);
+        }
     }
 
     //region Properties
