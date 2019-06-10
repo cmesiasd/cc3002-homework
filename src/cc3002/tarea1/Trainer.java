@@ -1,7 +1,9 @@
 package cc3002.tarea1;
 
+import cc3002.tarea1.energy.IEnergy;
+import cc3002.tarea1.pokemon.IPokemon;
+
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Create a trainer entity
@@ -62,7 +64,7 @@ public class Trainer {
     }
 
     /**
-     * @return Trainer's hand of pokemons
+     * @return Trainer's hand of pokemon
      */
     public ArrayList<IPokemon> getHandPokemons() {
         return handPokemons;

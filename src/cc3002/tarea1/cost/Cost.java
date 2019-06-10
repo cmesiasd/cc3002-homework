@@ -1,17 +1,17 @@
-package cc3002.tarea1;
+package cc3002.tarea1.cost;
 
-import cc3002.tarea1.fighting.FightingEnergy;
-import cc3002.tarea1.fire.FireEnergy;
-import cc3002.tarea1.grass.GrassEnergy;
-import cc3002.tarea1.lighting.LightingEnergy;
-import cc3002.tarea1.psychic.PsychicEnergy;
-import cc3002.tarea1.water.WaterEnergy;
+import cc3002.tarea1.energy.fighting.FightingEnergy;
+import cc3002.tarea1.energy.fire.FireEnergy;
+import cc3002.tarea1.energy.grass.GrassEnergy;
+import cc3002.tarea1.energy.lighting.LightingEnergy;
+import cc3002.tarea1.energy.psychic.PsychicEnergy;
+import cc3002.tarea1.energy.water.WaterEnergy;
 
 import java.util.HashMap;
 import java.util.Objects;
 
 /**
- * Create the Cost Object.
+ * Create the cost Object.
  * Hashmap to control energies and their costs
  *
  * @author cmesias
@@ -21,7 +21,7 @@ public class Cost {
     private HashMap<String,Integer> cost;
 
     /**
-     * Constructor for Cost
+     * Constructor for cost
      * Add to the HashMap each type of energy
      *
      * @param wa Count of WaterEnergy

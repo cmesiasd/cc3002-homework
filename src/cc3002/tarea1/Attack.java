@@ -1,5 +1,7 @@
 package cc3002.tarea1;
 
+import cc3002.tarea1.cost.Cost;
+
 import java.util.Objects;
 
 /**

@@ -1,10 +1,10 @@
-package cc3002.tarea1.fire;
+package cc3002.tarea1.pokemon.fire;
 
-import cc3002.tarea1.AbstractPokemon;
+import cc3002.tarea1.pokemon.AbstractPokemon;
 import cc3002.tarea1.Attack;
-import cc3002.tarea1.Cost;
-import cc3002.tarea1.IPokemon;
-import cc3002.tarea1.water.WaterPokemon;
+import cc3002.tarea1.cost.Cost;
+import cc3002.tarea1.pokemon.IPokemon;
+import cc3002.tarea1.pokemon.water.WaterPokemon;
 
 import java.util.List;
 

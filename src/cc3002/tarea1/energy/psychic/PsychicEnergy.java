@@ -1,7 +1,7 @@
-package cc3002.tarea1.psychic;
+package cc3002.tarea1.energy.psychic;
 
-import cc3002.tarea1.AbstractEnergy;
-import cc3002.tarea1.IPokemon;
+import cc3002.tarea1.energy.AbstractEnergy;
+import cc3002.tarea1.pokemon.IPokemon;
 
 public class PsychicEnergy extends AbstractEnergy {
 

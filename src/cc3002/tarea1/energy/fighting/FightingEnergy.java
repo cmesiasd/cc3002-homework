@@ -1,7 +1,7 @@
-package cc3002.tarea1.fighting;
+package cc3002.tarea1.energy.fighting;
 
-import cc3002.tarea1.AbstractEnergy;
-import cc3002.tarea1.IPokemon;
+import cc3002.tarea1.energy.AbstractEnergy;
+import cc3002.tarea1.pokemon.IPokemon;
 
 public class FightingEnergy extends AbstractEnergy {
     public FightingEnergy(String type) {

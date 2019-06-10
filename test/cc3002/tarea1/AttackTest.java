@@ -1,9 +1,8 @@
 package cc3002.tarea1;
 
+import cc3002.tarea1.cost.Cost;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 

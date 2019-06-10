@@ -1,4 +1,6 @@
-package cc3002.tarea1;
+package cc3002.tarea1.energy;
+
+import cc3002.tarea1.pokemon.IPokemon;
 
 public interface IEnergy {
     //region Properties

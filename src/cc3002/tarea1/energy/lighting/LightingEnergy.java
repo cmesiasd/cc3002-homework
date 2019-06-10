@@ -1,7 +1,7 @@
-package cc3002.tarea1.lighting;
+package cc3002.tarea1.energy.lighting;
 
-import cc3002.tarea1.AbstractEnergy;
-import cc3002.tarea1.IPokemon;
+import cc3002.tarea1.energy.AbstractEnergy;
+import cc3002.tarea1.pokemon.IPokemon;
 
 public class LightingEnergy extends AbstractEnergy {
     public LightingEnergy(String type) {

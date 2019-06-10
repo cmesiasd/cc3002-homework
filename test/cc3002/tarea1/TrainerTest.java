@@ -1,24 +1,25 @@
 package cc3002.tarea1;
 
-import cc3002.tarea1.fighting.FightingEnergy;
-import cc3002.tarea1.fighting.FightingPokemon;
-import cc3002.tarea1.fire.FireEnergy;
-import cc3002.tarea1.fire.FirePokemon;
-import cc3002.tarea1.grass.GrassEnergy;
-import cc3002.tarea1.grass.GrassPokemon;
-import cc3002.tarea1.lighting.LightingEnergy;
-import cc3002.tarea1.lighting.LightingPokemon;
-import cc3002.tarea1.psychic.PsychicEnergy;
-import cc3002.tarea1.psychic.PsychicPokemon;
-import cc3002.tarea1.water.WaterEnergy;
-import cc3002.tarea1.water.WaterPokemon;
+import cc3002.tarea1.cost.Cost;
+import cc3002.tarea1.energy.IEnergy;
+import cc3002.tarea1.energy.fighting.FightingEnergy;
+import cc3002.tarea1.pokemon.IPokemon;
+import cc3002.tarea1.pokemon.fighting.FightingPokemon;
+import cc3002.tarea1.energy.fire.FireEnergy;
+import cc3002.tarea1.pokemon.fire.FirePokemon;
+import cc3002.tarea1.energy.grass.GrassEnergy;
+import cc3002.tarea1.pokemon.grass.GrassPokemon;
+import cc3002.tarea1.energy.lighting.LightingEnergy;
+import cc3002.tarea1.pokemon.lighting.LightingPokemon;
+import cc3002.tarea1.energy.psychic.PsychicEnergy;
+import cc3002.tarea1.pokemon.psychic.PsychicPokemon;
+import cc3002.tarea1.energy.water.WaterEnergy;
+import cc3002.tarea1.pokemon.water.WaterPokemon;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class TrainerTest {
     FightingEnergy fightingEnergy;

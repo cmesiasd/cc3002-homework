@@ -1,7 +1,7 @@
-package cc3002.tarea1.grass;
+package cc3002.tarea1.energy.grass;
 
-import cc3002.tarea1.AbstractEnergy;
-import cc3002.tarea1.IPokemon;
+import cc3002.tarea1.energy.AbstractEnergy;
+import cc3002.tarea1.pokemon.IPokemon;
 
 public class GrassEnergy extends AbstractEnergy {
     public GrassEnergy(String type) {
