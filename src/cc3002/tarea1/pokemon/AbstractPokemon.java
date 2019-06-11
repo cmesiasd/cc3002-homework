@@ -1,6 +1,7 @@
 package cc3002.tarea1.pokemon;
 
 import cc3002.tarea1.Attack;
+import cc3002.tarea1.Trainer;
 import cc3002.tarea1.cost.Cost;
 import cc3002.tarea1.ICard;
 import cc3002.tarea1.energy.fighting.FightingEnergy;
@@ -26,7 +27,7 @@ import java.util.Map;
  * @author cmesiasd
  * @version 1.0
  */
-public abstract class AbstractPokemon implements IPokemon, ICard {
+public abstract class AbstractPokemon implements IPokemon{
     private String name;
     private int id;
     private int hp;
@@ -48,38 +49,34 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         this.id = id;
         this.hp = hp;
         this.countEnergy = countEnergy;
-            for (Attack a:attackList) {
-                if(this.attackList.size()<4) this.attackList.add(a);
+        this.attackList = attackList;
+        for (int i = 0; this.attackList.size()-4>i;i++) {
+            if(this.attackList.size()>4)
+                this.attackList.remove(4);
         }
     }
 
     //region Properties
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public int getHP() {
         return hp;
     }
 
-    @Override
     public int getID() {
         return id;
     }
 
-    @Override
     public Cost getCountEnergy() {
         return countEnergy;
     }
 
-    @Override
     public List<Attack> getAttacks() {
         return attackList;
     }
 
-    @Override
     public Attack getSelectedAttack() {
         return selectedAttack;
     }
@@ -94,7 +91,7 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
     @Override
     public abstract void attack(IPokemon other, int index);
 
-    @Override
+
     public void selectAttack(int index) {
         selectedAttack = attackList.get(index);
     }
@@ -103,11 +100,11 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         for (Map.Entry<String, Integer> entry1 : this.getSelectedAttack().getCost().getCost().entrySet()) {
             String k = entry1.getKey();
             //Compara los key si son iguales.
-            if(this.getCountEnergy().getCost().containsKey(k)){
+            if(this.getCountEnergy().getCost().containsKey(k)) {
                 //si son iguales obtiene los valores.
                 Integer value1 = entry1.getValue(); //Costo ataque
                 Integer value2 = this.getCountEnergy().getCost().get(k); //Energias
-                if (value1 > value2){
+                if (value1 > value2) {
                     return false;
                 }
             }
@@ -206,8 +203,14 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
 
     @Override
     public String getCardName() {
-        return name;
+        return this.name;
     }
+
+    @Override
+    public void playCard(Trainer aTrainer) {
+        aTrainer.playPokemonCard(this);
+    }
+
 
     @Override
     public boolean equals(Object o) {

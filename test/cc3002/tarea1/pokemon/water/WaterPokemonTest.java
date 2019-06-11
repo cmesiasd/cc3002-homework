@@ -1,4 +1,4 @@
-package cc3002.tarea1.water;
+package cc3002.tarea1.pokemon.water;
 
 import cc3002.tarea1.Attack;
 import cc3002.tarea1.cost.Cost;

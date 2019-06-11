@@ -1,4 +1,4 @@
-package cc3002.tarea1.lighting;
+package cc3002.tarea1.pokemon.fighting;
 
 import cc3002.tarea1.Attack;
 import cc3002.tarea1.cost.Cost;
@@ -22,7 +22,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class LightingPokemonTest {
+public class FightingPokemonTest {
     FightingEnergy fightingEnergy;
     FightingPokemon fightingPokemon;
     FireEnergy fireEnergy;
@@ -30,14 +30,14 @@ public class LightingPokemonTest {
     GrassEnergy grassEnergy;
     GrassPokemon grassPokemon;
     LightingEnergy lightingEnergy;
-    LightingPokemon lightingPokemon, lightingPokemon2;
+    LightingPokemon lightingPokemon;
     PsychicEnergy psychicEnergy;
     PsychicPokemon psychicPokemon;
     WaterEnergy waterEnergy;
     WaterPokemon waterPokemon;
     Cost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4, attack5, attack6, attack7;
-    List<Attack> LA_Pikachu, LA_Espeon, LA_Lucario;
+    List<Attack> LA_Crobat, LA_Bulbasaur, LA_Lucario;
 
     @Before
     public void setUp() throws Exception {
@@ -52,29 +52,29 @@ public class LightingPokemonTest {
         FullEnergy = new Cost(10,10,10,10,10,10);
         //endregion
 
-        //region Lighting Pokemon Pikachu
-        At1 = new Cost(0,0,0,1,1,0);
-        At2 = new Cost(0,0,0,1,2,0);
-        At3 = new Cost(0,0,0,0,3,0);
-        attack1 = new Attack("Ataque Rápido", 30, "Si el pokemon no es de tipo electrico duplica el dano",At1);
-        attack2 = new Attack("Impact Trueno", 45, "El pokemon danado pasa a estar Paralizado",At2);
-        attack3 = new Attack("Bola Voltio", 50, "Hace 10 de dano mas por cada energia tipo Electrico",At3);
-        LA_Pikachu = new ArrayList<>();
-        LA_Pikachu.add(attack1);
-        LA_Pikachu.add(attack2);
-        LA_Pikachu.add(attack3);
-        lightingPokemon = new LightingPokemon("Pikachu",70,76,FullEnergy,LA_Pikachu);
+        //region Psychic Pokemon Crobat
+        At1 = new Cost(0,2,0,1,0,0);
+        At2 = new Cost(0,2,1,1,0,0);
+        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1);
+        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2);
+        LA_Crobat = new ArrayList<>();
+        LA_Crobat.add(attack1);
+        LA_Crobat.add(attack2);
+        psychicPokemon = new PsychicPokemon("Crobat",130,51,IniEnergy,LA_Crobat);
         //endregion
 
-        //region Lighting Pokemon Electrode
-        At4 = new Cost(0,2,1,0,0,0);
-        At5 = new Cost(1,2,1,1,0,0);
-        attack4 = new Attack("Electrorrayo", 45, "El Pokemon danado pasa a estar Confundido",At4);
-        attack5 = new Attack("Pistola Electrica", 70, "Ataque electrico paralizador",At5);
-        LA_Espeon = new ArrayList<>();
-        LA_Espeon.add(attack4);
-        LA_Espeon.add(attack5);
-        lightingPokemon2 = new LightingPokemon("Electrode",100,200,FullEnergy,LA_Espeon);
+        //region Grass Pokemon Bulbasaur
+        At3 = new Cost(0,0,0,0,0,2);
+        At4 = new Cost(0,0,0,1,0,2);
+        At5 = new Cost(0,1,0,0,0,3);
+        attack3 = new Attack("Hoja Afilada", 30, "Permite robar una carta",At3);
+        attack4 = new Attack("Hiedra adormidera", 35, "El pokemon danado pasa a estar dormido",At4);
+        attack5 = new Attack("Polen Nocivo", 40, "Hace 10 de dano mas por cada energia tipo Grass",At5);
+        LA_Bulbasaur = new ArrayList<>();
+        LA_Bulbasaur.add(attack3);
+        LA_Bulbasaur.add(attack4);
+        LA_Bulbasaur.add(attack5);
+        grassPokemon = new GrassPokemon("Bulbasaur",70,1,FullEnergy,LA_Bulbasaur);
         //endregion
 
         //region Fighting Pokemon Lucario
@@ -91,17 +91,21 @@ public class LightingPokemonTest {
 
     @Test
     public void attack() {
-        lightingPokemon.attack(lightingPokemon2,1);
-        lightingPokemon2.attack(fightingPokemon,0);
-        assertEquals(55,lightingPokemon2.getHP());
-        assertEquals(115,fightingPokemon.getHP());
+        fightingPokemon.attack(psychicPokemon,1);
+        assertEquals(90,psychicPokemon.getHP());
+        fightingPokemon.attack(grassPokemon,0);
+        assertEquals(25,grassPokemon.getHP());
     }
 
     @Test
-    public void attackedByFightingPokemon() {
-        fightingPokemon.attack(lightingPokemon,0);
-        fightingPokemon.attack(lightingPokemon2,1);
-        assertEquals(0,lightingPokemon2.getHP());
-        assertEquals(0,lightingPokemon.getHP());
+    public void attackedByPsychicPokemon() {
+        psychicPokemon.attack(fightingPokemon,0);
+        assertEquals(160,fightingPokemon.getHP());
+    }
+
+    @Test
+    public void attackedByGrassPokemon() {
+        grassPokemon.attack(fightingPokemon,0);
+        assertEquals(100,fightingPokemon.getHP());
     }
 }

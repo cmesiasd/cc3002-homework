@@ -1,4 +1,4 @@
-package cc3002.tarea1.attack;
+package cc3002.tarea2.attack;
 
 import cc3002.tarea1.Attack;
 

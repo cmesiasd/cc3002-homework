@@ -1,5 +1,6 @@
-package cc3002.tarea1;
+package cc3002.tarea1.pokemon;
 
+import cc3002.tarea1.Attack;
 import cc3002.tarea1.cost.Cost;
 import cc3002.tarea1.energy.fighting.FightingEnergy;
 import cc3002.tarea1.pokemon.fighting.FightingPokemon;
@@ -73,6 +74,12 @@ public class AbstractPokemonTest {
         waterPokemon = new WaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
         waterPokemon2 = new WaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
         //endregion
+    }
+
+    @Test
+    public void attack(){
+        waterPokemon.attack(psychicPokemon,1);
+        psychicPokemon.attack(waterPokemon2,0);
     }
 
     @Test

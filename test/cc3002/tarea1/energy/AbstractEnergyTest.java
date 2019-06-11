@@ -1,5 +1,6 @@
-package cc3002.tarea1;
+package cc3002.tarea1.energy;
 
+import cc3002.tarea1.Attack;
 import cc3002.tarea1.cost.Cost;
 import cc3002.tarea1.energy.fighting.FightingEnergy;
 import cc3002.tarea1.energy.fire.FireEnergy;

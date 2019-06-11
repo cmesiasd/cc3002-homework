@@ -3,6 +3,7 @@ package cc3002.tarea1.pokemon;
 import java.util.List;
 
 import cc3002.tarea1.Attack;
+import cc3002.tarea1.ICard;
 import cc3002.tarea1.cost.Cost;
 import cc3002.tarea1.energy.fighting.FightingEnergy;
 import cc3002.tarea1.pokemon.fighting.FightingPokemon;
@@ -25,7 +26,7 @@ import cc3002.tarea1.pokemon.water.WaterPokemon;
  * @version 1.0
  */
 
-public interface IPokemon {
+public interface IPokemon extends ICard {
     //region Propierties
     /**
      * @return Pokémon's name.

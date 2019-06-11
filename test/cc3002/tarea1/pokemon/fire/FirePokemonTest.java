@@ -1,4 +1,4 @@
-package cc3002.tarea1.fire;
+package cc3002.tarea1.pokemon.fire;
 
 import cc3002.tarea1.Attack;
 import cc3002.tarea1.cost.Cost;

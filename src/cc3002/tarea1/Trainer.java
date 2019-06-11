@@ -24,9 +24,9 @@ public class Trainer {
      */
     public Trainer(String name) {
         this.name = name;
-        this.hand = new ArrayList<ICard>();
+        this.hand = new ArrayList<>();
         this.activePokemon = null;
-        this.bench = new ArrayList<IPokemon>();
+        this.bench = new ArrayList<>();
     }
 
     //region Properties
@@ -63,7 +63,7 @@ public class Trainer {
     //endregion
 
     /**
-     * Add a cadt to the trainer's hand.
+     * Add a cart to the trainer's hand.
      * @param aCard the card to add in the hand.
      */
     void addCardToHand(ICard aCard) {
@@ -72,24 +72,12 @@ public class Trainer {
 
 
     /**
-     * Lets the trainer to play a card.
-     * @param aCard the ICard that wants to play.
+     * Trainer to play a card.
+     * @param aCard A card that wants play.
      */
     void play(ICard aCard) {
         hand.remove(aCard);
-        //aCard.setTrainer(this);
-    }
-
-
-
-    /** Trainer attacks another trainer with
-     *  active Pokemon's trainer.
-     *
-     * @param trainer Target trainer
-     * @param index_at Index to select attack
-     */
-    public void attackTrainer(Trainer trainer, int index_at){
-        this.getActivePokemon().attack(trainer.getActivePokemon(),index_at);
+        aCard.playCard(this);
     }
 
 
@@ -101,9 +89,27 @@ public class Trainer {
     public void playPokemonCard(IPokemon pokemon){
         if (activePokemon == null)
             activePokemon = pokemon;
-        else if (bench.size() <= 5)
+        else if (bench.size() < 5)
             bench.add(pokemon);
     }
 
+    /** Trainer attacks another trainer with
+     *  active Pokemon's trainer.
+     *
+     * @param trainer Target trainer
+     * @param index_at Index to select attack
+     */
+    public void attackTrainer(Trainer trainer, int index_at){
+        this.getActivePokemon().attack(trainer.getActivePokemon(),index_at);
+    }
+
+    public void receiveAnAttack(Trainer other, int index_at) {
+        other.getActivePokemon().attack(activePokemon, index_at);
+        if (!this.activePokemon.isAlive()) {
+            activePokemon = bench.get(0);
+            bench.remove(0);
+
+        }
+    }
 
 }
