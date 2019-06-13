@@ -2,19 +2,19 @@ package cc3002.pokemon;
 
 import cc3002.abilities.Attack;
 import cc3002.Trainer;
-import cc3002.pokemon.fighting.FightingPokemon;
-import cc3002.energyCost.energyCost;
+import cc3002.energyCost.EnergyCost;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
-import cc3002.pokemon.fire.FirePokemon;
+import cc3002.pokemon.fighting.AbstractFightingPokemon;
+import cc3002.pokemon.fire.AbstractFirePokemon;
 import cc3002.energy.grass.GrassEnergy;
-import cc3002.pokemon.grass.GrassPokemon;
+import cc3002.pokemon.grass.AbstractGrassPokemon;
 import cc3002.energy.lighting.LightingEnergy;
-import cc3002.pokemon.lighting.LightingPokemon;
+import cc3002.pokemon.lighting.AbstractLightingPokemon;
 import cc3002.energy.psychic.PsychicEnergy;
-import cc3002.pokemon.psychic.PsychicPokemon;
+import cc3002.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.energy.water.WaterEnergy;
-import cc3002.pokemon.water.WaterPokemon;
+import cc3002.pokemon.water.AbstractWaterPokemon;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +30,7 @@ public abstract class AbstractPokemon implements IPokemon{
     private String name;
     private int id;
     private int hp;
-    private energyCost countEnergy;
+    private EnergyCost countEnergy;
     private List<Attack> attackList;
     private Attack selectedAttack;
 
@@ -43,7 +43,7 @@ public abstract class AbstractPokemon implements IPokemon{
      * @param countEnergy Pokemon's counter energies
      * @param attackList  Pokémon's attacks list.
      */
-    protected AbstractPokemon(String name, int hp, int id, energyCost countEnergy, List<Attack> attackList) {
+    protected AbstractPokemon(String name, int hp, int id, EnergyCost countEnergy, List<Attack> attackList) {
         this.name = name;
         this.id = id;
         this.hp = hp;
@@ -68,7 +68,7 @@ public abstract class AbstractPokemon implements IPokemon{
         return id;
     }
 
-    public energyCost getCountEnergy() {
+    public EnergyCost getCountEnergy() {
         return countEnergy;
     }
 
@@ -144,32 +144,32 @@ public abstract class AbstractPokemon implements IPokemon{
     }
 
     @Override
-    public void attackedByWaterPokemon(WaterPokemon waterPokemon) {
+    public void attackedByWaterPokemon(AbstractWaterPokemon waterPokemon) {
         receiveAttack(waterPokemon);
     }
 
     @Override
-    public void attackedByGrassPokemon(GrassPokemon grassPokemon) {
+    public void attackedByGrassPokemon(AbstractGrassPokemon grassPokemon) {
         receiveAttack(grassPokemon);
     }
 
     @Override
-    public void attackedByFirePokemon(FirePokemon firePokemon) {
+    public void attackedByFirePokemon(AbstractFirePokemon firePokemon) {
         receiveAttack(firePokemon);
     }
 
     @Override
-    public void attackedByFightingPokemon(FightingPokemon fightingPokemon) {
+    public void attackedByFightingPokemon(AbstractFightingPokemon fightingPokemon) {
         receiveAttack(fightingPokemon);
     }
 
     @Override
-    public void attackedByPsychicPokemon(PsychicPokemon psychicPokemon) {
+    public void attackedByPsychicPokemon(AbstractPsychicPokemon psychicPokemon) {
         receiveAttack(psychicPokemon);
     }
 
     @Override
-    public void attackedByLightingPokemon(LightingPokemon lightingPokemon) {
+    public void attackedByLightingPokemon(AbstractLightingPokemon lightingPokemon) {
         receiveAttack(lightingPokemon);
     }
     //endregion

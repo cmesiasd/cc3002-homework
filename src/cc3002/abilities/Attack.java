@@ -1,31 +1,31 @@
 package cc3002.abilities;
 
-import cc3002.energyCost.energyCost;
+import cc3002.energyCost.EnergyCost;
 
 import java.util.Objects;
 
 /**
  *
  */
-public class Attack {
+public class Attack extends Ability{
     private String name;
     private String description;
-    private energyCost energyCost;
+    private EnergyCost energyCost;
     private int baseDamage;
 
     /**
      * Creates a new attack.
+     * An Attack is a type of ability.
      *
      * @param name Attack name
      * @param baseDamage Base damage of the attack
      * @param description Text description of the attack
-     * @param energyCost
+     * @param energyCost Energy cost of the attack
      */
-    public Attack(String name, int baseDamage, String description, energyCost energyCost) {
+    public Attack(String name, int baseDamage, String description, EnergyCost energyCost) {
+        super(name,description,energyCost);
         this.baseDamage = baseDamage;
-        this.name = name;
-        this.description = description;
-        this.energyCost = energyCost;
+
     }
 
 
@@ -36,27 +36,7 @@ public class Attack {
     public int getBaseDamage() {
         return baseDamage;
     }
-
-    /**
-     * @return Attack's name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @return Attack's description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-
-    public energyCost getEnergyCost(){
-        return energyCost;
-    }
     //endregion
-
 
     @Override
     public boolean equals(Object o) {

@@ -1,24 +1,24 @@
 package cc3002;
 
 import cc3002.abilities.Attack;
-import cc3002.energyCost.energyCost;
+import cc3002.energyCost.EnergyCost;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class AttackTest {
-    energyCost At1, At2, At3, At4, At5, At6;
+    EnergyCost At1, At2, At3, At4, At5, At6;
     Attack attack1, attack2, attack3, attack4, attack5, attack6;
 
     @Before
     public void setUp() throws Exception {
-        At1 = new energyCost(0,0,0,0,0,2);
-        At2 = new energyCost(0,0,0,1,0,2);
-        At3 = new energyCost(0,1,0,0,0,3);
-        At4 = new energyCost(0,0,2,0,0,0);
-        At5 = new energyCost(0,0,3,1,0,0);
-        At6 = new energyCost(0,0,3,1,0,0);
+        At1 = new EnergyCost(0,0,0,0,0,2);
+        At2 = new EnergyCost(0,0,0,1,0,2);
+        At3 = new EnergyCost(0,1,0,0,0,3);
+        At4 = new EnergyCost(0,0,2,0,0,0);
+        At5 = new EnergyCost(0,0,3,1,0,0);
+        At6 = new EnergyCost(0,0,3,1,0,0);
         attack1 = new Attack("Hoja Afilada", 30, "Permite robar una carta",At1);
         attack2 = new Attack("Hiedra adormidera", 35, "El pokemon danado pasa a estar dormido",At2);
         attack3 = new Attack("Polen Nocivo", 40, "Hace 10 de dano mas por cada energia tipo Grass",At3);

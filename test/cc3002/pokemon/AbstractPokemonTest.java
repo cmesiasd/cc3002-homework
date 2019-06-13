@@ -1,19 +1,19 @@
 package cc3002.pokemon;
 
-import cc3002.pokemon.fighting.FightingPokemon;
+import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.fighting.BasicFightingPokemon;
 import cc3002.abilities.Attack;
-import cc3002.energyCost.energyCost;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
-import cc3002.pokemon.fire.FirePokemon;
+import cc3002.pokemon.fire.BasicFirePokemon;
 import cc3002.energy.grass.GrassEnergy;
-import cc3002.pokemon.grass.GrassPokemon;
+import cc3002.pokemon.grass.BasicGrassPokemon;
 import cc3002.energy.lighting.LightingEnergy;
-import cc3002.pokemon.lighting.LightingPokemon;
+import cc3002.pokemon.lighting.BasicLightingPokemon;
 import cc3002.energy.psychic.PsychicEnergy;
-import cc3002.pokemon.psychic.PsychicPokemon;
+import cc3002.pokemon.psychic.BasicPsychicPokemon;
 import cc3002.energy.water.WaterEnergy;
-import cc3002.pokemon.water.WaterPokemon;
+import cc3002.pokemon.water.BasicWaterPokemon;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,18 +24,18 @@ import static org.junit.Assert.*;
 
 public class AbstractPokemonTest {
     FightingEnergy fightingEnergy;
-    FightingPokemon fightingPokemon;
+    BasicFightingPokemon basicFightingPokemon;
     FireEnergy fireEnergy;
-    FirePokemon firePokemon;
+    BasicFirePokemon basicFirePokemon;
     GrassEnergy grassEnergy;
-    GrassPokemon grassPokemon;
+    BasicGrassPokemon basicGrassPokemon;
     LightingEnergy lightingEnergy;
-    LightingPokemon lightingPokemon;
+    BasicLightingPokemon basicLightingPokemon;
     PsychicEnergy psychicEnergy;
-    PsychicPokemon psychicPokemon;
+    BasicPsychicPokemon basicPsychicPokemon;
     WaterEnergy waterEnergy;
-    WaterPokemon waterPokemon, waterPokemon2;
-    energyCost At1, At2, At3, At4, IniEnergy, FullEnergy;
+    BasicWaterPokemon basicWaterPokemon, basicWaterPokemon2;
+    EnergyCost At1, At2, At3, At4, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4;
     List<Attack> LA_Mewtwo, LA_Lapras;
 
@@ -48,80 +48,80 @@ public class AbstractPokemonTest {
         fireEnergy = new FireEnergy("fire");
         lightingEnergy = new LightingEnergy("lighting");
         fightingEnergy = new FightingEnergy("fighting");
-        IniEnergy = new energyCost(0,0,0,0,0,0);
-        FullEnergy = new energyCost(10,10,10,10,10,10);
+        IniEnergy = new EnergyCost(0,0,0,0,0,0);
+        FullEnergy = new EnergyCost(10,10,10,10,10,10);
         //endregion
 
         //region Grass Pokemon Mewtwo
-        At1 = new energyCost(0,3,0,0,0,0);
-        At2 = new energyCost(0,3,0,1,0,0);
+        At1 = new EnergyCost(0,3,0,0,0,0);
+        At2 = new EnergyCost(0,3,0,1,0,0);
         attack1 = new Attack("Superrayo Psi", 100, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1);
         attack2 = new Attack("Filo Zen", 110, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2);
         LA_Mewtwo = new ArrayList<>();
         LA_Mewtwo.add(attack1);
         LA_Mewtwo.add(attack2);
-        psychicPokemon = new PsychicPokemon("Mewtwo",120,400,FullEnergy,LA_Mewtwo);
+        basicPsychicPokemon = new BasicPsychicPokemon("Mewtwo",120,400,FullEnergy,LA_Mewtwo);
         //endregion
 
         //region Water Pokemon Lapras
-        At3 = new energyCost(2,0,0,1,0,0);
-        At4 = new energyCost(2,0,0,2,0,0);
+        At3 = new EnergyCost(2,0,0,1,0,0);
+        At4 = new EnergyCost(2,0,0,2,0,0);
         attack3 = new Attack("Hidrobomba", 60, "El Pokémon Activo de tu rival pasa a estar Paralizado",At3);
         attack4 = new Attack("Rayo Hielo", 90, "Este ataque hace 20 puntos de daño más por cada Energía Water unida a este Pokémon",At4);
         LA_Lapras = new ArrayList<>();
         LA_Lapras.add(attack3);
         LA_Lapras.add(attack4);
-        waterPokemon = new WaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
-        waterPokemon2 = new WaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
+        basicWaterPokemon = new BasicWaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
+        basicWaterPokemon2 = new BasicWaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
         //endregion
     }
 
     @Test
     public void attack(){
-        waterPokemon.attack(psychicPokemon,1);
-        psychicPokemon.attack(waterPokemon2,0);
+        basicWaterPokemon.attack(basicPsychicPokemon,1);
+        basicPsychicPokemon.attack(basicWaterPokemon2,0);
     }
 
     @Test
     public void getName() {
-        assertEquals("Mewtwo",psychicPokemon.getName());
-        assertNotEquals("Pikachu",waterPokemon.getName());
+        assertEquals("Mewtwo", basicPsychicPokemon.getName());
+        assertNotEquals("Pikachu", basicWaterPokemon.getName());
     }
 
     @Test
     public void getHP() {
-        assertEquals(150,waterPokemon.getHP());
-        assertNotEquals(0,psychicPokemon.getHP());
+        assertEquals(150, basicWaterPokemon.getHP());
+        assertNotEquals(0, basicPsychicPokemon.getHP());
     }
 
     @Test
     public void getID() {
-        assertEquals(300,waterPokemon.getID());
-        assertEquals(400,psychicPokemon.getID());
+        assertEquals(300, basicWaterPokemon.getID());
+        assertEquals(400, basicPsychicPokemon.getID());
     }
 
     @Test
     public void getCountEnergy() {
-        assertNotEquals(At1,waterPokemon.getCountEnergy());
-        assertEquals(new energyCost(10,10,10,10,10,10),psychicPokemon.getCountEnergy());
+        assertNotEquals(At1, basicWaterPokemon.getCountEnergy());
+        assertEquals(new EnergyCost(10,10,10,10,10,10), basicPsychicPokemon.getCountEnergy());
     }
 
     @Test
     public void getAttacks() {
-        assertEquals(LA_Lapras,waterPokemon.getAttacks());
-        assertNotEquals(waterPokemon.getAttacks(),psychicPokemon.getAttacks());
+        assertEquals(LA_Lapras, basicWaterPokemon.getAttacks());
+        assertNotEquals(basicWaterPokemon.getAttacks(), basicPsychicPokemon.getAttacks());
     }
 
     @Test
     public void getCardName() {
-        assertEquals("Mewtwo",psychicPokemon.getCardName());
-        assertEquals("Lapras",waterPokemon.getCardName());
-        assertNotEquals("miutu",psychicPokemon.getCardName());
+        assertEquals("Mewtwo", basicPsychicPokemon.getCardName());
+        assertEquals("Lapras", basicWaterPokemon.getCardName());
+        assertNotEquals("miutu", basicPsychicPokemon.getCardName());
     }
 
     @Test
     public void equals1() {
-        assertFalse(psychicPokemon.equals(waterPokemon));
-        assertTrue(waterPokemon2.equals(waterPokemon));
+        assertFalse(basicPsychicPokemon.equals(basicWaterPokemon));
+        assertTrue(basicWaterPokemon2.equals(basicWaterPokemon));
     }
 }

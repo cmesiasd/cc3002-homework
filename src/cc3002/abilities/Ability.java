@@ -1,11 +1,11 @@
 package cc3002.abilities;
 
-import cc3002.energyCost.energyCost;
+import cc3002.energyCost.EnergyCost;
 
-public class Ability {
+public class Ability implements IAbility{
     private String name;
     private String description;
-    private energyCost energyCost;
+    private EnergyCost energyCost;
 
     /**
      * Create a new ability
@@ -14,25 +14,32 @@ public class Ability {
      * @param description Text description of the ability
      * @param energyCost Energy cost of the ability
      */
-    public Ability(String name, String description, energyCost energyCost) {
+    public Ability(String name, String description, EnergyCost energyCost) {
         this.name = name;
         this.description = description;
         this.energyCost = energyCost;
     }
 
     //region Propierties
+
+    /**
+     * @return Ability's name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return Ability's description
+     */
     public String getDescription() {
         return description;
     }
 
     /**
-     * @return Ability's energyCost
+     * @return Ability's EnergyCost
      */
-    public energyCost getEnergyCost() {
+    public EnergyCost getEnergyCost() {
         return energyCost;
     }
     //endregion

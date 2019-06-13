@@ -1,15 +1,15 @@
 package cc3002.pokemon.water;
 
 import cc3002.abilities.Attack;
-import cc3002.pokemon.fighting.FightingPokemon;
-import cc3002.pokemon.lighting.LightingPokemon;
-import cc3002.pokemon.psychic.PsychicPokemon;
-import cc3002.energyCost.energyCost;
+import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.fighting.BasicFightingPokemon;
+import cc3002.pokemon.lighting.BasicLightingPokemon;
+import cc3002.pokemon.psychic.BasicPsychicPokemon;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
-import cc3002.pokemon.fire.FirePokemon;
+import cc3002.pokemon.fire.BasicFirePokemon;
 import cc3002.energy.grass.GrassEnergy;
-import cc3002.pokemon.grass.GrassPokemon;
+import cc3002.pokemon.grass.BasicGrassPokemon;
 import cc3002.energy.lighting.LightingEnergy;
 import cc3002.energy.psychic.PsychicEnergy;
 import cc3002.energy.water.WaterEnergy;
@@ -24,18 +24,18 @@ import static org.junit.Assert.*;
 
 public class WaterPokemonTest {
     FightingEnergy fightingEnergy;
-    FightingPokemon fightingPokemon;
+    BasicFightingPokemon basicFightingPokemon;
     FireEnergy fireEnergy;
-    FirePokemon firePokemon;
+    BasicFirePokemon basicFirePokemon;
     GrassEnergy grassEnergy;
-    GrassPokemon grassPokemon;
+    BasicGrassPokemon basicGrassPokemon;
     LightingEnergy lightingEnergy;
-    LightingPokemon lightingPokemon;
+    BasicLightingPokemon basicLightingPokemon;
     PsychicEnergy psychicEnergy;
-    PsychicPokemon psychicPokemon;
+    BasicPsychicPokemon basicPsychicPokemon;
     WaterEnergy waterEnergy;
-    WaterPokemon waterPokemon;
-    energyCost At1, At2, At3, At4, At5, At6, At7, At8,At9, IniEnergy, FullEnergy;
+    BasicWaterPokemon basicWaterPokemon;
+    EnergyCost At1, At2, At3, At4, At5, At6, At7, At8,At9, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4, attack5, attack6, attack7,attack8,attack9;
     List<Attack> LA_Squirtle, LA_Bulbasaur, LA_Lucario, LA_Pikachu;
 
@@ -48,25 +48,25 @@ public class WaterPokemonTest {
         fireEnergy = new FireEnergy("fire");
         lightingEnergy = new LightingEnergy("lighting");
         fightingEnergy = new FightingEnergy("fighting");
-        IniEnergy = new energyCost(0,0,0,0,0,0);
-        FullEnergy = new energyCost(10,10,10,10,10,10);
+        IniEnergy = new EnergyCost(0,0,0,0,0,0);
+        FullEnergy = new EnergyCost(10,10,10,10,10,10);
         //endregion
 
         //region Water Pokemon Squirtle
-        At1 = new energyCost(2,0,0,1,0,0);
-        At2 = new energyCost(2,0,0,2,0,0);
+        At1 = new EnergyCost(2,0,0,1,0,0);
+        At2 = new EnergyCost(2,0,0,2,0,0);
         attack1 = new Attack("Acua Cola", 45, "Vamoh a calmarnoh",At1);
         attack2 = new Attack("Ataque Caparazon", 70, "Ataque fisico/aqua",At2);
         LA_Squirtle = new ArrayList<>();
         LA_Squirtle.add(attack1);
         LA_Squirtle.add(attack2);
-        waterPokemon = new WaterPokemon("Squirtle",60,7,FullEnergy,LA_Squirtle);
+        basicWaterPokemon = new BasicWaterPokemon("Squirtle",60,7,FullEnergy,LA_Squirtle);
         //endregion
 
         //region Grass Pokemon Bulbasaur
-        At3 = new energyCost(0,0,0,0,0,2);
-        At4 = new energyCost(0,0,0,1,0,2);
-        At5 = new energyCost(0,1,0,0,0,3);
+        At3 = new EnergyCost(0,0,0,0,0,2);
+        At4 = new EnergyCost(0,0,0,1,0,2);
+        At5 = new EnergyCost(0,1,0,0,0,3);
         attack3 = new Attack("Hoja Afilada", 30, "Permite robar una carta",At3);
         attack4 = new Attack("Hiedra adormidera", 35, "El pokemon danado pasa a estar dormido",At4);
         attack5 = new Attack("Polen Nocivo", 40, "Hace 10 de dano mas por cada energia tipo Grass",At5);
@@ -74,59 +74,59 @@ public class WaterPokemonTest {
         LA_Bulbasaur.add(attack3);
         LA_Bulbasaur.add(attack4);
         LA_Bulbasaur.add(attack5);
-        grassPokemon = new GrassPokemon("Bulbasaur",70,1,FullEnergy,LA_Bulbasaur);
+        basicGrassPokemon = new BasicGrassPokemon("Bulbasaur",70,1,FullEnergy,LA_Bulbasaur);
         //endregion
 
         //region Lighting Pokemon Pikachu
-        At6 = new energyCost(0,0,0,1,1,0);
-        At7 = new energyCost(0,0,0,1,2,0);
+        At6 = new EnergyCost(0,0,0,1,1,0);
+        At7 = new EnergyCost(0,0,0,1,2,0);
         attack6 = new Attack("Ataque Rápido", 30, "Si el pokemon no es de tipo electrico duplica el dano",At6);
         attack7 = new Attack("Impact Trueno", 45, "El pokemon danado pasa a estar Paralizado",At7);
         LA_Pikachu = new ArrayList<>();
         LA_Pikachu.add(attack6);
         LA_Pikachu.add(attack7);
-        lightingPokemon = new LightingPokemon("Pikachu",70,76,FullEnergy,LA_Pikachu);
+        basicLightingPokemon = new BasicLightingPokemon("Pikachu",70,76,FullEnergy,LA_Pikachu);
         //endregion
 
         //region Fighting Pokemon Lucario
-        At8 = new energyCost(0,0,0,2,0,0);
-        At9 = new energyCost(0,0,1,2,0,0);
+        At8 = new EnergyCost(0,0,0,2,0,0);
+        At9 = new EnergyCost(0,0,1,2,0,0);
         attack8 = new Attack("Derrumbar", 45, "Derrumba al pokemon",At8);
         attack9 = new Attack("Patada magnum", 70, "El pokemon danado queda Aturdido",At9);
         LA_Lucario = new ArrayList<>();
         LA_Lucario.add(attack8);
         LA_Lucario.add(attack9);
-        fightingPokemon = new FightingPokemon("Lucario",160,4,FullEnergy,LA_Lucario);
+        basicFightingPokemon = new BasicFightingPokemon("Lucario",160,4,FullEnergy,LA_Lucario);
         //endregion
 
     }
 
     @Test
     public void attack() {
-        waterPokemon.attack(grassPokemon,0);
-        assertEquals(55,grassPokemon.getHP());
-        waterPokemon.attack(grassPokemon,1);
-        waterPokemon.attack(grassPokemon,1);
-        assertEquals(0,grassPokemon.getHP());
-        waterPokemon.attack(fightingPokemon,0);
-        Assert.assertEquals(115,fightingPokemon.getHP());
+        basicWaterPokemon.attack(basicGrassPokemon,0);
+        assertEquals(55, basicGrassPokemon.getHP());
+        basicWaterPokemon.attack(basicGrassPokemon,1);
+        basicWaterPokemon.attack(basicGrassPokemon,1);
+        assertEquals(0, basicGrassPokemon.getHP());
+        basicWaterPokemon.attack(basicFightingPokemon,0);
+        Assert.assertEquals(115, basicFightingPokemon.getHP());
     }
 
     @Test
     public void attackedByGrassPokemon() {
-        grassPokemon.attack(waterPokemon,1);
-        assertEquals(0,waterPokemon.getHP());
+        basicGrassPokemon.attack(basicWaterPokemon,1);
+        assertEquals(0, basicWaterPokemon.getHP());
     }
 
     @Test
     public void attackedByLightingPokemon() {
-        lightingPokemon.attack(waterPokemon,1);
-        assertEquals(0,waterPokemon.getHP());
+        basicLightingPokemon.attack(basicWaterPokemon,1);
+        assertEquals(0, basicWaterPokemon.getHP());
     }
 
     @Test
     public void attackedByFightingPokemon() {
-        fightingPokemon.attack(waterPokemon,0);
-        assertEquals(45,waterPokemon.getHP());
+        basicFightingPokemon.attack(basicWaterPokemon,0);
+        assertEquals(45, basicWaterPokemon.getHP());
     }
 }

@@ -1,18 +1,18 @@
 package cc3002.pokemon.psychic;
 
 import cc3002.abilities.Attack;
-import cc3002.pokemon.fighting.FightingPokemon;
-import cc3002.energyCost.energyCost;
+import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.fighting.BasicFightingPokemon;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
-import cc3002.pokemon.fire.FirePokemon;
+import cc3002.pokemon.fire.BasicFirePokemon;
 import cc3002.energy.grass.GrassEnergy;
-import cc3002.pokemon.grass.GrassPokemon;
+import cc3002.pokemon.grass.BasicGrassPokemon;
 import cc3002.energy.lighting.LightingEnergy;
-import cc3002.pokemon.lighting.LightingPokemon;
+import cc3002.pokemon.lighting.BasicLightingPokemon;
 import cc3002.energy.psychic.PsychicEnergy;
 import cc3002.energy.water.WaterEnergy;
-import cc3002.pokemon.water.WaterPokemon;
+import cc3002.pokemon.water.BasicWaterPokemon;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,20 +21,20 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class PsychicPokemonTest {
+public class BasicPsychicPokemonTest {
     FightingEnergy fightingEnergy;
-    FightingPokemon fightingPokemon;
+    BasicFightingPokemon basicFightingPokemon;
     FireEnergy fireEnergy;
-    FirePokemon firePokemon;
+    BasicFirePokemon basicFirePokemon;
     GrassEnergy grassEnergy;
-    GrassPokemon grassPokemon;
+    BasicGrassPokemon basicGrassPokemon;
     LightingEnergy lightingEnergy;
-    LightingPokemon lightingPokemon;
+    BasicLightingPokemon basicLightingPokemon;
     PsychicEnergy psychicEnergy;
-    PsychicPokemon psychicPokemon, psychicPokemon2;
+    BasicPsychicPokemon basicPsychicPokemon, basicPsychicPokemon2;
     WaterEnergy waterEnergy;
-    WaterPokemon waterPokemon;
-    energyCost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
+    BasicWaterPokemon basicWaterPokemon;
+    EnergyCost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4, attack5, attack6, attack7;
     List<Attack> LA_Crobat, LA_Espeon, LA_Lucario;
 
@@ -48,14 +48,14 @@ public class PsychicPokemonTest {
         fireEnergy = new FireEnergy("fire");
         lightingEnergy = new LightingEnergy("lighting");
         fightingEnergy = new FightingEnergy("fighting");
-        IniEnergy = new energyCost(0,0,0,0,0,0);
-        FullEnergy = new energyCost(10,10,10,10,10,10);
+        IniEnergy = new EnergyCost(0,0,0,0,0,0);
+        FullEnergy = new EnergyCost(10,10,10,10,10,10);
         //endregion
 
         //region Psychic Pokemon Crobat
-        At1 = new energyCost(0,2,0,1,0,0);
-        At2 = new energyCost(0,2,1,1,0,0);
-        At3 = new energyCost(1,3,0,0,0,0);
+        At1 = new EnergyCost(0,2,0,1,0,0);
+        At2 = new EnergyCost(0,2,1,1,0,0);
+        At3 = new EnergyCost(1,3,0,0,0,0);
         attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1);
         attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2);
         attack3 = new Attack("Golpe Sorpresa", 60, "Hace 10 de dano mas por cada energia tipo Psiquica",At3);
@@ -63,30 +63,30 @@ public class PsychicPokemonTest {
         LA_Crobat.add(attack1);
         LA_Crobat.add(attack2);
         LA_Crobat.add(attack3);
-        psychicPokemon = new PsychicPokemon("Crobat",130,51,IniEnergy,LA_Crobat);
+        basicPsychicPokemon = new BasicPsychicPokemon("Crobat",130,51,IniEnergy,LA_Crobat);
         //endregion
 
         //region Psychic Pokemon Espeon
-        At4 = new energyCost(0,2,1,0,0,0);
-        At5 = new energyCost(1,2,1,1,0,0);
+        At4 = new EnergyCost(0,2,1,0,0,0);
+        At5 = new EnergyCost(1,2,1,1,0,0);
         attack4 = new Attack("Psicorrayo", 45, "El Pokemon danado pasa a estar Confundido",At4);
         attack5 = new Attack("Psicocarga", 70, "El daño de este ataque no se ve afectado " +
                 "por ningún efecto en el Pokémon Activo de tu rival.",At5);
         LA_Espeon = new ArrayList<>();
         LA_Espeon.add(attack4);
         LA_Espeon.add(attack5);
-        psychicPokemon2 = new PsychicPokemon("Espeon",170,50,FullEnergy,LA_Espeon);
+        basicPsychicPokemon2 = new BasicPsychicPokemon("Espeon",170,50,FullEnergy,LA_Espeon);
         //endregion
 
         //region Fighting Pokemon Lucario
-        At6 = new energyCost(0,0,0,2,0,0);
-        At7 = new energyCost(0,0,1,2,0,0);
+        At6 = new EnergyCost(0,0,0,2,0,0);
+        At7 = new EnergyCost(0,0,1,2,0,0);
         attack6 = new Attack("Derrumbar", 45, "Derrumba al pokemon",At6);
         attack7 = new Attack("Patada magnum", 70, "El pokemon danado queda Aturdido",At7);
         LA_Lucario = new ArrayList<>();
         LA_Lucario.add(attack6);
         LA_Lucario.add(attack7);
-        fightingPokemon = new FightingPokemon("Lucario",160,4,FullEnergy,LA_Lucario);
+        basicFightingPokemon = new BasicFightingPokemon("Lucario",160,4,FullEnergy,LA_Lucario);
         //endregion
 
 
@@ -94,33 +94,33 @@ public class PsychicPokemonTest {
 
     @Test
     public void attack() {
-        psychicPokemon.attack(psychicPokemon2,2);
-        psychicPokemon2.attack(fightingPokemon,1);
-        assertEquals(130,psychicPokemon.getHP());
-        assertEquals(20,fightingPokemon.getHP());
+        basicPsychicPokemon.attack(basicPsychicPokemon2,2);
+        basicPsychicPokemon2.attack(basicFightingPokemon,1);
+        assertEquals(130, basicPsychicPokemon.getHP());
+        assertEquals(20, basicFightingPokemon.getHP());
         //El Pokemon recibe energías y puede ejecutar el ataque
-        psychicPokemon.receivePsychicEnergy(psychicEnergy);
-        psychicPokemon.receivePsychicEnergy(psychicEnergy);
-        psychicPokemon.receivePsychicEnergy(psychicEnergy);
-        psychicPokemon.receiveWaterEnergy(waterEnergy);
-        psychicPokemon.attack(psychicPokemon2,2);
-        assertEquals(50,psychicPokemon2.getHP());
+        basicPsychicPokemon.receivePsychicEnergy(psychicEnergy);
+        basicPsychicPokemon.receivePsychicEnergy(psychicEnergy);
+        basicPsychicPokemon.receivePsychicEnergy(psychicEnergy);
+        basicPsychicPokemon.receiveWaterEnergy(waterEnergy);
+        basicPsychicPokemon.attack(basicPsychicPokemon2,2);
+        assertEquals(50, basicPsychicPokemon2.getHP());
     }
 
     @Test
     public void attackedByFightingPokemon(){
-        fightingPokemon.attack(psychicPokemon,0);
-        fightingPokemon.attack(psychicPokemon2,1);
-        assertEquals(130,psychicPokemon2.getHP());
-        assertEquals(115,psychicPokemon.getHP());
+        basicFightingPokemon.attack(basicPsychicPokemon,0);
+        basicFightingPokemon.attack(basicPsychicPokemon2,1);
+        assertEquals(130, basicPsychicPokemon2.getHP());
+        assertEquals(115, basicPsychicPokemon.getHP());
     }
 
     @Test
     public void attackedByPsychicPokemon(){
-        psychicPokemon.attack(psychicPokemon2,0);
-        psychicPokemon2.attack(psychicPokemon,0);
-        assertEquals(170,psychicPokemon2.getHP());
-        assertEquals(40,psychicPokemon.getHP());
+        basicPsychicPokemon.attack(basicPsychicPokemon2,0);
+        basicPsychicPokemon2.attack(basicPsychicPokemon,0);
+        assertEquals(170, basicPsychicPokemon2.getHP());
+        assertEquals(40, basicPsychicPokemon.getHP());
     }
 
 

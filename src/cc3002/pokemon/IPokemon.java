@@ -4,16 +4,16 @@ import java.util.List;
 
 import cc3002.abilities.Attack;
 import cc3002.ICard;
-import cc3002.energyCost.energyCost;
+import cc3002.energyCost.EnergyCost;
 import cc3002.energy.water.WaterEnergy;
-import cc3002.pokemon.fighting.FightingPokemon;
-import cc3002.pokemon.grass.GrassPokemon;
-import cc3002.pokemon.lighting.LightingPokemon;
-import cc3002.pokemon.psychic.PsychicPokemon;
-import cc3002.pokemon.water.WaterPokemon;
+import cc3002.pokemon.fighting.AbstractFightingPokemon;
+import cc3002.pokemon.fire.AbstractFirePokemon;
+import cc3002.pokemon.grass.AbstractGrassPokemon;
+import cc3002.pokemon.lighting.AbstractLightingPokemon;
+import cc3002.pokemon.psychic.AbstractPsychicPokemon;
+import cc3002.pokemon.water.AbstractWaterPokemon;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
-import cc3002.pokemon.fire.FirePokemon;
 import cc3002.energy.grass.GrassEnergy;
 import cc3002.energy.lighting.LightingEnergy;
 import cc3002.energy.psychic.PsychicEnergy;
@@ -46,7 +46,7 @@ public interface IPokemon extends ICard {
     /**
      * @return Pokemon's energy counter.
      */
-    energyCost getCountEnergy();
+    EnergyCost getCountEnergy();
 
     /**
      * @return List with all the Pokémon attacks.
@@ -116,42 +116,42 @@ public interface IPokemon extends ICard {
      *
      * @param waterPokemon Received attack.
      */
-    void attackedByWaterPokemon(WaterPokemon waterPokemon);
+    void attackedByWaterPokemon(AbstractWaterPokemon waterPokemon);
 
     /**
      * Receives an attack from a grass pokemon.
      *
      * @param grassPokemon Received attack.
      */
-    void attackedByGrassPokemon(GrassPokemon grassPokemon);
+    void attackedByGrassPokemon(AbstractGrassPokemon grassPokemon);
 
     /**
      * Receives an attack from a fire pokemon.
      *
      * @param firePokemon Received attack.
      */
-    void attackedByFirePokemon(FirePokemon firePokemon);
+    void attackedByFirePokemon(AbstractFirePokemon firePokemon);
 
     /**
      * Receives an attack from a fighting pokemon.
      *
      * @param fightingPokemon Received attack.
      */
-    void attackedByFightingPokemon(FightingPokemon fightingPokemon);
+    void attackedByFightingPokemon(AbstractFightingPokemon fightingPokemon);
 
     /**
      * Receives an attack from a psychic pokemon.
      *
      * @param psychicPokemon Received attack.
      */
-    void attackedByPsychicPokemon(PsychicPokemon psychicPokemon);
+    void attackedByPsychicPokemon(AbstractPsychicPokemon psychicPokemon);
 
     /**
      * Receives an attack from a lighting pokemon.
      *
      * @param lightingPokemon Received attack.
      */
-    void attackedByLightingPokemon(LightingPokemon lightingPokemon);
+    void attackedByLightingPokemon(AbstractLightingPokemon lightingPokemon);
     //endregion
 
 

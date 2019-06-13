@@ -2,9 +2,9 @@ package cc3002.pokemon.lighting;
 
 import cc3002.abilities.Attack;
 import cc3002.pokemon.AbstractPokemon;
-import cc3002.pokemon.fighting.FightingPokemon;
-import cc3002.energyCost.energyCost;
+import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.IPokemon;
+import cc3002.pokemon.fighting.AbstractFightingPokemon;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @author cmesiasd
  * @version 1.0
  */
-public class LightingPokemon extends AbstractPokemon {
+public class BasicLightingPokemon extends AbstractLightingPokemon {
 
     /**
      * Constructor for Lighting Pokemon
@@ -25,18 +25,9 @@ public class LightingPokemon extends AbstractPokemon {
      * @param countEnergy Pokemon's counter energies
      * @param attackList Pokemon's attacks list
      */
-    public LightingPokemon(String name, int hp, int id, energyCost countEnergy, List<Attack> attackList) {
+    public BasicLightingPokemon(String name, int hp, int id, EnergyCost countEnergy, List<Attack> attackList) {
         super(name, hp, id, countEnergy, attackList);
     }
 
-    @Override
-    public void attack(IPokemon other, int index) {
-        this.selectAttack(index);
-        other.attackedByLightingPokemon(this);
-    }
 
-    @Override
-    public void attackedByFightingPokemon(FightingPokemon fightingPokemon) {
-        receiveWeaknessAttack(fightingPokemon);
-    }
 }
