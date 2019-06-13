@@ -39,7 +39,7 @@ public abstract class AbstractEnergy implements IEnergy{
     public abstract void useEnergyCard(IPokemon pokemon);
 
 
-    @Override
+    @Override //TODO jugar a cualquier pokemon(activo o banca)
     public void playCard(Trainer trainer) {
         if(trainer.getHand() != null) this.useEnergyCard(trainer.getActivePokemon());
     }
@@ -47,7 +47,6 @@ public abstract class AbstractEnergy implements IEnergy{
     /**
      * @return CardName(Energy Type)
      */
-
     @Override
     public String getCardName() {
         return type;

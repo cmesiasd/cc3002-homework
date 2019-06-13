@@ -1,8 +1,8 @@
 package cc3002.pokemon;
 
 import cc3002.pokemon.fighting.FightingPokemon;
-import cc3002.Attack;
-import cc3002.cost.Cost;
+import cc3002.abilities.Attack;
+import cc3002.energyCost.energyCost;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
 import cc3002.pokemon.fire.FirePokemon;
@@ -35,7 +35,7 @@ public class AbstractPokemonTest {
     PsychicPokemon psychicPokemon;
     WaterEnergy waterEnergy;
     WaterPokemon waterPokemon, waterPokemon2;
-    Cost At1, At2, At3, At4, IniEnergy, FullEnergy;
+    energyCost At1, At2, At3, At4, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4;
     List<Attack> LA_Mewtwo, LA_Lapras;
 
@@ -48,13 +48,13 @@ public class AbstractPokemonTest {
         fireEnergy = new FireEnergy("fire");
         lightingEnergy = new LightingEnergy("lighting");
         fightingEnergy = new FightingEnergy("fighting");
-        IniEnergy = new Cost(0,0,0,0,0,0);
-        FullEnergy = new Cost(10,10,10,10,10,10);
+        IniEnergy = new energyCost(0,0,0,0,0,0);
+        FullEnergy = new energyCost(10,10,10,10,10,10);
         //endregion
 
         //region Grass Pokemon Mewtwo
-        At1 = new Cost(0,3,0,0,0,0);
-        At2 = new Cost(0,3,0,1,0,0);
+        At1 = new energyCost(0,3,0,0,0,0);
+        At2 = new energyCost(0,3,0,1,0,0);
         attack1 = new Attack("Superrayo Psi", 100, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1);
         attack2 = new Attack("Filo Zen", 110, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2);
         LA_Mewtwo = new ArrayList<>();
@@ -64,8 +64,8 @@ public class AbstractPokemonTest {
         //endregion
 
         //region Water Pokemon Lapras
-        At3 = new Cost(2,0,0,1,0,0);
-        At4 = new Cost(2,0,0,2,0,0);
+        At3 = new energyCost(2,0,0,1,0,0);
+        At4 = new energyCost(2,0,0,2,0,0);
         attack3 = new Attack("Hidrobomba", 60, "El Pokémon Activo de tu rival pasa a estar Paralizado",At3);
         attack4 = new Attack("Rayo Hielo", 90, "Este ataque hace 20 puntos de daño más por cada Energía Water unida a este Pokémon",At4);
         LA_Lapras = new ArrayList<>();
@@ -103,7 +103,7 @@ public class AbstractPokemonTest {
     @Test
     public void getCountEnergy() {
         assertNotEquals(At1,waterPokemon.getCountEnergy());
-        assertEquals(new Cost(10,10,10,10,10,10),psychicPokemon.getCountEnergy());
+        assertEquals(new energyCost(10,10,10,10,10,10),psychicPokemon.getCountEnergy());
     }
 
     @Test

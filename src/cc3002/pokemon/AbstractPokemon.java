@@ -1,9 +1,9 @@
 package cc3002.pokemon;
 
-import cc3002.Attack;
+import cc3002.abilities.Attack;
 import cc3002.Trainer;
 import cc3002.pokemon.fighting.FightingPokemon;
-import cc3002.cost.Cost;
+import cc3002.energyCost.energyCost;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
 import cc3002.pokemon.fire.FirePokemon;
@@ -30,7 +30,7 @@ public abstract class AbstractPokemon implements IPokemon{
     private String name;
     private int id;
     private int hp;
-    private Cost countEnergy;
+    private energyCost countEnergy;
     private List<Attack> attackList;
     private Attack selectedAttack;
 
@@ -43,7 +43,7 @@ public abstract class AbstractPokemon implements IPokemon{
      * @param countEnergy Pokemon's counter energies
      * @param attackList  Pokémon's attacks list.
      */
-    protected AbstractPokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
+    protected AbstractPokemon(String name, int hp, int id, energyCost countEnergy, List<Attack> attackList) {
         this.name = name;
         this.id = id;
         this.hp = hp;
@@ -68,7 +68,7 @@ public abstract class AbstractPokemon implements IPokemon{
         return id;
     }
 
-    public Cost getCountEnergy() {
+    public energyCost getCountEnergy() {
         return countEnergy;
     }
 
@@ -96,7 +96,7 @@ public abstract class AbstractPokemon implements IPokemon{
     }
 
     public boolean canAttack() {
-        for (Map.Entry<String, Integer> entry1 : this.getSelectedAttack().getCost().getCost().entrySet()) {
+        for (Map.Entry<String, Integer> entry1 : this.getSelectedAttack().getEnergyCost().getCost().entrySet()) {
             String k = entry1.getKey();
             //Compara los key si son iguales.
             if(this.getCountEnergy().getCost().containsKey(k)) {

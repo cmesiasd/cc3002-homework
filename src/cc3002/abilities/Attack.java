@@ -1,6 +1,6 @@
-package cc3002;
+package cc3002.abilities;
 
-import cc3002.cost.Cost;
+import cc3002.energyCost.energyCost;
 
 import java.util.Objects;
 
@@ -8,10 +8,10 @@ import java.util.Objects;
  *
  */
 public class Attack {
-    private int baseDamage;
     private String name;
     private String description;
-    private Cost cost;
+    private energyCost energyCost;
+    private int baseDamage;
 
     /**
      * Creates a new attack.
@@ -19,12 +19,13 @@ public class Attack {
      * @param name Attack name
      * @param baseDamage Base damage of the attack
      * @param description Text description of the attack
+     * @param energyCost
      */
-    public Attack(String name, int baseDamage, String description, Cost cost) {
+    public Attack(String name, int baseDamage, String description, energyCost energyCost) {
         this.baseDamage = baseDamage;
         this.name = name;
         this.description = description;
-        this.cost = cost;
+        this.energyCost = energyCost;
     }
 
 
@@ -50,11 +51,9 @@ public class Attack {
         return description;
     }
 
-    /**
-     * @return Attack's cost
-     */
-    public Cost getCost(){
-        return cost;
+
+    public energyCost getEnergyCost(){
+        return energyCost;
     }
     //endregion
 
@@ -67,7 +66,7 @@ public class Attack {
         return getBaseDamage() == attack.getBaseDamage() &&
                 Objects.equals(getName(), attack.getName()) &&
                 Objects.equals(getDescription(), attack.getDescription()) &&
-                Objects.equals(getCost(), attack.getCost());
+                Objects.equals(getEnergyCost(), attack.getEnergyCost());
     }
 
 }

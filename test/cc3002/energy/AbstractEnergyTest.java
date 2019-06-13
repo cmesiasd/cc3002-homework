@@ -1,7 +1,7 @@
 package cc3002.energy;
 
-import cc3002.Attack;
-import cc3002.cost.Cost;
+import cc3002.abilities.Attack;
+import cc3002.energyCost.energyCost;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
 import cc3002.energy.grass.GrassEnergy;
@@ -25,7 +25,7 @@ public class AbstractEnergyTest {
     PsychicEnergy psychicEnergy,psychicEnergy2;
     WaterEnergy waterEnergy;
     PsychicPokemon psychicPokemon;
-    Cost At1, At2, IniEnergy;
+    energyCost At1, At2, IniEnergy;
     Attack attack1, attack2;
     List<Attack> LA_Mewtwo;
 
@@ -41,12 +41,12 @@ public class AbstractEnergyTest {
         fireEnergy = new FireEnergy("fire");
         lightingEnergy = new LightingEnergy("lighting");
         fightingEnergy = new FightingEnergy("fighting");
-        IniEnergy = new Cost(0,0,0,0,0,0);
+        IniEnergy = new energyCost(0,0,0,0,0,0);
         //endregion
 
         //region Grass Pokemon Mewtwo
-        At1 = new Cost(0,3,0,0,0,0);
-        At2 = new Cost(0,3,0,1,0,0);
+        At1 = new energyCost(0,3,0,0,0,0);
+        At2 = new energyCost(0,3,0,1,0,0);
         attack1 = new Attack("Superrayo Psi", 100, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1);
         attack2 = new Attack("Filo Zen", 110, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2);
         LA_Mewtwo = new ArrayList<>();
@@ -85,9 +85,9 @@ public class AbstractEnergyTest {
         grassEnergy.useEnergyCard(psychicPokemon);
         psychicEnergy.useEnergyCard(psychicPokemon);
         lightingEnergy.useEnergyCard(psychicPokemon);
-        assertEquals(new Cost(1,1,1,1,1,1),psychicPokemon.getCountEnergy());
+        assertEquals(new energyCost(1,1,1,1,1,1),psychicPokemon.getCountEnergy());
         lightingEnergy.useEnergyCard(psychicPokemon);
-        assertEquals(new Cost(1,1,1,1,2,1),psychicPokemon.getCountEnergy());
+        assertEquals(new energyCost(1,1,1,1,2,1),psychicPokemon.getCountEnergy());
 
     }
 }

@@ -1,7 +1,7 @@
 package cc3002.pokemon.fire;
 
-import cc3002.Attack;
-import cc3002.cost.Cost;
+import cc3002.abilities.Attack;
+import cc3002.energyCost.energyCost;
 import cc3002.pokemon.AbstractPokemon;
 import cc3002.pokemon.IPokemon;
 import cc3002.pokemon.water.WaterPokemon;
@@ -25,7 +25,7 @@ public class FirePokemon extends AbstractPokemon {
      * @param countEnergy Pokemon's counter energies
      * @param attackList Pokemon's attacks list
      */
-    public FirePokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
+    public FirePokemon(String name, int hp, int id, energyCost countEnergy, List<Attack> attackList) {
         super(name, hp, id, countEnergy, attackList);
     }
 

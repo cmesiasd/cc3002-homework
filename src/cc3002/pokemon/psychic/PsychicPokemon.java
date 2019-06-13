@@ -1,9 +1,9 @@
 package cc3002.pokemon.psychic;
 
-import cc3002.Attack;
+import cc3002.abilities.Attack;
 import cc3002.pokemon.AbstractPokemon;
 import cc3002.pokemon.fighting.FightingPokemon;
-import cc3002.cost.Cost;
+import cc3002.energyCost.energyCost;
 import cc3002.pokemon.IPokemon;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class PsychicPokemon extends AbstractPokemon {
      * @param countEnergy Pokemon's counter energies
      * @param attackList Pokemon's attacks list
      */
-    public PsychicPokemon(String name, int hp, int id, Cost countEnergy, List<Attack> attackList) {
+    public PsychicPokemon(String name, int hp, int id, energyCost countEnergy, List<Attack> attackList) {
         super(name, hp, id, countEnergy, attackList);
     }
 

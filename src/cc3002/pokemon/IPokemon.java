@@ -2,9 +2,9 @@ package cc3002.pokemon;
 
 import java.util.List;
 
-import cc3002.Attack;
+import cc3002.abilities.Attack;
 import cc3002.ICard;
-import cc3002.cost.Cost;
+import cc3002.energyCost.energyCost;
 import cc3002.energy.water.WaterEnergy;
 import cc3002.pokemon.fighting.FightingPokemon;
 import cc3002.pokemon.grass.GrassPokemon;
@@ -46,7 +46,7 @@ public interface IPokemon extends ICard {
     /**
      * @return Pokemon's energy counter.
      */
-    Cost getCountEnergy();
+    energyCost getCountEnergy();
 
     /**
      * @return List with all the Pokémon attacks.

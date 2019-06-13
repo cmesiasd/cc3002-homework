@@ -1,4 +1,4 @@
-package cc3002.cost;
+package cc3002.energyCost;
 
 import cc3002.energy.water.WaterEnergy;
 import cc3002.energy.fighting.FightingEnergy;
@@ -11,17 +11,17 @@ import java.util.HashMap;
 import java.util.Objects;
 
 /**
- * Create the cost Object.
+ * Create the energyCost Object.
  * Hashmap to control energies and their costs
  *
  * @author cmesias
  * @version 1.0
  */
-public class Cost {
+public class energyCost {
     private HashMap<String,Integer> cost;
 
     /**
-     * Constructor for cost
+     * Constructor for energyCost
      * Add to the HashMap each type of energy
      *
      * @param wa Count of WaterEnergy
@@ -31,7 +31,7 @@ public class Cost {
      * @param lig Count of LightingEnergy
      * @param gra Count of GrassEnergy
      */
-    public Cost(int wa, int psy, int fi, int fig, int lig, int gra) {
+    public energyCost(int wa, int psy, int fi, int fig, int lig, int gra) {
         HashMap<String, Integer> cost = new HashMap<>();
 
         WaterEnergy waterEnergy = new WaterEnergy("water");
@@ -62,9 +62,9 @@ public class Cost {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Cost)) return false;
-        Cost cost1 = (Cost) o;
-        return Objects.equals(getCost(), cost1.getCost());
+        if (!(o instanceof energyCost)) return false;
+        energyCost energyCost1 = (energyCost) o;
+        return Objects.equals(getCost(), energyCost1.getCost());
     }
 
 }

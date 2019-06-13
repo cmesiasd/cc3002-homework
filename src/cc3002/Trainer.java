@@ -111,4 +111,6 @@ public class Trainer {
         }
     }
 
+    //TODO deck, discardPile, sixPrize
+
 }

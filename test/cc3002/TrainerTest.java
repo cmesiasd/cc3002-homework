@@ -1,6 +1,7 @@
 package cc3002;
 
-import cc3002.cost.Cost;
+import cc3002.abilities.Attack;
+import cc3002.energyCost.energyCost;
 import cc3002.energy.fire.FireEnergy;
 import cc3002.energy.grass.GrassEnergy;
 import cc3002.energy.psychic.PsychicEnergy;
@@ -40,7 +41,7 @@ public class TrainerTest {
 
     private Trainer trainer1, trainer2;
 
-    private Cost At1, At2, At3, At4, IniEnergy, FullEnergy;
+    private energyCost At1, At2, At3, At4, IniEnergy, FullEnergy;
 
     private Attack attack1, attack2, attack3, attack4;
 
@@ -64,13 +65,13 @@ public class TrainerTest {
         lightingEnergy = new LightingEnergy("lighting");
         fightingEnergy = new FightingEnergy("fighting");
 
-        IniEnergy = new Cost(0,0,0,0,0,0);
-        FullEnergy = new Cost(10,10,10,10,10,10);
+        IniEnergy = new energyCost(0,0,0,0,0,0);
+        FullEnergy = new energyCost(10,10,10,10,10,10);
         //endregion
 
         //region Pokemon 1
-        At1 = new Cost(0,2,0,1,0,0);
-        At2 = new Cost(0,2,1,1,0,0);
+        At1 = new energyCost(0,2,0,1,0,0);
+        At2 = new energyCost(0,2,1,1,0,0);
         attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1);
         attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2);
 
@@ -85,8 +86,8 @@ public class TrainerTest {
         //endregion
 
         //region Pokemon 2
-        At3 = new Cost(0,0,0,0,0,2);
-        At4 = new Cost(0,0,0,1,0,2);
+        At3 = new energyCost(0,0,0,0,0,2);
+        At4 = new energyCost(0,0,0,1,0,2);
         attack3 = new Attack("Hoja Afilada", 30, "Permite robar una carta",At3);
         attack4 = new Attack("Hiedra adormidera", 35, "El pokemon danado pasa a estar dormido",At4);
 
@@ -139,7 +140,7 @@ public class TrainerTest {
         trainer1.play(grassPokemon);
         trainer1.play(grassEnergy);
 
-        Assert.assertEquals(trainer1.getActivePokemon().getCountEnergy().getCost(),new Cost(10,10,10,10,10,11).getCost());
+        Assert.assertEquals(trainer1.getActivePokemon().getCountEnergy().getCost(),new energyCost(10,10,10,10,10,11).getCost());
     }
 
 
