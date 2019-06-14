@@ -3,9 +3,11 @@ package cc3002.pokemon.grass;
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.AbstractPokemon;
+import cc3002.pokemon.IBasicPokemon;
 import cc3002.pokemon.fire.AbstractFirePokemon;
 import cc3002.pokemon.water.AbstractWaterPokemon;
 import cc3002.pokemon.IPokemon;
+import cc3002.visitor.IVisitorCard;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
  * @author cmesiasd
  * @version 1.0
  */
-public class BasicGrassPokemon extends AbstractGrassPokemon {
+public class BasicGrassPokemon extends AbstractGrassPokemon implements IBasicPokemon {
 
     /**
      * Constructor for Grass Pokemon
@@ -30,5 +32,9 @@ public class BasicGrassPokemon extends AbstractGrassPokemon {
         super(name, hp, id, countEnergy, attackList);
     }
 
+    @Override
+    public void acceptVisitor(IVisitorCard visitorCard) {
+        visitorCard.visitBasicPokemon(this);
+    }
 
 }

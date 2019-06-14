@@ -2,10 +2,11 @@ package cc3002.pokemon.lighting;
 
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.IPhaseTwoPokemon;
 
 import java.util.List;
 
-public class PhaseTwoLightingPokemon extends AbstractLightingPokemon {
+public class PhaseTwoLightingPokemon extends AbstractLightingPokemon implements IPhaseTwoPokemon {
     /**
      * Creates a new Pokémon.
      *

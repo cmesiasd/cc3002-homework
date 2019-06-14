@@ -1,5 +1,6 @@
 package cc3002.pokemon;
 
+import cc3002.AbstractCard;
 import cc3002.abilities.Attack;
 import cc3002.Trainer;
 import cc3002.energyCost.EnergyCost;
@@ -15,6 +16,7 @@ import cc3002.energy.psychic.PsychicEnergy;
 import cc3002.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.energy.water.WaterEnergy;
 import cc3002.pokemon.water.AbstractWaterPokemon;
+import cc3002.visitor.IVisitorCard;
 
 import java.util.List;
 import java.util.Map;
@@ -26,8 +28,8 @@ import java.util.Map;
  * @author cmesiasd
  * @version 1.0
  */
-public abstract class AbstractPokemon implements IPokemon{
-    private String name;
+public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
+    private String cardName;
     private int id;
     private int hp;
     private EnergyCost countEnergy;
@@ -37,14 +39,14 @@ public abstract class AbstractPokemon implements IPokemon{
     /**
      * Creates a new Pokémon.
      *
-     * @param name        Pokémon's name.
+     * @param cardName    Pokémon's name.
      * @param hp          Pokémon's hit points.
      * @param id          Pokemon's id.
      * @param countEnergy Pokemon's counter energies
      * @param attackList  Pokémon's attacks list.
      */
-    protected AbstractPokemon(String name, int hp, int id, EnergyCost countEnergy, List<Attack> attackList) {
-        this.name = name;
+    protected AbstractPokemon(String cardName, int hp, int id, EnergyCost countEnergy, List<Attack> attackList) {
+        super(cardName);
         this.id = id;
         this.hp = hp;
         this.countEnergy = countEnergy;
@@ -56,9 +58,6 @@ public abstract class AbstractPokemon implements IPokemon{
     }
 
     //region Properties
-    public String getName() {
-        return name;
-    }
 
     public int getHP() {
         return hp;
@@ -70,6 +69,11 @@ public abstract class AbstractPokemon implements IPokemon{
 
     public EnergyCost getCountEnergy() {
         return countEnergy;
+    }
+
+    @Override
+    public void setCountEnergy(EnergyCost countEnergy) {
+        this.countEnergy = countEnergy;
     }
 
     public List<Attack> getAttacks() {
@@ -177,39 +181,34 @@ public abstract class AbstractPokemon implements IPokemon{
 
     //region Energy
     public void receiveWaterEnergy(WaterEnergy waterEnergy){
-        this.countEnergy.getCost().put(waterEnergy.getType(), this.countEnergy.getCost().get(waterEnergy.getType())+1);
+        this.countEnergy.getCost().put(waterEnergy.getCardName(), this.countEnergy.getCost().get(waterEnergy.getCardName())+1);
     }
 
     public void receiveFireEnergy(FireEnergy fireEnergy){
-        this.countEnergy.getCost().put(fireEnergy.getType(), this.countEnergy.getCost().get(fireEnergy.getType())+1);
+        this.countEnergy.getCost().put(fireEnergy.getCardName(), this.countEnergy.getCost().get(fireEnergy.getCardName())+1);
     }
 
     public void receiveGrassEnergy(GrassEnergy grassEnergy){
-        this.countEnergy.getCost().put(grassEnergy.getType(), this.countEnergy.getCost().get(grassEnergy.getType())+1);
+        this.countEnergy.getCost().put(grassEnergy.getCardName(), this.countEnergy.getCost().get(grassEnergy.getCardName())+1);
     }
 
     public void receiveFightingEnergy(FightingEnergy fightingEnergy){
-        this.countEnergy.getCost().put(fightingEnergy.getType(), this.countEnergy.getCost().get(fightingEnergy.getType())+1);
+        this.countEnergy.getCost().put(fightingEnergy.getCardName(), this.countEnergy.getCost().get(fightingEnergy.getCardName())+1);
     }
 
     public void receiveLightingEnergy(LightingEnergy lightingEnergy){
-        this.countEnergy.getCost().put(lightingEnergy.getType(), this.countEnergy.getCost().get(lightingEnergy.getType())+1);
+        this.countEnergy.getCost().put(lightingEnergy.getCardName(), this.countEnergy.getCost().get(lightingEnergy.getCardName())+1);
     }
 
     public void receivePsychicEnergy(PsychicEnergy psychicEnergy){
-        this.countEnergy.getCost().put(psychicEnergy.getType(), this.countEnergy.getCost().get(psychicEnergy.getType())+1);
+        this.countEnergy.getCost().put(psychicEnergy.getCardName(), this.countEnergy.getCost().get(psychicEnergy.getCardName())+1);
     }
+    //endregion
 
     @Override
-    public String getCardName() {
-        return this.name;
-    }
+    public void acceptVisitor(IVisitorCard visitorCard){
 
-    @Override
-    public void playCard(Trainer aTrainer) {
-        aTrainer.playPokemonCard(this);
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -218,10 +217,10 @@ public abstract class AbstractPokemon implements IPokemon{
         AbstractPokemon that = (AbstractPokemon) o;
         return id == that.id &&
                 hp == that.hp &&
-                getName().equals(that.getName()) &&
+                getCardName().equals(that.getCardName()) &&
                 getCountEnergy().equals(that.getCountEnergy()) &&
                 attackList.equals(that.attackList);
     }
-    //endregion
+
 
 }

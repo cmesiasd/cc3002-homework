@@ -2,10 +2,11 @@ package cc3002.pokemon.fire;
 
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.IPhaseOnePokemon;
 
 import java.util.List;
 
-public class PhaseOneFirePokemon extends AbstractFirePokemon {
+public class PhaseOneFirePokemon extends AbstractFirePokemon implements IPhaseOnePokemon {
     /**
      * Creates a new Fire Pokémon.
      *

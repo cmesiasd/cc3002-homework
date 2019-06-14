@@ -1,5 +1,6 @@
 package cc3002.pokemon;
 
+import cc3002.Trainer;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.fighting.BasicFightingPokemon;
 import cc3002.abilities.Attack;
@@ -38,6 +39,7 @@ public class AbstractPokemonTest {
     EnergyCost At1, At2, At3, At4, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4;
     List<Attack> LA_Mewtwo, LA_Lapras;
+    Trainer trainer;
 
     @Before
     public void setUp() throws Exception {
@@ -74,18 +76,14 @@ public class AbstractPokemonTest {
         basicWaterPokemon = new BasicWaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
         basicWaterPokemon2 = new BasicWaterPokemon("Lapras",150,300,FullEnergy,LA_Lapras);
         //endregion
+
+        trainer = new Trainer("Ash Ketchup");
     }
 
     @Test
     public void attack(){
         basicWaterPokemon.attack(basicPsychicPokemon,1);
         basicPsychicPokemon.attack(basicWaterPokemon2,0);
-    }
-
-    @Test
-    public void getName() {
-        assertEquals("Mewtwo", basicPsychicPokemon.getName());
-        assertNotEquals("Pikachu", basicWaterPokemon.getName());
     }
 
     @Test
@@ -117,6 +115,13 @@ public class AbstractPokemonTest {
         assertEquals("Mewtwo", basicPsychicPokemon.getCardName());
         assertEquals("Lapras", basicWaterPokemon.getCardName());
         assertNotEquals("miutu", basicPsychicPokemon.getCardName());
+    }
+
+    @Test
+    public void discard(){
+        basicPsychicPokemon.discard(trainer);
+        fightingEnergy.discard(trainer);
+        assertEquals(trainer.getDiscardPile().size(),2);
     }
 
     @Test

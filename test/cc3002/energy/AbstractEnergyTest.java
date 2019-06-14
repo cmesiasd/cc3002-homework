@@ -56,12 +56,6 @@ public class AbstractEnergyTest {
         //endregion
     }
 
-    @Test
-    public void getType() {
-        assertEquals("water",waterEnergy.getType());
-        assertEquals("fire",fireEnergy.getType());
-        assertEquals("fighting",fightingEnergy.getType());
-    }
 
     @Test
     public void getCardName() {

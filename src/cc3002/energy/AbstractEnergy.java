@@ -1,7 +1,9 @@
 package cc3002.energy;
 
+import cc3002.AbstractCard;
 import cc3002.Trainer;
 import cc3002.pokemon.IPokemon;
+import cc3002.visitor.IVisitorCard;
 
 import java.util.Objects;
 
@@ -12,8 +14,7 @@ import java.util.Objects;
  * @author cmesiasd
  * @version 1.0
  */
-public abstract class AbstractEnergy implements IEnergy{
-    private String type;
+public abstract class AbstractEnergy extends AbstractCard implements IEnergy{
 
     /** Constructor for Abstract Energy
      *
@@ -21,15 +22,9 @@ public abstract class AbstractEnergy implements IEnergy{
      *            Ex: Water, Fire, etc.
      */
     public AbstractEnergy(String type) {
-        this.type = type;
+        super(type);
     }
 
-    /**
-     * @return Energy's Type
-     */
-    public String getType(){
-        return type;
-    }
 
     /** Play the Energy Card to a Pokemon, adding an energy
      *
@@ -39,17 +34,11 @@ public abstract class AbstractEnergy implements IEnergy{
     public abstract void useEnergyCard(IPokemon pokemon);
 
 
-    @Override //TODO jugar a cualquier pokemon(activo o banca)
-    public void playCard(Trainer trainer) {
-        if(trainer.getHand() != null) this.useEnergyCard(trainer.getActivePokemon());
-    }
+    //TODO jugar a cualquier pokemon(activo o banca)
 
-    /**
-     * @return CardName(Energy Type)
-     */
     @Override
-    public String getCardName() {
-        return type;
+    public void acceptVisitor(IVisitorCard visitorCard) {
+        visitorCard.visitEnergy(this);
     }
 
     @Override
@@ -57,7 +46,7 @@ public abstract class AbstractEnergy implements IEnergy{
         if (this == o) return true;
         if (!(o instanceof AbstractEnergy)) return false;
         AbstractEnergy that = (AbstractEnergy) o;
-        return Objects.equals(getType(), that.getType());
+        return Objects.equals(getCardName(), that.getCardName());
     }
 
 }

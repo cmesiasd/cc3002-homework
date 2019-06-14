@@ -95,6 +95,11 @@ public class TrainerTest {
         LA_Pokemon2.add(attack4);
 
         basicGrassPokemon = new BasicGrassPokemon("Bulbasaur",70,1,FullEnergy,LA_Pokemon2);
+
+        basicFirePokemon = new BasicFirePokemon("Charmander",100,3,FullEnergy,LA_Pokemon2);
+        basicFightingPokemon = new BasicFightingPokemon("Machop",150,2,FullEnergy,LA_Pokemon1);
+        basicLightingPokemon = new BasicLightingPokemon("Pikachu", 60,21,FullEnergy,LA_Pokemon1);
+        basicWaterPokemon = new BasicWaterPokemon("Squirtle", 65,14,FullEnergy,LA_Pokemon2);
         //endregion
 
     }
@@ -140,7 +145,13 @@ public class TrainerTest {
         trainer1.play(basicGrassPokemon);
         trainer1.play(grassEnergy);
 
-        Assert.assertEquals(trainer1.getActivePokemon().getCountEnergy().getCost(),new EnergyCost(10,10,10,10,10,11).getCost());
+        assertEquals(trainer1.getActivePokemon().getCountEnergy().getCost(),new EnergyCost(10,10,10,10,10,11).getCost());
+
+        trainer2.play(basicFightingPokemon);
+        trainer2.play(basicFirePokemon);
+        trainer2.play(basicLightingPokemon);
+        trainer2.play(basicWaterPokemon);
+        trainer2.play(basicFightingPokemon);
     }
 
 
@@ -162,14 +173,17 @@ public class TrainerTest {
         Assert.assertEquals(trainer2.getActivePokemon().getHP(), 35);
 
         //El pokemon activo de "trainer1" es Bulbasaur
-        Assert.assertEquals(trainer1.getActivePokemon().getName(),"Bulbasaur");
+        Assert.assertEquals(trainer1.getActivePokemon().getCardName(),"Bulbasaur");
 
         trainer2.attackTrainer(trainer1,0);
         trainer2.attackTrainer(trainer1,0);
 
         //Muere el pokemon y cambia al siguiente
-        Assert.assertEquals(trainer1.getActivePokemon().getName(),"Crobat");
+        Assert.assertEquals(trainer1.getActivePokemon().getCardName(),"Crobat");
         Assert.assertEquals(trainer1.getActivePokemon().getHP(), 130);
+
+        trainer1.addCardToHand(waterEnergy);
+        trainer1.play(waterEnergy);
     }
 
 }

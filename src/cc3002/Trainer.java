@@ -1,6 +1,7 @@
 package cc3002;
 
 import cc3002.pokemon.IPokemon;
+import cc3002.visitor.PlayCardVisitor;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,10 @@ public class Trainer {
     private ArrayList<ICard> hand;
     private ArrayList<IPokemon> bench;
     private IPokemon activePokemon;
+    private ArrayList<ICard> deck;
+    private ArrayList<ICard> discardPile;
+    private ICard[] sixPrize;
+
 
     /**
      * Constructor for Trainer
@@ -26,6 +31,10 @@ public class Trainer {
         this.hand = new ArrayList<>();
         this.activePokemon = null;
         this.bench = new ArrayList<>();
+        this.deck = new ArrayList<>();
+        this.discardPile = new ArrayList<>();
+        this.sixPrize = new ICard[6];
+
     }
 
     //region Properties
@@ -45,6 +54,10 @@ public class Trainer {
         return activePokemon;
     }
 
+    public void setActivePokemon(IPokemon activePokemon) {
+        this.activePokemon = activePokemon;
+    }
+
     /**
      * @return Trainer's Name
      */
@@ -57,6 +70,18 @@ public class Trainer {
      */
     public ArrayList<ICard> getHand() {
         return hand;
+    }
+
+    public ArrayList<ICard> getDeck() {
+        return deck;
+    }
+
+    public ArrayList<ICard> getDiscardPile() {
+        return discardPile;
+    }
+
+    public ICard[] getSixPrize() {
+        return sixPrize;
     }
 
     //endregion
@@ -76,20 +101,9 @@ public class Trainer {
      */
     void play(ICard aCard) {
         hand.remove(aCard);
-        aCard.playCard(this);
-    }
-
-
-    /**Add a Pokemon card from the hand to the bench
-     * Only if the size of the bank is less than 5
-     *
-     * @param pokemon Position of card in hand.
-     */
-    public void playPokemonCard(IPokemon pokemon){
-        if (activePokemon == null)
-            activePokemon = pokemon;
-        else if (bench.size() < 5)
-            bench.add(pokemon);
+        aCard.setTrainer(this);
+        PlayCardVisitor v = new PlayCardVisitor();
+        aCard.acceptVisitor(v);
     }
 
     /** Trainer attacks another trainer with
@@ -99,7 +113,6 @@ public class Trainer {
      * @param index_at Index to select attack
      */
     public void attackTrainer(Trainer trainer, int index_at){
-        //this.getActivePokemon().attack(trainer.getActivePokemon(),index_at);
         trainer.receiveAnAttack(this,index_at);
     }
 
@@ -111,6 +124,12 @@ public class Trainer {
         }
     }
 
-    //TODO deck, discardPile, sixPrize
+    public void evolutionPokemon(IPokemon oldPokemon, IPokemon newPokemon){
+        if(oldPokemon.getID() == 1) {
+            newPokemon.setCountEnergy(oldPokemon.getCountEnergy());
+            oldPokemon.discard(this);
+        }
+    }
+
 
 }

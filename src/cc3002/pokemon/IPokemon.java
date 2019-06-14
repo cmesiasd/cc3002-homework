@@ -31,7 +31,7 @@ public interface IPokemon extends ICard {
     /**
      * @return Pokémon's name.
      */
-    String getName();
+    String getCardName();
 
     /**
      * @return Pokémon's hit points.
@@ -47,6 +47,11 @@ public interface IPokemon extends ICard {
      * @return Pokemon's energy counter.
      */
     EnergyCost getCountEnergy();
+
+    /**
+     * @param countEnergy new Pokemon's energy counter
+     */
+    void setCountEnergy(EnergyCost countEnergy);
 
     /**
      * @return List with all the Pokémon attacks.
@@ -192,6 +197,8 @@ public interface IPokemon extends ICard {
      * @param psychicEnergy Psychic Energy
      */
     void receivePsychicEnergy(PsychicEnergy psychicEnergy);
+
+
     //endregion
 }
 

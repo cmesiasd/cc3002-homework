@@ -2,10 +2,11 @@ package cc3002.pokemon.psychic;
 
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.IPhaseOnePokemon;
 
 import java.util.List;
 
-public class PhaseOnePsychicPokemon extends AbstractPsychicPokemon {
+public class PhaseOnePsychicPokemon extends AbstractPsychicPokemon implements IPhaseOnePokemon {
     /**
      * Creates a new Pokémon.
      *

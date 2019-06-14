@@ -41,12 +41,12 @@ public class EnergyCost {
         FightingEnergy fightingEnergy = new FightingEnergy("fighting");
         LightingEnergy lightingEnergy = new LightingEnergy("lighting");
 
-        cost.put(waterEnergy.getType(),wa);
-        cost.put(psychicEnergy.getType(),psy);
-        cost.put(fireEnergy.getType(),fi);
-        cost.put(grassEnergy.getType(),gra);
-        cost.put(fightingEnergy.getType(),fig);
-        cost.put(lightingEnergy.getType(),lig);
+        cost.put(waterEnergy.getCardName(),wa);
+        cost.put(psychicEnergy.getCardName(),psy);
+        cost.put(fireEnergy.getCardName(),fi);
+        cost.put(grassEnergy.getCardName(),gra);
+        cost.put(fightingEnergy.getCardName(),fig);
+        cost.put(lightingEnergy.getCardName(),lig);
 
         this.cost = cost;
     }

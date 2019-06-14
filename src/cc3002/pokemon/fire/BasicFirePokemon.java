@@ -2,6 +2,8 @@ package cc3002.pokemon.fire;
 
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.IBasicPokemon;
+import cc3002.visitor.IVisitorCard;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  * @author cmesiasd
  * @version 1.0
  */
-public class BasicFirePokemon extends AbstractFirePokemon {
+public class BasicFirePokemon extends AbstractFirePokemon implements IBasicPokemon {
 
     /**
      * Constructor for Lighting Pokemon
@@ -26,5 +28,9 @@ public class BasicFirePokemon extends AbstractFirePokemon {
         super(name, hp, id, countEnergy, attackList);
     }
 
+    @Override
+    public void acceptVisitor(IVisitorCard visitorCard) {
+        visitorCard.visitBasicPokemon(this);
+    }
 
 }

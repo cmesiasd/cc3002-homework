@@ -2,10 +2,11 @@ package cc3002.pokemon.water;
 
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.IPhaseTwoPokemon;
 
 import java.util.List;
 
-public class PhaseTwoWaterPokemon extends AbstractWaterPokemon {
+public class PhaseTwoWaterPokemon extends AbstractWaterPokemon implements IPhaseTwoPokemon {
     /**
      * Creates a new Pokémon.
      *

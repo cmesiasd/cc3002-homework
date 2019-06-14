@@ -2,10 +2,11 @@ package cc3002.pokemon.grass;
 
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
+import cc3002.pokemon.IPhaseOnePokemon;
 
 import java.util.List;
 
-public class PhaseOneGrassPokemon extends AbstractGrassPokemon {
+public class PhaseOneGrassPokemon extends AbstractGrassPokemon implements IPhaseOnePokemon {
     /**
      * Creates a new Pokémon.
      *
