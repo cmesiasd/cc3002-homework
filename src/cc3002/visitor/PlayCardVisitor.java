@@ -22,17 +22,19 @@ public class PlayCardVisitor implements IVisitorCard {
 
     @Override
     public void visitPhaseOnePokemon(IPhaseOnePokemon aPhaseOnePokemon) {
-
+        int IDpreEVo = aPhaseOnePokemon.getIDBasicPokemonToEvolve();
+        aPhaseOnePokemon.getTrainer().evolutionPokemon(aPhaseOnePokemon,IDpreEVo);
     }
 
     @Override
     public void visitPhaseTwoPokemon(IPhaseTwoPokemon aPhaseTwoPokemon) {
-
+        int IDpreEVo = aPhaseTwoPokemon.getIDPhaseOnePokemonToEvolve();
+        aPhaseTwoPokemon.getTrainer().evolutionPokemon(aPhaseTwoPokemon,IDpreEVo);
     }
 
     @Override
     public void visitEnergy(IEnergy energy) {
-        energy.useEnergyCard(energy.getTrainer().getActivePokemon());
+        energy.useEnergyCard(energy.getTrainer().getSelectedPokemon());
     }
 
     @Override

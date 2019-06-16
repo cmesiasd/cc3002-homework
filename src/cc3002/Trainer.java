@@ -16,6 +16,7 @@ public class Trainer {
     private ArrayList<ICard> hand;
     private ArrayList<IPokemon> bench;
     private IPokemon activePokemon;
+    private IPokemon selectedPokemon;
     private ArrayList<ICard> deck;
     private ArrayList<ICard> discardPile;
     private ICard[] sixPrize;
@@ -31,7 +32,7 @@ public class Trainer {
         this.hand = new ArrayList<>();
         this.activePokemon = null;
         this.bench = new ArrayList<>();
-        this.deck = new ArrayList<>();
+        this.deck = new ArrayList<>(60);
         this.discardPile = new ArrayList<>();
         this.sixPrize = new ICard[6];
 
@@ -84,13 +85,21 @@ public class Trainer {
         return sixPrize;
     }
 
+    public IPokemon getSelectedPokemon() {
+        return selectedPokemon;
+    }
+
+    public void setSelectedPokemon(IPokemon selectedPokemon) {
+        this.selectedPokemon = selectedPokemon;
+    }
+
     //endregion
 
     /**
      * Add a cart to the trainer's hand.
      * @param aCard the card to add in the hand.
      */
-    void addCardToHand(ICard aCard) {
+    public void addCardToHand(ICard aCard) {
         hand.add(aCard);
     }
 
@@ -99,7 +108,7 @@ public class Trainer {
      * Trainer to play a card.
      * @param aCard A card that wants play.
      */
-    void play(ICard aCard) {
+    public void play(ICard aCard) {
         hand.remove(aCard);
         aCard.setTrainer(this);
         PlayCardVisitor v = new PlayCardVisitor();
@@ -124,12 +133,29 @@ public class Trainer {
         }
     }
 
-    public void evolutionPokemon(IPokemon oldPokemon, IPokemon newPokemon){
-        if(oldPokemon.getID() == 1) {
-            newPokemon.setCountEnergy(oldPokemon.getCountEnergy());
-            oldPokemon.discard(this);
+    public void evolutionPokemon(IPokemon newPokemon, int IDpreEvo){
+        IPokemon selectedPokemon = this.getSelectedPokemon();
+        if(IDpreEvo == this.getActivePokemon().getID()){
+            changePokemon(newPokemon,getActivePokemon(),true);
         }
+        else {
+            for (IPokemon poke: getBench()) {
+                if(poke.getID() == IDpreEvo && selectedPokemon.equals(poke)){
+                    changePokemon(newPokemon,poke,false);
+                }
+            }
+        }
+
     }
 
+    public void changePokemon(IPokemon newPokemon, IPokemon oldPokemon, boolean isActive){
+        newPokemon.setCountEnergy(oldPokemon.getCountEnergy());
+        oldPokemon.discard(this);
+        if(isActive) this.setActivePokemon(newPokemon);
+        else {
+            this.getBench().remove(oldPokemon);
+            this.getBench().add(newPokemon);
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package cc3002.energy;
 
+import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
 import cc3002.energy.fighting.FightingEnergy;
@@ -27,7 +28,7 @@ public class AbstractEnergyTest {
     BasicPsychicPokemon basicPsychicPokemon;
     EnergyCost At1, At2, IniEnergy;
     Attack attack1, attack2;
-    List<Attack> LA_Mewtwo;
+    List<Ability> LA_Mewtwo;
 
 
     @Before

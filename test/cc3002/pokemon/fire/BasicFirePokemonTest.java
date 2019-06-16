@@ -1,5 +1,6 @@
 package cc3002.pokemon.fire;
 
+import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.fighting.BasicFightingPokemon;
@@ -36,7 +37,7 @@ public class BasicFirePokemonTest {
     BasicWaterPokemon basicWaterPokemon;
     EnergyCost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4, attack5, attack6, attack7;
-    List<Attack> LA_Charmander, LA_Squirtle, LA_Crobat;
+    List<Ability> LA_Charmander, LA_Squirtle, LA_Crobat;
     @Before
     public void setUp() throws Exception {
         //region Energies

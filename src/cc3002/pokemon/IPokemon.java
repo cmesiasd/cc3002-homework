@@ -2,6 +2,7 @@ package cc3002.pokemon;
 
 import java.util.List;
 
+import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
 import cc3002.ICard;
 import cc3002.energyCost.EnergyCost;
@@ -56,7 +57,7 @@ public interface IPokemon extends ICard {
     /**
      * @return List with all the Pokémon attacks.
      */
-    List<Attack> getAttacks();
+    List<Ability> getAttacks();
 
     /**
      * @return The current selected attack.

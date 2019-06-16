@@ -1,8 +1,8 @@
 package cc3002.pokemon;
 
 import cc3002.AbstractCard;
+import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
-import cc3002.Trainer;
 import cc3002.energyCost.EnergyCost;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
@@ -33,19 +33,18 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
     private int id;
     private int hp;
     private EnergyCost countEnergy;
-    private List<Attack> attackList;
+    private List<Ability> attackList;
     private Attack selectedAttack;
 
     /**
      * Creates a new Pokémon.
-     *
-     * @param cardName    Pokémon's name.
+     *  @param cardName    Pokémon's name.
      * @param hp          Pokémon's hit points.
      * @param id          Pokemon's id.
      * @param countEnergy Pokemon's counter energies
      * @param attackList  Pokémon's attacks list.
      */
-    protected AbstractPokemon(String cardName, int hp, int id, EnergyCost countEnergy, List<Attack> attackList) {
+    protected AbstractPokemon(String cardName, int hp, int id, EnergyCost countEnergy, List<Ability> attackList) {
         super(cardName);
         this.id = id;
         this.hp = hp;
@@ -76,7 +75,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
         this.countEnergy = countEnergy;
     }
 
-    public List<Attack> getAttacks() {
+    public List<Ability> getAttacks() {
         return attackList;
     }
 
@@ -96,7 +95,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
 
 
     public void selectAttack(int index) {
-        selectedAttack = attackList.get(index);
+        selectedAttack = (Attack) attackList.get(index);
     }
 
     public boolean canAttack() {
@@ -204,11 +203,6 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
         this.countEnergy.getCost().put(psychicEnergy.getCardName(), this.countEnergy.getCost().get(psychicEnergy.getCardName())+1);
     }
     //endregion
-
-    @Override
-    public void acceptVisitor(IVisitorCard visitorCard){
-
-    }
 
     @Override
     public boolean equals(Object o) {

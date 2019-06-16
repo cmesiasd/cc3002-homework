@@ -1,5 +1,6 @@
 package cc3002.pokemon.fighting;
 
+import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
 import cc3002.energy.water.WaterEnergy;
 import cc3002.pokemon.lighting.BasicLightingPokemon;
@@ -37,7 +38,7 @@ public class BasicFightingPokemonTest {
     BasicWaterPokemon basicWaterPokemon;
     EnergyCost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4, attack5, attack6, attack7;
-    List<Attack> LA_Crobat, LA_Bulbasaur, LA_Lucario;
+    List<Ability> LA_Crobat, LA_Bulbasaur, LA_Lucario;
 
     @Before
     public void setUp() throws Exception {

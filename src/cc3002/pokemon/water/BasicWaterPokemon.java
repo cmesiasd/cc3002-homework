@@ -1,5 +1,6 @@
 package cc3002.pokemon.water;
 
+import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.IBasicPokemon;
@@ -27,7 +28,7 @@ public class BasicWaterPokemon extends AbstractWaterPokemon implements IBasicPok
      * @param countEnergy Pokemon's counter energies
      * @param attackList Pokemon's attacks list
      */
-    public BasicWaterPokemon(String name, int hp, int id, EnergyCost countEnergy, List<Attack> attackList) {
+    public BasicWaterPokemon(String name, int hp, int id, EnergyCost countEnergy, List<Ability> attackList) {
         super(name, hp, id, countEnergy, attackList);
     }
 

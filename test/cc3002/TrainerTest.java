@@ -1,5 +1,6 @@
 package cc3002;
 
+import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
 import cc3002.energyCost.EnergyCost;
 import cc3002.energy.fire.FireEnergy;
@@ -45,9 +46,9 @@ public class TrainerTest {
 
     private Attack attack1, attack2, attack3, attack4;
 
-    private List<Attack> LA_Pokemon1 = new ArrayList<>();
-    private List<Attack> LA_Pokemon2 = new ArrayList<>();
-    private List<Attack> LA_Pokemon3 = new ArrayList<>();
+    private List<Ability> LA_Pokemon1 = new ArrayList<>();
+    private List<Ability> LA_Pokemon2 = new ArrayList<>();
+    private List<Ability> LA_Pokemon3 = new ArrayList<>();
 
     @Before
     public void setUp() throws Exception {
@@ -143,15 +144,23 @@ public class TrainerTest {
         trainer1.addCardToHand(basicGrassPokemon);
 
         trainer1.play(basicGrassPokemon);
+        trainer1.setSelectedPokemon(basicGrassPokemon);
         trainer1.play(grassEnergy);
 
         assertEquals(trainer1.getActivePokemon().getCountEnergy().getCost(),new EnergyCost(10,10,10,10,10,11).getCost());
 
-        trainer2.play(basicFightingPokemon);
+        //Se juegan 7 pokemon, queda el primero como activo y 5 a la banca, el ultimo no se juega
         trainer2.play(basicFirePokemon);
         trainer2.play(basicLightingPokemon);
         trainer2.play(basicWaterPokemon);
         trainer2.play(basicFightingPokemon);
+        trainer2.play(basicGrassPokemon);
+        trainer2.play(basicPsychicPokemon);
+        trainer2.play(basicFightingPokemon);
+
+        assertEquals(trainer2.getBench().size(),5);
+        assertEquals(trainer2.getBench().get(4),basicPsychicPokemon);
+        assertEquals(trainer2.getActivePokemon().getCardName(),"Charmander");
     }
 
 
@@ -163,26 +172,31 @@ public class TrainerTest {
         trainer1.play(trainer1.getHand().get(trainer1.getHand().indexOf(basicGrassPokemon)));
         trainer1.play(trainer1.getHand().get(trainer1.getHand().indexOf(basicPsychicPokemon)));
 
-        trainer2.addCardToHand(basicPsychicPokemon);
-        trainer2.addCardToHand(basicGrassPokemon);
+        trainer2.addCardToHand(basicLightingPokemon);
+        trainer2.addCardToHand(basicFirePokemon);
 
-        trainer2.play(trainer2.getHand().get(trainer2.getHand().indexOf(basicGrassPokemon)));
-        trainer2.play(trainer2.getHand().get(trainer2.getHand().indexOf(basicPsychicPokemon)));
+        trainer2.play(trainer2.getHand().get(trainer2.getHand().indexOf(basicLightingPokemon)));
+        trainer2.play(trainer2.getHand().get(trainer2.getHand().indexOf(basicFirePokemon)));
+
+        //HP Pokemon Trainer 1 y 2
+        assertEquals(trainer1.getActivePokemon().getHP(), 70);
+        assertEquals(trainer1.getActivePokemon().getCardName(),"Bulbasaur");
+        assertEquals(trainer2.getActivePokemon().getHP(), 60);
+        assertEquals(trainer2.getActivePokemon().getCardName(),"Pikachu");
 
         trainer1.attackTrainer(trainer2,1);
-        Assert.assertEquals(trainer2.getActivePokemon().getHP(), 35);
-
-        //El pokemon activo de "trainer1" es Bulbasaur
-        Assert.assertEquals(trainer1.getActivePokemon().getCardName(),"Bulbasaur");
+        assertEquals(trainer2.getActivePokemon().getHP(), 25);
 
         trainer2.attackTrainer(trainer1,0);
-        trainer2.attackTrainer(trainer1,0);
+        assertEquals(trainer1.getActivePokemon().getHP(), 30);
 
+        trainer2.attackTrainer(trainer1,0);
         //Muere el pokemon y cambia al siguiente
-        Assert.assertEquals(trainer1.getActivePokemon().getCardName(),"Crobat");
-        Assert.assertEquals(trainer1.getActivePokemon().getHP(), 130);
+        assertEquals(trainer1.getActivePokemon().getCardName(),"Crobat");
+        assertEquals(trainer1.getActivePokemon().getHP(), 130);
 
         trainer1.addCardToHand(waterEnergy);
+        trainer1.setSelectedPokemon(basicPsychicPokemon);
         trainer1.play(waterEnergy);
     }
 

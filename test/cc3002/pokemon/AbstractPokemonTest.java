@@ -1,6 +1,7 @@
 package cc3002.pokemon;
 
 import cc3002.Trainer;
+import cc3002.abilities.Ability;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.fighting.BasicFightingPokemon;
 import cc3002.abilities.Attack;
@@ -38,7 +39,7 @@ public class AbstractPokemonTest {
     BasicWaterPokemon basicWaterPokemon, basicWaterPokemon2;
     EnergyCost At1, At2, At3, At4, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4;
-    List<Attack> LA_Mewtwo, LA_Lapras;
+    List<Ability> LA_Mewtwo, LA_Lapras;
     Trainer trainer;
 
     @Before
@@ -84,6 +85,8 @@ public class AbstractPokemonTest {
     public void attack(){
         basicWaterPokemon.attack(basicPsychicPokemon,1);
         basicPsychicPokemon.attack(basicWaterPokemon2,0);
+        assertEquals(basicPsychicPokemon.getHP(),30);
+        assertEquals(basicWaterPokemon2.getHP(),50);
     }
 
     @Test
@@ -119,7 +122,9 @@ public class AbstractPokemonTest {
 
     @Test
     public void discard(){
+        assertEquals(trainer.getDiscardPile().size(),0);
         basicPsychicPokemon.discard(trainer);
+        assertEquals(trainer.getDiscardPile().size(),1);
         fightingEnergy.discard(trainer);
         assertEquals(trainer.getDiscardPile().size(),2);
     }
