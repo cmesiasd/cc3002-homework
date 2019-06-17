@@ -2,6 +2,8 @@ package cc3002.energy;
 
 import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
+import cc3002.abilities.IAbility;
+import cc3002.effect.NullEffect;
 import cc3002.energyCost.EnergyCost;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
@@ -28,7 +30,8 @@ public class AbstractEnergyTest {
     BasicPsychicPokemon basicPsychicPokemon;
     EnergyCost At1, At2, IniEnergy;
     Attack attack1, attack2;
-    List<Ability> LA_Mewtwo;
+    List<IAbility> LA_Mewtwo;
+    NullEffect nullEffect = new NullEffect();
 
 
     @Before
@@ -48,8 +51,8 @@ public class AbstractEnergyTest {
         //region Grass Pokemon Mewtwo
         At1 = new EnergyCost(0,3,0,0,0,0);
         At2 = new EnergyCost(0,3,0,1,0,0);
-        attack1 = new Attack("Superrayo Psi", 100, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1);
-        attack2 = new Attack("Filo Zen", 110, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2);
+        attack1 = new Attack("Superrayo Psi", 100, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1,nullEffect);
+        attack2 = new Attack("Filo Zen", 110, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2,nullEffect);
         LA_Mewtwo = new ArrayList<>();
         LA_Mewtwo.add(attack1);
         LA_Mewtwo.add(attack2);

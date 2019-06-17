@@ -2,6 +2,8 @@ package cc3002.pokemon.fire;
 
 import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
+import cc3002.abilities.IAbility;
+import cc3002.effect.NullEffect;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.fighting.BasicFightingPokemon;
 import cc3002.pokemon.lighting.BasicLightingPokemon;
@@ -37,7 +39,9 @@ public class BasicFirePokemonTest {
     BasicWaterPokemon basicWaterPokemon;
     EnergyCost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4, attack5, attack6, attack7;
-    List<Ability> LA_Charmander, LA_Squirtle, LA_Crobat;
+    List<IAbility> LA_Charmander, LA_Squirtle, LA_Crobat;
+    NullEffect nullEffect = new NullEffect();
+
     @Before
     public void setUp() throws Exception {
         //region Energies
@@ -55,9 +59,9 @@ public class BasicFirePokemonTest {
         At1 = new EnergyCost(0,2,0,1,0,0);
         At2 = new EnergyCost(0,2,1,1,0,0);
         At3 = new EnergyCost(1,3,0,0,0,0);
-        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1);
-        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2);
-        attack3 = new Attack("Golpe Sorpresa", 60, "Hace 10 de dano mas por cada energia tipo Psiquica",At3);
+        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1,nullEffect);
+        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2,nullEffect);
+        attack3 = new Attack("Golpe Sorpresa", 60, "Hace 10 de dano mas por cada energia tipo Psiquica",At3,nullEffect);
         LA_Crobat = new ArrayList<>();
         LA_Crobat.add(attack1);
         LA_Crobat.add(attack2);
@@ -68,8 +72,8 @@ public class BasicFirePokemonTest {
         //region Fire Pokemon Charmander
         At4 = new EnergyCost(0,0,2,0,0,0);
         At5 = new EnergyCost(0,0,3,1,0,0);
-        attack4 = new Attack("Ascuas", 20, "El pokemon danado descarga una enrgia",At4);
-        attack5 = new Attack("Quemadura de lava", 30, "Quema al rival",At5);
+        attack4 = new Attack("Ascuas", 20, "El pokemon danado descarga una enrgia",At4,nullEffect);
+        attack5 = new Attack("Quemadura de lava", 30, "Quema al rival",At5,nullEffect);
         LA_Charmander = new ArrayList<>();
         LA_Charmander.add(attack4);
         LA_Charmander.add(attack5);
@@ -79,8 +83,8 @@ public class BasicFirePokemonTest {
         //region Water Pokemon Squirtle
         At6 = new EnergyCost(2,0,0,1,0,0);
         At7 = new EnergyCost(2,0,0,2,0,0);
-        attack6 = new Attack("Acua Cola", 45, "Vamoh a calmarnoh",At6);
-        attack7 = new Attack("Ataque Caparazon", 70, "Atauqe fisico/aqua",At7);
+        attack6 = new Attack("Acua Cola", 45, "Vamoh a calmarnoh",At6,nullEffect);
+        attack7 = new Attack("Ataque Caparazon", 70, "Atauqe fisico/aqua",At7,nullEffect);
         LA_Squirtle = new ArrayList<>();
         LA_Squirtle.add(attack6);
         LA_Squirtle.add(attack7);

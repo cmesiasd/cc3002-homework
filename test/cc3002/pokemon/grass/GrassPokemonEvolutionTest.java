@@ -3,6 +3,8 @@ package cc3002.pokemon.grass;
 import cc3002.Trainer;
 import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
+import cc3002.abilities.IAbility;
+import cc3002.effect.NullEffect;
 import cc3002.energy.grass.GrassEnergy;
 import cc3002.energy.psychic.PsychicEnergy;
 import cc3002.energyCost.EnergyCost;
@@ -24,8 +26,9 @@ public class GrassPokemonEvolutionTest {
     PhaseTwoGrassPokemon venusaur;
     EnergyCost At1, At2, At3, At4, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4;
-    List<Ability> LA_bulbasaur, LA_ivysaur, LA_venusaur;
+    List<IAbility> LA_bulbasaur, LA_ivysaur, LA_venusaur;
     Trainer trainer;
+    NullEffect nullEffect = new NullEffect();
 
     @Before
     public void setUp() throws Exception {
@@ -37,8 +40,8 @@ public class GrassPokemonEvolutionTest {
         //region bulbasaur
         At1 = new EnergyCost(0,3,0,0,0,0);
         At2 = new EnergyCost(0,3,0,1,0,0);
-        attack1 = new Attack("Hidrobomba", 30, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1);
-        attack2 = new Attack("Escupir", 10, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2);
+        attack1 = new Attack("Hidrobomba", 30, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1,nullEffect);
+        attack2 = new Attack("Escupir", 10, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2,nullEffect);
         LA_bulbasaur = new ArrayList<>();
         LA_bulbasaur.add(attack1);
         LA_bulbasaur.add(attack2);
@@ -48,8 +51,8 @@ public class GrassPokemonEvolutionTest {
         //region Wartortlw
         At3 = new EnergyCost(2,0,0,1,0,0);
         At4 = new EnergyCost(2,0,0,2,0,0);
-        attack3 = new Attack("Hidrobomba", 60, "El Pokémon Activo de tu rival pasa a estar Paralizado",At3);
-        attack4 = new Attack("Rayo Hielo", 90, "Este ataque hace 20 puntos de daño más por cada Energía Water unida a este Pokémon",At4);
+        attack3 = new Attack("Hidrobomba", 60, "El Pokémon Activo de tu rival pasa a estar Paralizado",At3,nullEffect);
+        attack4 = new Attack("Rayo Hielo", 90, "Este ataque hace 20 puntos de daño más por cada Energía Water unida a este Pokémon",At4,nullEffect);
         LA_ivysaur = new ArrayList<>();
         LA_ivysaur.add(attack3);
         LA_ivysaur.add(attack4);

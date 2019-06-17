@@ -1,12 +1,33 @@
 package cc3002.effect;
 
-public abstract class AbstractEffect {
-    private String name;
-    private String description;
+import cc3002.ICard;
+import cc3002.Trainer;
+import cc3002.abilities.IAbility;
 
-    public AbstractEffect(String name, String description) {
-        this.name = name;
-        this.description = description;
+public abstract class AbstractEffect implements IEffect{
+    private IAbility associatedAbility;
+    private ICard associatedCard;
+
+    @Override
+    public abstract void doEffect();
+
+    @Override
+    public IAbility getAbility() {
+        return associatedAbility;
     }
 
+    @Override
+    public void setAbility(IAbility ability) {
+        this.associatedAbility = ability;
+    }
+
+    @Override
+    public ICard getAssociatedCard() {
+        return associatedCard;
+    }
+
+    @Override
+    public void setAssociatedCard(ICard card) {
+        this.associatedCard = card;
+    }
 }

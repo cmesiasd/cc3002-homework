@@ -1,9 +1,12 @@
 package cc3002;
 
 import cc3002.pokemon.IPokemon;
+import cc3002.trainerCards.ObjectCard;
+import cc3002.visitor.AbilityVisitor;
 import cc3002.visitor.PlayCardVisitor;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Create a trainer entity
@@ -19,7 +22,9 @@ public class Trainer {
     private IPokemon selectedPokemon;
     private ArrayList<ICard> deck;
     private ArrayList<ICard> discardPile;
-    private ICard[] sixPrize;
+    private ArrayList<ICard> sixPrize;
+    private Trainer opponent;
+    private ObjectCard object;
 
 
     /**
@@ -32,10 +37,10 @@ public class Trainer {
         this.hand = new ArrayList<>();
         this.activePokemon = null;
         this.bench = new ArrayList<>();
-        this.deck = new ArrayList<>(60);
+        this.deck = new ArrayList<>();
         this.discardPile = new ArrayList<>();
-        this.sixPrize = new ICard[6];
-
+        this.sixPrize = new ArrayList<>();
+        this.opponent = null;
     }
 
     //region Properties
@@ -81,7 +86,7 @@ public class Trainer {
         return discardPile;
     }
 
-    public ICard[] getSixPrize() {
+    public ArrayList<ICard> getSixPrize() {
         return sixPrize;
     }
 
@@ -92,6 +97,32 @@ public class Trainer {
     public void setSelectedPokemon(IPokemon selectedPokemon) {
         this.selectedPokemon = selectedPokemon;
     }
+
+    public void setDeck(ICard card) {
+        getDeck().add(card);
+        for (int i = 0; getDeck().size()-60 > i; i++) {
+            if(getDeck().size()>60)
+                getDeck().remove(60);
+        }
+    }
+
+    public void setSixPrize(ICard card) {
+        getSixPrize().add(card);
+        for (int i = 0; getSixPrize().size()-6 > i; i++) {
+            if(getSixPrize().size()>6)
+                getSixPrize().remove(6);
+        }
+    }
+
+    public Trainer getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(Trainer opponent) {
+        this.opponent = opponent;
+    }
+
+
 
     //endregion
 
@@ -115,6 +146,11 @@ public class Trainer {
         aCard.acceptVisitor(v);
     }
 
+    public void takeACardFromDeck(){
+        this.getHand().add(this.getDeck().get(0));
+        this.getDeck().remove(0);
+    }
+
     /** Trainer attacks another trainer with
      *  active Pokemon's trainer.
      *
@@ -122,12 +158,17 @@ public class Trainer {
      * @param index_at Index to select attack
      */
     public void attackTrainer(Trainer trainer, int index_at){
+        AbilityVisitor v = new AbilityVisitor();
+        trainer.getActivePokemon().selectAttack(index_at);
+        trainer.getActivePokemon().getSelectedAttack().setAssociatedPokemon(trainer.getActivePokemon());
+        trainer.getActivePokemon().getSelectedAttack().acceptVisitor(v);
         trainer.receiveAnAttack(this,index_at);
     }
 
     public void receiveAnAttack(Trainer other, int index_at) {
         other.getActivePokemon().attack(this.getActivePokemon(), index_at);
         if (!this.activePokemon.isAlive()) {
+            activePokemon.discard(this);
             activePokemon = bench.get(0);
             bench.remove(0);
         }
@@ -158,4 +199,8 @@ public class Trainer {
         }
     }
 
+    public boolean flipCoin() {
+        int random = new Random().nextInt(1);
+        return random == 1;
+    }
 }

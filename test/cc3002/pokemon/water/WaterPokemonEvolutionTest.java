@@ -2,6 +2,8 @@ package cc3002.pokemon.water;
 
 import cc3002.Trainer;
 import cc3002.abilities.Ability;
+import cc3002.abilities.IAbility;
+import cc3002.effect.NullEffect;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.fighting.BasicFightingPokemon;
 import cc3002.abilities.Attack;
@@ -31,8 +33,9 @@ public class WaterPokemonEvolutionTest {
     PhaseTwoWaterPokemon blastoise;
     EnergyCost At1, At2, At3, At4, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4;
-    List<Ability> LA_Squirtle, LA_Wartortle, LA_Blastoise;
+    List<IAbility> LA_Squirtle, LA_Wartortle, LA_Blastoise;
     Trainer trainer;
+    NullEffect nullEffect = new NullEffect();
 
     @Before
     public void setUp() throws Exception {
@@ -44,8 +47,8 @@ public class WaterPokemonEvolutionTest {
         //region Squirtle
         At1 = new EnergyCost(0,3,0,0,0,0);
         At2 = new EnergyCost(0,3,0,1,0,0);
-        attack1 = new Attack("Hidrobomba", 30, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1);
-        attack2 = new Attack("Escupir", 10, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2);
+        attack1 = new Attack("Hidrobomba", 30, "El Pokémon Activo de tu rival pasa a estar Paralizado",At1,nullEffect);
+        attack2 = new Attack("Escupir", 10, "Este Pokémon no puede usar Filo Zen durante tu próximo turno",At2,nullEffect);
         LA_Squirtle = new ArrayList<>();
         LA_Squirtle.add(attack1);
         LA_Squirtle.add(attack2);
@@ -55,8 +58,8 @@ public class WaterPokemonEvolutionTest {
         //region Wartortlw
         At3 = new EnergyCost(2,0,0,1,0,0);
         At4 = new EnergyCost(2,0,0,2,0,0);
-        attack3 = new Attack("Hidrobomba", 60, "El Pokémon Activo de tu rival pasa a estar Paralizado",At3);
-        attack4 = new Attack("Rayo Hielo", 90, "Este ataque hace 20 puntos de daño más por cada Energía Water unida a este Pokémon",At4);
+        attack3 = new Attack("Hidrobomba", 60, "El Pokémon Activo de tu rival pasa a estar Paralizado",At3,nullEffect);
+        attack4 = new Attack("Rayo Hielo", 90, "Este ataque hace 20 puntos de daño más por cada Energía Water unida a este Pokémon",At4,nullEffect);
         LA_Wartortle = new ArrayList<>();
         LA_Wartortle.add(attack3);
         LA_Wartortle.add(attack4);

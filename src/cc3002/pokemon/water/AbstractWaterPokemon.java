@@ -1,12 +1,14 @@
 package cc3002.pokemon.water;
 
 import cc3002.abilities.Ability;
+import cc3002.abilities.IAbility;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.AbstractPokemon;
 import cc3002.pokemon.IPokemon;
 import cc3002.pokemon.fighting.AbstractFightingPokemon;
 import cc3002.pokemon.grass.AbstractGrassPokemon;
 import cc3002.pokemon.lighting.AbstractLightingPokemon;
+import cc3002.visitor.IVisitorPokemonType;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public abstract class AbstractWaterPokemon extends AbstractPokemon {
      * @param countEnergy Pokemon's counter energies
      * @param attackList  Pokémon's attacks list.
      */
-    public AbstractWaterPokemon(String name, int hp, int id, EnergyCost countEnergy, List<Ability> attackList) {
+    public AbstractWaterPokemon(String name, int hp, int id, EnergyCost countEnergy, List<IAbility> attackList) {
         super(name, hp, id, countEnergy, attackList);
     }
 
@@ -28,6 +30,11 @@ public abstract class AbstractWaterPokemon extends AbstractPokemon {
     public void attack(IPokemon other, int index) {
         this.selectAttack(index);
         other.attackedByWaterPokemon(this);
+    }
+
+    @Override
+    public void acceptVisitor(IVisitorPokemonType visitorPokemonType) {
+        visitorPokemonType.visitWaterPokemon(this);
     }
 
     @Override

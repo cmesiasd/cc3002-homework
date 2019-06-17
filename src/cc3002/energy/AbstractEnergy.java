@@ -1,7 +1,6 @@
 package cc3002.energy;
 
 import cc3002.AbstractCard;
-import cc3002.Trainer;
 import cc3002.pokemon.IPokemon;
 import cc3002.visitor.IVisitorCard;
 
@@ -9,7 +8,7 @@ import java.util.Objects;
 
 /**
  * Abstract class for Energy
- * Implements IEnergy, ICard
+ * Implements IEnergy
  *
  * @author cmesiasd
  * @version 1.0
@@ -33,8 +32,6 @@ public abstract class AbstractEnergy extends AbstractCard implements IEnergy{
     @Override
     public abstract void useEnergyCard(IPokemon pokemon);
 
-
-    //TODO jugar a cualquier pokemon(activo o banca)
 
     @Override
     public void acceptVisitor(IVisitorCard visitorCard) {

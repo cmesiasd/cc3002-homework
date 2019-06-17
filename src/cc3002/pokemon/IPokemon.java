@@ -5,6 +5,7 @@ import java.util.List;
 import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
 import cc3002.ICard;
+import cc3002.abilities.IAbility;
 import cc3002.energyCost.EnergyCost;
 import cc3002.energy.water.WaterEnergy;
 import cc3002.pokemon.fighting.AbstractFightingPokemon;
@@ -18,6 +19,8 @@ import cc3002.energy.fire.FireEnergy;
 import cc3002.energy.grass.GrassEnergy;
 import cc3002.energy.lighting.LightingEnergy;
 import cc3002.energy.psychic.PsychicEnergy;
+import cc3002.visitor.IVisitorCard;
+import cc3002.visitor.IVisitorPokemonType;
 
 
 /**
@@ -57,12 +60,12 @@ public interface IPokemon extends ICard {
     /**
      * @return List with all the Pokémon attacks.
      */
-    List<Ability> getAttacks();
+    List<IAbility> getAttacks();
 
     /**
      * @return The current selected attack.
      */
-    Attack getSelectedAttack();
+    IAbility getSelectedAttack();
 
     /**
      * @return Pokemon is alive
@@ -91,6 +94,8 @@ public interface IPokemon extends ICard {
      * @return Can Pokemon attack?
      */
     boolean canAttack();
+
+    void acceptVisitor(IVisitorPokemonType visitorPokemonType);
 
     //endregion
 
@@ -198,6 +203,8 @@ public interface IPokemon extends ICard {
      * @param psychicEnergy Psychic Energy
      */
     void receivePsychicEnergy(PsychicEnergy psychicEnergy);
+
+    void setHp(int x);
 
 
     //endregion

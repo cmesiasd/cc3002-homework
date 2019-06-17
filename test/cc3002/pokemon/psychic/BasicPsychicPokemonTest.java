@@ -2,6 +2,8 @@ package cc3002.pokemon.psychic;
 
 import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
+import cc3002.abilities.IAbility;
+import cc3002.effect.NullEffect;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.fighting.BasicFightingPokemon;
 import cc3002.energy.fighting.FightingEnergy;
@@ -37,7 +39,8 @@ public class BasicPsychicPokemonTest {
     BasicWaterPokemon basicWaterPokemon;
     EnergyCost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4, attack5, attack6, attack7;
-    List<Ability> LA_Crobat, LA_Espeon, LA_Lucario;
+    List<IAbility> LA_Crobat, LA_Espeon, LA_Lucario;
+    NullEffect nullEffect = new NullEffect();
 
     @Before
     public void setUp() throws Exception {
@@ -57,9 +60,9 @@ public class BasicPsychicPokemonTest {
         At1 = new EnergyCost(0,2,0,1,0,0);
         At2 = new EnergyCost(0,2,1,1,0,0);
         At3 = new EnergyCost(1,3,0,0,0,0);
-        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1);
-        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2);
-        attack3 = new Attack("Golpe Sorpresa", 60, "Hace 10 de dano mas por cada energia tipo Psiquica",At3);
+        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1,nullEffect);
+        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2,nullEffect);
+        attack3 = new Attack("Golpe Sorpresa", 60, "Hace 10 de dano mas por cada energia tipo Psiquica",At3,nullEffect);
         LA_Crobat = new ArrayList<>();
         LA_Crobat.add(attack1);
         LA_Crobat.add(attack2);
@@ -70,9 +73,9 @@ public class BasicPsychicPokemonTest {
         //region Psychic Pokemon Espeon
         At4 = new EnergyCost(0,2,1,0,0,0);
         At5 = new EnergyCost(1,2,1,1,0,0);
-        attack4 = new Attack("Psicorrayo", 45, "El Pokemon danado pasa a estar Confundido",At4);
+        attack4 = new Attack("Psicorrayo", 45, "El Pokemon danado pasa a estar Confundido",At4,nullEffect);
         attack5 = new Attack("Psicocarga", 70, "El daño de este ataque no se ve afectado " +
-                "por ningún efecto en el Pokémon Activo de tu rival.",At5);
+                "por ningún efecto en el Pokémon Activo de tu rival.",At5,nullEffect);
         LA_Espeon = new ArrayList<>();
         LA_Espeon.add(attack4);
         LA_Espeon.add(attack5);
@@ -82,8 +85,8 @@ public class BasicPsychicPokemonTest {
         //region Fighting Pokemon Lucario
         At6 = new EnergyCost(0,0,0,2,0,0);
         At7 = new EnergyCost(0,0,1,2,0,0);
-        attack6 = new Attack("Derrumbar", 45, "Derrumba al pokemon",At6);
-        attack7 = new Attack("Patada magnum", 70, "El pokemon danado queda Aturdido",At7);
+        attack6 = new Attack("Derrumbar", 45, "Derrumba al pokemon",At6,nullEffect);
+        attack7 = new Attack("Patada magnum", 70, "El pokemon danado queda Aturdido",At7,nullEffect);
         LA_Lucario = new ArrayList<>();
         LA_Lucario.add(attack6);
         LA_Lucario.add(attack7);

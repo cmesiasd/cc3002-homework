@@ -2,6 +2,8 @@ package cc3002.pokemon.fighting;
 
 import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
+import cc3002.abilities.IAbility;
+import cc3002.effect.NullEffect;
 import cc3002.energy.water.WaterEnergy;
 import cc3002.pokemon.lighting.BasicLightingPokemon;
 import cc3002.pokemon.psychic.BasicPsychicPokemon;
@@ -38,7 +40,8 @@ public class BasicFightingPokemonTest {
     BasicWaterPokemon basicWaterPokemon;
     EnergyCost At1, At2, At3, At4, At5, At6, At7, IniEnergy, FullEnergy;
     Attack attack1, attack2, attack3, attack4, attack5, attack6, attack7;
-    List<Ability> LA_Crobat, LA_Bulbasaur, LA_Lucario;
+    List<IAbility> LA_Crobat, LA_Bulbasaur, LA_Lucario;
+    NullEffect nullEffect = new NullEffect();
 
     @Before
     public void setUp() throws Exception {
@@ -56,8 +59,8 @@ public class BasicFightingPokemonTest {
         //region Psychic Pokemon Crobat
         At1 = new EnergyCost(0,2,0,1,0,0);
         At2 = new EnergyCost(0,2,1,1,0,0);
-        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1);
-        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2);
+        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1,nullEffect);
+        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2,nullEffect);
         LA_Crobat = new ArrayList<>();
         LA_Crobat.add(attack1);
         LA_Crobat.add(attack2);
@@ -68,9 +71,9 @@ public class BasicFightingPokemonTest {
         At3 = new EnergyCost(0,0,0,0,0,2);
         At4 = new EnergyCost(0,0,0,1,0,2);
         At5 = new EnergyCost(0,1,0,0,0,3);
-        attack3 = new Attack("Hoja Afilada", 30, "Permite robar una carta",At3);
-        attack4 = new Attack("Hiedra adormidera", 35, "El pokemon danado pasa a estar dormido",At4);
-        attack5 = new Attack("Polen Nocivo", 40, "Hace 10 de dano mas por cada energia tipo Grass",At5);
+        attack3 = new Attack("Hoja Afilada", 30, "Permite robar una carta",At3,nullEffect);
+        attack4 = new Attack("Hiedra adormidera", 35, "El pokemon danado pasa a estar dormido",At4,nullEffect);
+        attack5 = new Attack("Polen Nocivo", 40, "Hace 10 de dano mas por cada energia tipo Grass",At5,nullEffect);
         LA_Bulbasaur = new ArrayList<>();
         LA_Bulbasaur.add(attack3);
         LA_Bulbasaur.add(attack4);
@@ -81,8 +84,8 @@ public class BasicFightingPokemonTest {
         //region Fighting Pokemon Lucario
         At6 = new EnergyCost(0,0,0,2,0,0);
         At7 = new EnergyCost(0,0,1,2,0,0);
-        attack6 = new Attack("Derrumbar", 45, "Derrumba al pokemon",At6);
-        attack7 = new Attack("Patada magnum", 70, "El pokemon danado queda Aturdido",At7);
+        attack6 = new Attack("Derrumbar", 45, "Derrumba al pokemon",At6,nullEffect);
+        attack7 = new Attack("Patada magnum", 70, "El pokemon danado queda Aturdido",At7,nullEffect);
         LA_Lucario = new ArrayList<>();
         LA_Lucario.add(attack6);
         LA_Lucario.add(attack7);

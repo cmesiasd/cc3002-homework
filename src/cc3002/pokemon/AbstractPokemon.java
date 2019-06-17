@@ -1,8 +1,8 @@
 package cc3002.pokemon;
 
 import cc3002.AbstractCard;
-import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
+import cc3002.abilities.IAbility;
 import cc3002.energyCost.EnergyCost;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
@@ -16,7 +16,7 @@ import cc3002.energy.psychic.PsychicEnergy;
 import cc3002.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.energy.water.WaterEnergy;
 import cc3002.pokemon.water.AbstractWaterPokemon;
-import cc3002.visitor.IVisitorCard;
+import cc3002.visitor.IVisitorPokemonType;
 
 import java.util.List;
 import java.util.Map;
@@ -33,26 +33,31 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
     private int id;
     private int hp;
     private EnergyCost countEnergy;
-    private List<Ability> attackList;
-    private Attack selectedAttack;
+    private List<IAbility> attackList;
+    private IAbility selectedAttack;
 
     /**
      * Creates a new Pokémon.
-     *  @param cardName    Pokémon's name.
+     * @param cardName    Pokémon's name.
      * @param hp          Pokémon's hit points.
      * @param id          Pokemon's id.
      * @param countEnergy Pokemon's counter energies
      * @param attackList  Pokémon's attacks list.
      */
-    protected AbstractPokemon(String cardName, int hp, int id, EnergyCost countEnergy, List<Ability> attackList) {
+    public AbstractPokemon(String cardName, int hp, int id, EnergyCost countEnergy, List<IAbility> attackList) {
         super(cardName);
         this.id = id;
         this.hp = hp;
         this.countEnergy = countEnergy;
         this.attackList = attackList;
         for (int i = 0; this.attackList.size()-4>i;i++) {
-            if(this.attackList.size()>4)
+            if(attackList.size()>4)
                 this.attackList.remove(4);
+
+        }
+        for (IAbility a:this.attackList) {
+            a.setAssociatedPokemon(this);
+            a.getEffect().setAbility(a);
         }
     }
 
@@ -60,6 +65,10 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
 
     public int getHP() {
         return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public int getID() {
@@ -75,11 +84,11 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
         this.countEnergy = countEnergy;
     }
 
-    public List<Ability> getAttacks() {
+    public List<IAbility> getAttacks() {
         return attackList;
     }
 
-    public Attack getSelectedAttack() {
+    public IAbility getSelectedAttack() {
         return selectedAttack;
     }
 
@@ -95,7 +104,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
 
 
     public void selectAttack(int index) {
-        selectedAttack = (Attack) attackList.get(index);
+        selectedAttack = attackList.get(index);
     }
 
     public boolean canAttack() {
@@ -145,6 +154,9 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
             this.hp = 0;
         }
     }
+
+    @Override
+    public abstract void acceptVisitor(IVisitorPokemonType visitorPokemonType);
 
     @Override
     public void attackedByWaterPokemon(AbstractWaterPokemon waterPokemon) {

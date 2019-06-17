@@ -1,16 +1,15 @@
 package cc3002.abilities;
 
+import cc3002.effect.IEffect;
 import cc3002.energyCost.EnergyCost;
+import cc3002.visitor.IVisitorAbility;
 
 import java.util.Objects;
 
 /**
  *
  */
-public class Attack extends Ability{
-    private String name;
-    private String description;
-    private EnergyCost energyCost;
+public class Attack extends AbstractAbility{
     private int baseDamage;
 
     /**
@@ -22,12 +21,11 @@ public class Attack extends Ability{
      * @param description Text description of the attack
      * @param energyCost Energy cost of the attack
      */
-    public Attack(String name, int baseDamage, String description, EnergyCost energyCost) {
-        super(name,description,energyCost);
+    public Attack(String name, int baseDamage, String description, EnergyCost energyCost, IEffect effect) {
+        super(name,description,energyCost, effect);
         this.baseDamage = baseDamage;
 
     }
-
 
     //region Properties
     /**
@@ -49,4 +47,8 @@ public class Attack extends Ability{
                 Objects.equals(getEnergyCost(), attack.getEnergyCost());
     }
 
+    @Override
+    public void acceptVisitor(IVisitorAbility visitorAbility) {
+        visitorAbility.visitAttack(this);
+    }
 }

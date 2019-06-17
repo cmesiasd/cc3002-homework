@@ -2,6 +2,7 @@ package cc3002.pokemon.fire;
 
 import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
+import cc3002.abilities.IAbility;
 import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.IPhaseOnePokemon;
 import cc3002.visitor.IVisitorCard;
@@ -20,7 +21,7 @@ public class PhaseOneFirePokemon extends AbstractFirePokemon implements IPhaseOn
      * @param countEnergy Pokemon's counter energies
      * @param attackList  Pokémon's attacks list.
      */
-    public PhaseOneFirePokemon(String name, int hp, int id, EnergyCost countEnergy, List<Ability> attackList, int basicPokemonIDPreEv) {
+    public PhaseOneFirePokemon(String name, int hp, int id, EnergyCost countEnergy, List<IAbility> attackList, int basicPokemonIDPreEv) {
         super(name, hp, id, countEnergy, attackList);
         this.basicPokemonIDPreEv = basicPokemonIDPreEv;
     }

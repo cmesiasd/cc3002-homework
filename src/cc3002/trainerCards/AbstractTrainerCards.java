@@ -1,16 +1,18 @@
 package cc3002.trainerCards;
 
 import cc3002.AbstractCard;
+import cc3002.effect.IEffect;
 import cc3002.visitor.IVisitorCard;
 
 public abstract class AbstractTrainerCards extends AbstractCard implements ITrainerCards{
-    private String cardName;
     private String description;
+    private IEffect effect;
 
 
-    public AbstractTrainerCards(String cardName, String description) {
+    public AbstractTrainerCards(String cardName, String description, IEffect effect) {
         super(cardName);
         this.description = description;
+        this.effect = effect;
     }
 
 
@@ -20,12 +22,16 @@ public abstract class AbstractTrainerCards extends AbstractCard implements ITrai
     }
 
     @Override
-    public void useTrainerCardEffect() {
-
+    public IEffect getEffect() {
+        return this.effect;
     }
 
     @Override
-    public void acceptVisitor(IVisitorCard visitorCard){
-
+    public void useTrainerCardEffect() {
+        effect.doEffect();
     }
+
+    @Override
+    public abstract void acceptVisitor(IVisitorCard visitorCard);
+
 }

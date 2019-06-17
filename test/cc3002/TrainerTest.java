@@ -2,6 +2,8 @@ package cc3002;
 
 import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
+import cc3002.abilities.IAbility;
+import cc3002.effect.NullEffect;
 import cc3002.energyCost.EnergyCost;
 import cc3002.energy.fire.FireEnergy;
 import cc3002.energy.grass.GrassEnergy;
@@ -46,9 +48,11 @@ public class TrainerTest {
 
     private Attack attack1, attack2, attack3, attack4;
 
-    private List<Ability> LA_Pokemon1 = new ArrayList<>();
-    private List<Ability> LA_Pokemon2 = new ArrayList<>();
-    private List<Ability> LA_Pokemon3 = new ArrayList<>();
+    private List<IAbility> LA_Pokemon1 = new ArrayList<>();
+    private List<IAbility> LA_Pokemon2 = new ArrayList<>();
+    private List<IAbility> LA_Pokemon3 = new ArrayList<>();
+
+    private NullEffect nullEffect = new NullEffect();
 
     @Before
     public void setUp() throws Exception {
@@ -73,8 +77,8 @@ public class TrainerTest {
         //region Pokemon 1
         At1 = new EnergyCost(0,2,0,1,0,0);
         At2 = new EnergyCost(0,2,1,1,0,0);
-        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1);
-        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2);
+        attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta",At1,nullEffect);
+        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado",At2,nullEffect);
 
         LA_Pokemon1.add(attack1);
         LA_Pokemon1.add(attack2);
@@ -89,8 +93,8 @@ public class TrainerTest {
         //region Pokemon 2
         At3 = new EnergyCost(0,0,0,0,0,2);
         At4 = new EnergyCost(0,0,0,1,0,2);
-        attack3 = new Attack("Hoja Afilada", 30, "Permite robar una carta",At3);
-        attack4 = new Attack("Hiedra adormidera", 35, "El pokemon danado pasa a estar dormido",At4);
+        attack3 = new Attack("Hoja Afilada", 30, "Permite robar una carta",At3,nullEffect);
+        attack4 = new Attack("Hiedra adormidera", 35, "El pokemon danado pasa a estar dormido",At4,nullEffect);
 
         LA_Pokemon2.add(attack3);
         LA_Pokemon2.add(attack4);
@@ -166,6 +170,12 @@ public class TrainerTest {
 
     @Test
     public void attackTrainerAndReceiveAttack() {
+        trainer1.setOpponent(trainer2);
+        trainer2.setOpponent(trainer1);
+
+        assertEquals(trainer1.getOpponent(),trainer2);
+        assertEquals(trainer2.getOpponent(),trainer1);
+
         trainer1.addCardToHand(basicPsychicPokemon);
         trainer1.addCardToHand(basicGrassPokemon);
 
@@ -184,20 +194,44 @@ public class TrainerTest {
         assertEquals(trainer2.getActivePokemon().getHP(), 60);
         assertEquals(trainer2.getActivePokemon().getCardName(),"Pikachu");
 
+
         trainer1.attackTrainer(trainer2,1);
         assertEquals(trainer2.getActivePokemon().getHP(), 25);
+        trainer1.attackTrainer(trainer2,0);
 
-        trainer2.attackTrainer(trainer1,0);
-        assertEquals(trainer1.getActivePokemon().getHP(), 30);
-
-        trainer2.attackTrainer(trainer1,0);
-        //Muere el pokemon y cambia al siguiente
+        //Mata al pokemon y lo cambia
         assertEquals(trainer1.getActivePokemon().getCardName(),"Crobat");
         assertEquals(trainer1.getActivePokemon().getHP(), 130);
 
         trainer1.addCardToHand(waterEnergy);
         trainer1.setSelectedPokemon(basicPsychicPokemon);
         trainer1.play(waterEnergy);
+    }
+
+    @Test
+    public void deck(){
+        assertEquals(trainer1.getDeck().size(),0);
+        //Agrego 100 cartas al mazo
+        for (int i = 0; i < 100; i++) {
+            trainer1.setDeck(waterEnergy);
+        }
+        //El máximo que agrega son 60
+        assertEquals(trainer1.getDeck().size(),60);
+
+        trainer1.takeACardFromDeck();
+        assertEquals(trainer1.getHand().size(),1);
+    }
+
+    @Test
+    public void sixPrize(){
+        assertEquals(trainer1.getSixPrize().size(),0);
+        //Agrego 10 cartas a las 6 cartas premios
+        for (int i = 0; i < 10; i++) {
+            trainer1.setSixPrize(waterEnergy);
+        }
+        //El máximo que agrega son 60
+        assertEquals(trainer1.getSixPrize().size(),6);
+
     }
 
 }
