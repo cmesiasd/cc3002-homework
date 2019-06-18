@@ -4,6 +4,12 @@ import cc3002.effect.ElectricShockEffect;
 import cc3002.effect.IEffect;
 import cc3002.energyCost.EnergyCost;
 
+/**
+ * Implementation of Attack Electric Shock
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class ElectricShock extends Attack{
 
     public ElectricShock(int x) {

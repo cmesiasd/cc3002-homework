@@ -9,6 +9,12 @@ import cc3002.visitor.IVisitorCard;
 
 import java.util.List;
 
+/**
+ * Create Phase One Psychic Pokemon
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class PhaseOnePsychicPokemon extends AbstractPsychicPokemon implements IPhaseOnePokemon {
     private int basicPokemonIDPreEv;
     /**

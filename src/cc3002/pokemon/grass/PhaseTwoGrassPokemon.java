@@ -9,6 +9,12 @@ import cc3002.visitor.IVisitorCard;
 
 import java.util.List;
 
+/**
+ * Create Phase Two Grass Pokemon
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class PhaseTwoGrassPokemon extends AbstractGrassPokemon implements IPhaseTwoPokemon {
     private int phaseOnePokemonIDPreEv;
 

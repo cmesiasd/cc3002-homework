@@ -4,6 +4,14 @@ import cc3002.AbstractCard;
 import cc3002.effect.IEffect;
 import cc3002.visitor.IVisitorCard;
 
+/**
+ * Abstract Trainer Card
+ * Implements ITrainerCards
+ * Extends AbstractCard
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public abstract class AbstractTrainerCards extends AbstractCard implements ITrainerCards{
     private String description;
     private IEffect effect;

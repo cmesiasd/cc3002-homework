@@ -10,6 +10,12 @@ import cc3002.visitor.IVisitorPokemonType;
 
 import java.util.List;
 
+/**
+ * Abstract class for FirePokemon
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public abstract class AbstractFirePokemon extends AbstractPokemon {
 
     /**

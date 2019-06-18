@@ -5,6 +5,13 @@ import cc3002.energyCost.EnergyCost;
 import cc3002.pokemon.IPokemon;
 import cc3002.visitor.IVisitorAbility;
 
+/**
+ * Class Ability extends Abstract Ability
+ * All abilities has effect
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class Ability extends AbstractAbility implements IAbility{
     private String name;
     private String description;

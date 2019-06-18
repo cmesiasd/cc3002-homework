@@ -9,10 +9,10 @@ import cc3002.visitor.IVisitorCard;
 import java.util.List;
 
 /**
- * Create Lighting Pokemon
+ * Create Basic Lighting Pokemon
  *
  * @author cmesiasd
- * @version 1.0
+ * @version 2.0
  */
 public class BasicLightingPokemon extends AbstractLightingPokemon implements IBasicPokemon {
 

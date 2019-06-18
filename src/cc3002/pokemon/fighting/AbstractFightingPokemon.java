@@ -11,6 +11,12 @@ import cc3002.visitor.IVisitorPokemonType;
 
 import java.util.List;
 
+/**
+ * Abstract class for Fighting Pokemon
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public abstract class AbstractFightingPokemon extends AbstractPokemon {
     /**
      * Creates a new Pokémon.

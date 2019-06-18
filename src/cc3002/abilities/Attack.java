@@ -7,7 +7,11 @@ import cc3002.visitor.IVisitorAbility;
 import java.util.Objects;
 
 /**
+ * Class Attack
+ * has a base damage and effect
  *
+ * @author cmesiasd
+ * @version 2.0
  */
 public class Attack extends AbstractAbility{
     private int baseDamage;

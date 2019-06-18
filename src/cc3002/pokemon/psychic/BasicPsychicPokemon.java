@@ -13,10 +13,10 @@ import cc3002.visitor.IVisitorCard;
 import java.util.List;
 
 /**
- * Create Psychic Pokemon
+ * Create Basic Psychic Pokemon
  *
  * @author cmesiasd
- * @version 1.0
+ * @version 2.0
  */
 public class BasicPsychicPokemon extends AbstractPsychicPokemon implements IBasicPokemon {
 

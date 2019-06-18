@@ -9,7 +9,7 @@ Esta tarea fue realizada en su totalidad en el software IntelliJ IDEA, utilizand
 Se incluye toda la la parte lógica solicitada. En la siguiente imagen se puede apreciar el 
 diagrama UML que representa al desarrollo realizado.
 
-![Alt text](Tarea1.png "UML")
+![Alt text](package-cc3002.png "UML")
 
 
 ## Descripción 

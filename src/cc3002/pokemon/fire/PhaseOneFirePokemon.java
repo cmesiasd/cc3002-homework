@@ -8,7 +8,12 @@ import cc3002.pokemon.IPhaseOnePokemon;
 import cc3002.visitor.IVisitorCard;
 
 import java.util.List;
-
+/**
+ * Create Phase One Fire Pokemon
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class PhaseOneFirePokemon extends AbstractFirePokemon implements IPhaseOnePokemon {
     private int basicPokemonIDPreEv;
 

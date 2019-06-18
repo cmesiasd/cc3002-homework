@@ -10,10 +10,10 @@ import cc3002.visitor.IVisitorCard;
 import java.util.List;
 
 /**
- * Create Fire Pokemon
+ * Create Basic Fire Pokemon
  *
  * @author cmesiasd
- * @version 1.0
+ * @version 2.0
  */
 public class BasicFirePokemon extends AbstractFirePokemon implements IBasicPokemon {
 

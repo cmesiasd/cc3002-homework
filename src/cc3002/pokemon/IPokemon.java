@@ -27,7 +27,7 @@ import cc3002.visitor.IVisitorPokemonType;
  * Pokemon Interfaces
  *
  * @author cmesiasd
- * @version 1.0
+ * @version 2.0
  */
 
 public interface IPokemon extends ICard {

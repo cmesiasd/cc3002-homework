@@ -9,6 +9,12 @@ import cc3002.visitor.IVisitorCard;
 
 import java.util.List;
 
+/**
+ * Create One Fighting Pokemon
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class PhaseOneFightingPokemon extends AbstractFightingPokemon implements IPhaseOnePokemon {
     private int basicPokemonIDPreEv;
 
