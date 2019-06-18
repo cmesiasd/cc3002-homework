@@ -25,7 +25,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ProfessorJuniperTest {
+public class LuckyStadiumTest {
     private FightingEnergy fightingEnergy;
     private FireEnergy fireEnergy;
     private GrassEnergy grassEnergy;
@@ -52,7 +52,7 @@ public class ProfessorJuniperTest {
 
     private NullEffect nullEffect = new NullEffect();
 
-    private ProfessorJuniper professorJuniper = new ProfessorJuniper();
+    private LuckyStadium luckyStadium = new LuckyStadium();
 
     @Before
     public void setUp() throws Exception {
@@ -101,26 +101,26 @@ public class ProfessorJuniperTest {
         basicLightingPokemon = new BasicLightingPokemon("Pikachu", 60, 21, FullEnergy, LA_Pokemon1);
         basicWaterPokemon = new BasicWaterPokemon("Squirtle", 65, 14, FullEnergy, LA_Pokemon2);
         //endregion
-
     }
 
     @Test
-    public void playProfessorJuniper() {
+    public void playLuckyStadium() {
 
         trainer1.addCardToHand(basicFightingPokemon);
         trainer1.addCardToHand(basicFirePokemon);
         trainer1.addCardToHand(psychicEnergy);
-        trainer1.addCardToHand(professorJuniper);
-
-        assertEquals(professorJuniper.getDescription(),"Descarta tu mano y roba 7 cartas");
-        assertEquals(trainer1.getHand().size(),4);
+        trainer1.addCardToHand(luckyStadium);
 
         for (int i = 0; i < 100; i++) {
             trainer1.setDeck(waterEnergy);
         }
 
-        trainer1.play(professorJuniper);
-        assertEquals(trainer1.getHand().size(),7);
+        trainer1.play(luckyStadium);
+            if(trainer1.getCoin()) {
+                assertEquals(trainer1.getHand().size(),5);
+            }
+            else {
+                assertEquals(trainer1.getHand().size(),3);
+            }
     }
-
 }

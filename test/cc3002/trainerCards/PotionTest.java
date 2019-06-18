@@ -25,7 +25,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ProfessorJuniperTest {
+public class PotionTest {
     private FightingEnergy fightingEnergy;
     private FireEnergy fireEnergy;
     private GrassEnergy grassEnergy;
@@ -52,7 +52,7 @@ public class ProfessorJuniperTest {
 
     private NullEffect nullEffect = new NullEffect();
 
-    private ProfessorJuniper professorJuniper = new ProfessorJuniper();
+    private Potion potion = new Potion(2);
 
     @Before
     public void setUp() throws Exception {
@@ -106,21 +106,28 @@ public class ProfessorJuniperTest {
 
     @Test
     public void playProfessorJuniper() {
+        trainer1.setOpponent(trainer2);
+        trainer2.setOpponent(trainer1);
 
         trainer1.addCardToHand(basicFightingPokemon);
         trainer1.addCardToHand(basicFirePokemon);
         trainer1.addCardToHand(psychicEnergy);
-        trainer1.addCardToHand(professorJuniper);
+        trainer1.addCardToHand(potion);
 
-        assertEquals(professorJuniper.getDescription(),"Descarta tu mano y roba 7 cartas");
         assertEquals(trainer1.getHand().size(),4);
 
         for (int i = 0; i < 100; i++) {
             trainer1.setDeck(waterEnergy);
         }
 
-        trainer1.play(professorJuniper);
-        assertEquals(trainer1.getHand().size(),7);
-    }
+        trainer1.play(basicFirePokemon);
+        trainer2.play(basicFightingPokemon);
 
+        trainer2.attackTrainer(trainer1,0);
+        assertEquals(trainer1.getActivePokemon().getHP(),60);
+        assertEquals(trainer1.getDiscardPile().size(),0);
+        trainer1.play(potion);
+        assertEquals(trainer1.getActivePokemon().getHP(),80);
+        assertEquals(trainer1.getDiscardPile().size(),1);
+    }
 }

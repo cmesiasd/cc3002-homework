@@ -206,6 +206,8 @@ public interface IPokemon extends ICard {
 
     void setHp(int x);
 
+    int getInitialHP();
+
 
     //endregion
 }

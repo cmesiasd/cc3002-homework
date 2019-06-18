@@ -32,6 +32,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
     private String cardName;
     private int id;
     private int hp;
+    private int initialHP;
     private EnergyCost countEnergy;
     private List<IAbility> attackList;
     private IAbility selectedAttack;
@@ -48,6 +49,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
         super(cardName);
         this.id = id;
         this.hp = hp;
+        this.initialHP = hp;
         this.countEnergy = countEnergy;
         this.attackList = attackList;
         for (int i = 0; this.attackList.size()-4>i;i++) {
@@ -65,6 +67,10 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
 
     public int getHP() {
         return hp;
+    }
+
+    public int getInitialHP() {
+        return initialHP;
     }
 
     public void setHp(int hp) {

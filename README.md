@@ -20,7 +20,8 @@ Esto permite generar un gran manejo de la Herencia y POO que nos facilita Java.
 ## Diseño
 
 ### Trainer 
-Clase que hace ...
+Clase principal del proyecto, realiza gran parte de lo implementado, en ella se hacen llamados a distintos métodos que ejecutan diferentes 
+tareas.
 
 ### ICard
 Interfaz que describe el comportamiento de todas las cartas que participan en el juego, tales como:
@@ -31,9 +32,19 @@ Interfaz que describe el comportamiento de todas las cartas que participan en el
  
 #### IPokemon
 
+Interfaz que describe a todas las cartas de tipo Pokemon. Estos pueden ser de 3 fase, y cada uno de esas fases poseen 6 tipos, como:
+* Básicos: Agua, Electrico, Fuego, Hierba, Psíquico y Lucha  
+* Fase 1: Agua, Electrico, Fuego, Hierba, Psíquico y Lucha
+* Fase 2: Agua, Electrico, Fuego, Hierba, Psíquico y Lucha
+
 #### IEnergy
+Al igual que los Pokemon, poseen 6 tipos distintos: Agua, Electrico, Fuego, Hierba, Psíquico y Lucha
 
 #### ITrainerCard
+Existen 3 tipos de cartas de entrenador:
+* Soporte
+* Estadio
+* Objeto
 
 ### IAbility
 
@@ -42,11 +53,9 @@ Interfaz que describe el comportamiento de la habilidades que poseen las cartas 
 #### Attack
 Un tipo en particular de habilidad son los ataques, estos poseen un daño a diferencia de las habilidades en general.
 
-### IVisitor
-Intefaz para utilizar el patrón de diseño Visitor 
+### IVisitorCard, IVisitorAbility
+Intefaz para utilizar el patrón de diseño Visitor tanto para jugar cartas como para efectuar habilidades.
 
-#### PlayCardVisitor
-Clase que ....
 ## Test
 
 El testing fue realizado con el framework **JUnit 4**. Se realiza un testing unitario para cada método, 
@@ -62,5 +71,5 @@ se encuentre marcado como _Test Root_.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License.
 

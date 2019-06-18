@@ -25,6 +25,7 @@ public class Trainer {
     private ArrayList<ICard> sixPrize;
     private Trainer opponent;
     private ObjectCard object;
+    private boolean coin;
 
 
     /**
@@ -114,6 +115,14 @@ public class Trainer {
         }
     }
 
+    public boolean getCoin() {
+        return coin;
+    }
+
+    public void setCoin(boolean coin) {
+        this.coin = coin;
+    }
+
     public Trainer getOpponent() {
         return opponent;
     }
@@ -199,8 +208,9 @@ public class Trainer {
         }
     }
 
-    public boolean flipCoin() {
+    public void flipCoin() {
         int random = new Random().nextInt(1);
-        return random == 1;
+        if (random == 1) this.setCoin(true);
+        else this.setCoin(false);
     }
 }
