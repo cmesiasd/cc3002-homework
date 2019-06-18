@@ -1,8 +1,6 @@
-package cc3002.trainerCards;
+package cc3002.abilities;
 
 import cc3002.Trainer;
-import cc3002.abilities.Attack;
-import cc3002.abilities.IAbility;
 import cc3002.effect.NullEffect;
 import cc3002.energy.fighting.FightingEnergy;
 import cc3002.energy.fire.FireEnergy;
@@ -17,6 +15,7 @@ import cc3002.pokemon.grass.BasicGrassPokemon;
 import cc3002.pokemon.lighting.BasicLightingPokemon;
 import cc3002.pokemon.psychic.BasicPsychicPokemon;
 import cc3002.pokemon.water.BasicWaterPokemon;
+import cc3002.trainerCards.LuckyStadium;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +24,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class PotionTest {
+public class ElectricShockTest {
     private FightingEnergy fightingEnergy;
     private FireEnergy fireEnergy;
     private GrassEnergy grassEnergy;
@@ -52,7 +51,7 @@ public class PotionTest {
 
     private NullEffect nullEffect = new NullEffect();
 
-    private Potion potion = new Potion(2);
+    private ElectricShock electricShock = new ElectricShock(30);
 
     @Before
     public void setUp() throws Exception {
@@ -77,7 +76,7 @@ public class PotionTest {
         At1 = new EnergyCost(0, 2, 0, 1, 0, 0);
         At2 = new EnergyCost(0, 2, 1, 1, 0, 0);
         attack1 = new Attack("Vista Nocturna", 40, "Permite robar una carta", At1, nullEffect);
-        attack2 = new Attack("Colmillo Ultratoxico", 10, "El pokemon danado pasa a estar envenenado", At2, nullEffect);
+        attack2 = new Attack("Colmillo Ultratoxico", 55, "El pokemon danado pasa a estar envenenado", At2, nullEffect);
 
         LA_Pokemon1.add(attack1);
         LA_Pokemon1.add(attack2);
@@ -93,43 +92,36 @@ public class PotionTest {
 
         LA_Pokemon2.add(attack3);
         LA_Pokemon2.add(attack4);
+        LA_Pokemon2.add(electricShock);
 
         basicGrassPokemon = new BasicGrassPokemon("Bulbasaur", 70, 1, FullEnergy, LA_Pokemon2);
-
         basicFirePokemon = new BasicFirePokemon("Charmander", 100, 3, FullEnergy, LA_Pokemon2);
         basicFightingPokemon = new BasicFightingPokemon("Machop", 150, 2, FullEnergy, LA_Pokemon1);
         basicLightingPokemon = new BasicLightingPokemon("Pikachu", 60, 21, FullEnergy, LA_Pokemon1);
         basicWaterPokemon = new BasicWaterPokemon("Squirtle", 65, 14, FullEnergy, LA_Pokemon2);
         //endregion
-
     }
 
     @Test
-    public void playProfessorJuniper() {
+    public void playLuckyStadium() {
         trainer1.setOpponent(trainer2);
         trainer2.setOpponent(trainer1);
 
         trainer1.addCardToHand(basicFightingPokemon);
         trainer1.addCardToHand(basicFirePokemon);
         trainer1.addCardToHand(psychicEnergy);
-        trainer1.addCardToHand(potion);
-
-        assertEquals(trainer1.getHand().size(),4);
-
-        for (int i = 0; i < 100; i++) {
-            trainer1.setDeck(waterEnergy);
-        }
 
         trainer1.play(basicFirePokemon);
-        trainer2.play(basicFightingPokemon);
+        trainer2.play(basicWaterPokemon);
 
-        trainer2.attackTrainer(trainer1,0);
-        assertEquals(trainer1.getActivePokemon().getHP(),60);
-        assertEquals(trainer1.getDiscardPile().size(),0);
-        trainer1.play(potion);
-        assertEquals(trainer1.getActivePokemon().getHP(),80);
-        assertEquals(trainer1.getDiscardPile().size(),1);
+        assertEquals(trainer1.getActivePokemon().getHP(),100);
+        assertEquals(trainer2.getActivePokemon().getHP(),65);
 
-        trainer2.attackTrainer(trainer1,1);
+        trainer2.flipCoin();
+        trainer2.attackTrainer(trainer1,2);
+
+        assertEquals(trainer1.getActivePokemon().getHP(),40);
+        assertEquals(trainer2.getActivePokemon().getHP(),35);
     }
+
 }

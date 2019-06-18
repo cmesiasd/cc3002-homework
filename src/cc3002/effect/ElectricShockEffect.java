@@ -1,5 +1,7 @@
 package cc3002.effect;
 
+import cc3002.pokemon.IPokemon;
+
 public class ElectricShockEffect extends AbstractEffect {
     private int x;
     public  ElectricShockEffect(int x){
@@ -8,7 +10,10 @@ public class ElectricShockEffect extends AbstractEffect {
 
     @Override
     public void doEffect() {
-        this.getAbility().getAssociatedPokemon().getTrainer().flipCoin();
-        //if (this.coinFlip) this.getAbility().getAssociatedPokemon().setHp(this.x);
+        this.getAssociatedCard().getTrainer().flipCoin();
+        if(this.getAssociatedCard().getTrainer().getCoin()) {
+            IPokemon selected = this.getAbility().getAssociatedPokemon();
+            selected.setHp(selected.getHP()-this.x);
+        }
     }
 }

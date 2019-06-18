@@ -10,6 +10,7 @@ public class AbilityVisitor implements IVisitorAbility {
     public void visitAbility(Ability ability) {
         Trainer opponent = ability.getAssociatedPokemon().getTrainer().getOpponent();
         ability.getEffect().setAbility(ability);
+        ability.getEffect().setAssociatedCard(ability.getAssociatedPokemon());
         ability.getEffect().doEffect();
         opponent.receiveAnAttack(ability.getAssociatedPokemon().getTrainer(), ability.getAssociatedPokemon().getAttacks().indexOf(ability));
 
@@ -18,6 +19,7 @@ public class AbilityVisitor implements IVisitorAbility {
     @Override
     public void visitAttack(Attack attack) {
         Trainer opponent = attack.getAssociatedPokemon().getTrainer().getOpponent();
+        attack.getEffect().setAssociatedCard(attack.getAssociatedPokemon());
         attack.getEffect().doEffect();
         opponent.receiveAnAttack(attack.getAssociatedPokemon().getTrainer(), attack.getAssociatedPokemon().getAttacks().indexOf(attack));
     }
