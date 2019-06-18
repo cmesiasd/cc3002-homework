@@ -7,6 +7,12 @@ import cc3002.pokemon.lighting.AbstractLightingPokemon;
 import cc3002.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.pokemon.water.AbstractWaterPokemon;
 
+/**
+ * Visitor to Pokemon's type
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class StrikesBackVisitor implements IVisitorPokemonType {
 
     @Override

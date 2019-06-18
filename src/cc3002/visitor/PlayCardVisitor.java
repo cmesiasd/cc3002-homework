@@ -9,6 +9,12 @@ import cc3002.trainerCards.ObjectCard;
 import cc3002.trainerCards.StadiumCard;
 import cc3002.trainerCards.SupportCard;
 
+/**
+ * Visitor to play cards
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class PlayCardVisitor implements IVisitorCard {
 
     @Override

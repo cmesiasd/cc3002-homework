@@ -5,6 +5,12 @@ import cc3002.abilities.Ability;
 import cc3002.abilities.Attack;
 import cc3002.abilities.IAbility;
 
+/**
+ * Visitor to do abilities
+ *
+ * @author cmesiasd
+ * @version 2.0
+ */
 public class AbilityVisitor implements IVisitorAbility {
     @Override
     public void visitAbility(Ability ability) {
